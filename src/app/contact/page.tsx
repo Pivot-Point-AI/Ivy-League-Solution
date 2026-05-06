@@ -53,6 +53,7 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -62,10 +63,30 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error || "Failed to send message");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Failed to send message. Please try again.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -236,6 +257,12 @@ export default function ContactPage() {
                   >
                     {loading ? "Sending..." : "Send Message →"}
                   </button>
+
+                  {error ? (
+                    <p style={{ textAlign: "center", fontSize: 12, color: "#b42318", marginTop: 10 }}>
+                      {error}
+                    </p>
+                  ) : null}
 
                   <p style={{ textAlign: "center", fontSize: 11, color: "var(--gray-400)", marginTop: 10 }}>
                     Your information is kept strictly confidential.

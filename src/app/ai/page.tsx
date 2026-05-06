@@ -100,7 +100,7 @@ export default function AIPage() {
               </span>
             </h1>
 
-            <p className="text-xl text-ivy-200/50 max-w-2xl leading-relaxed mb-10">
+            <p className="text-xl text-ivy-100/85 max-w-2xl leading-relaxed mb-10">
               Through our partnership with AI Brigade, Ivy League Solutions delivers production-grade AI 
               systems with the precision, interpretability, and regulatory rigor enterprise teams require.
             </p>
@@ -115,7 +115,7 @@ export default function AIPage() {
               ].map((s) => (
                 <div key={s.l} className="glass border border-ivy-800/20 rounded-2xl p-5 text-center">
                   <div className="font-display text-3xl font-bold text-gradient-gold mb-1">{s.v}</div>
-                  <div className="text-ivy-300/50 text-xs">{s.l}</div>
+                  <div className="text-ivy-100/85 text-xs">{s.l}</div>
                 </div>
               ))}
             </div>
@@ -155,7 +155,7 @@ export default function AIPage() {
               AI Engineered for{" "}
               <span className="italic text-gradient-gold">Real-World Impact</span>
             </h2>
-            <p className="text-ivy-200/50 max-w-xl mx-auto">
+            <p className="text-ivy-100/80 max-w-xl mx-auto">
               We don't build demos. We build production systems that generate measurable ROI from day one.
             </p>
           </div>
@@ -174,10 +174,10 @@ export default function AIPage() {
                 <h3 className="font-display text-2xl font-semibold text-white mb-3 group-hover:text-gold-300 transition-colors">
                   {cap.headline}
                 </h3>
-                <p className="text-ivy-200/50 leading-relaxed mb-6 text-sm">{cap.desc}</p>
+                <p className="text-ivy-100/80 leading-relaxed mb-6 text-sm">{cap.desc}</p>
                 <div className="space-y-2">
                   {cap.items.map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-sm text-ivy-200/60">
+                    <div key={item} className="flex items-center gap-2 text-sm text-ivy-100/80">
                       <span className="w-1.5 h-1.5 rounded-full bg-ivy-500 shrink-0" />
                       {item}
                     </div>
@@ -198,7 +198,7 @@ export default function AIPage() {
               Meet{" "}
               <span className="italic text-gradient-gold">AI Brigade</span>
             </h2>
-            <p className="text-ivy-200/50 max-w-xl mx-auto text-sm">
+            <p className="text-ivy-100/80 max-w-xl mx-auto text-sm">
               Our AI partner platform — live and interactive. Explore the full capabilities that 
               power Ivy League Solutions' AI offerings for North America.
             </p>
@@ -213,7 +213,7 @@ export default function AIPage() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
                 <div className="w-3 h-3 rounded-full bg-green-500/60" />
               </div>
-              <div className="flex-1 bg-slate-800/60 rounded-lg px-4 py-1.5 text-xs text-ivy-300/50 font-mono">
+              <div className="flex-1 bg-slate-800/80 rounded-lg px-4 py-1.5 text-xs text-ivy-100/80 font-mono">
                 aibrigade.vercel.app
               </div>
               <a
@@ -235,7 +235,7 @@ export default function AIPage() {
             />
           </div>
 
-          <p className="text-center text-ivy-300/30 text-xs mt-4 font-mono">
+          <p className="text-center text-ivy-100/75 text-xs mt-4 font-mono">
             Interactive preview of aibrigade.vercel.app — our AI delivery partner platform
           </p>
         </div>
@@ -265,7 +265,7 @@ export default function AIPage() {
                   <div className="absolute left-0 top-1 timeline-dot" />
                   <span className="section-tag">{step.n}</span>
                   <h3 className="font-display text-2xl font-semibold text-white mt-1 mb-2">{step.t}</h3>
-                  <p className="text-ivy-200/50 leading-relaxed">{step.d}</p>
+                  <p className="text-ivy-100/80 leading-relaxed">{step.d}</p>
                 </div>
               ))}
             </div>
@@ -281,7 +281,7 @@ export default function AIPage() {
             Let's Build Your{" "}
             <span className="italic text-gradient-gold">AI System</span>
           </h2>
-          <p className="text-ivy-200/50 mb-10">
+          <p className="text-ivy-100/80 mb-10">
             From feasibility assessment to production deployment — 
             partner with Ivy League Solutions for enterprise AI that moves the needle.
           </p>
