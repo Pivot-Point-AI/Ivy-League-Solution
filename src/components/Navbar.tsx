@@ -60,7 +60,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <div style={{ display: "flex", gap: 2 }} className="hidden md:flex">
+          <div style={{ gap: 2 }} className="hidden md:flex">
             {navLinks.map((link) =>
               link.external ? (
                 <a
@@ -108,8 +108,8 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "flex", flexDirection: "column", gap: 5 }}
+            className="flex flex-col gap-[5px] md:hidden"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 8 }}
             aria-label="Toggle menu"
           >
             <span style={{ display: "block", width: 20, height: 1.5, background: "white", borderRadius: 1, transition: "all 0.3s", transform: mobileOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
@@ -139,6 +139,7 @@ export default function Navbar() {
             transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
             transition: "transform 0.35s cubic-bezier(0.4,0,0.2,1)",
             display: "flex", flexDirection: "column",
+            overflowY: "auto",
           }}
         >
           <nav style={{ display: "flex", flexDirection: "column", gap: 4, flex: 1 }}>
