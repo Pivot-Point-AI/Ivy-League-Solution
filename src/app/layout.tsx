@@ -4,8 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: { template: "%s | Ivy League Solutions", default: "Ivy League Solutions — Custom IT & AI Solutions for North America" },
-  description: "Ivy League Solutions delivers premium custom IT products, enterprise software, and AI-powered solutions for the North American market.",
+  title: { template: "%s | Ivy League Solutions", default: "Ivy League Solutions — Custom IT & AI Solutions for  " },
+  description: "Ivy League Solutions delivers premium custom IT products, enterprise software, and AI-powered solutions for the  n market.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,6 +1,6 @@
 # Ivy League Solutions — Website
 
-A professional Next.js 15 website for Ivy League Solutions, targeting the North American market.
+A professional Next.js 15 website for Ivy League Solutions, targeting the  n market.
 
 ## Tech Stack
 

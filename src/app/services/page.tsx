@@ -38,7 +38,7 @@ export default function ServicesPage() {
             Full-Spectrum <em style={{ color: "var(--accent)", fontStyle: "italic" }}>IT Services</em>
           </h1>
           <p style={{ fontSize: 15, color: "white", lineHeight: 1.75, maxWidth: 520, fontWeight: 300 }}>
-            From digital transformation to infrastructure modernization — enterprise-grade technology services for North American businesses.
+            From digital transformation to infrastructure modernization — enterprise-grade technology services for  n businesses.
           </p>
         </div>
       </section>

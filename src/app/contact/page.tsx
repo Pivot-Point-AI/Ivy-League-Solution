@@ -31,13 +31,7 @@ const contactInfo = [
   {
     icon: "◈",
     label: "Coverage",
-    value: "North America · Global Delivery",
-    href: null,
-  },
-  {
-    icon: "⏱",
-    label: "Response Time",
-    value: "Within 24 business hours",
+    value: "  · Global Delivery",
     href: null,
   },
 ];

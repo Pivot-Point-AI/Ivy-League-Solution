@@ -37,10 +37,10 @@ export default function Footer() {
               <div style={{ width: 34, height: 34, borderRadius: 6, background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 15, color: "var(--navy)" }}>IL</div>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: "white", lineHeight: 1.2 }}>Ivy League Solutions</div>
-                <div style={{ fontSize: 9, fontWeight: 500, color: "var(--accent)", letterSpacing: "0.15em", textTransform: "uppercase" }}>North America</div>
+                <div style={{ fontSize: 9, fontWeight: 500, color: "var(--accent)", letterSpacing: "0.15em", textTransform: "uppercase" }}> </div>
               </div>
             </Link>
-            <p>Premium custom IT products, enterprise software, and AI-powered solutions engineered for North American businesses.</p>
+            <p>Premium custom IT products, enterprise software, and AI-powered solutions engineered for  n businesses.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
               {[
                 { label: "info@ivyleaguesolutions.com", href: "mailto:info@ivyleaguesolutions.com" },

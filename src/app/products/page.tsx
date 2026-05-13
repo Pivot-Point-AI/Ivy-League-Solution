@@ -34,7 +34,7 @@ const products = [
   {
     name: "IvyShield",
     tagline: "Cybersecurity Intelligence Platform",
-    desc: "Continuous threat monitoring, vulnerability assessment, and compliance automation for North American enterprises.",
+    desc: "Continuous threat monitoring, vulnerability assessment, and compliance automation for  n enterprises.",
     features: ["24/7 threat intelligence","Automated compliance reporting","Zero-trust access management","SIEM integration","Incident response playbooks","SOC 2, HIPAA, PCI-DSS ready"],
     status: "Coming Soon",
     statusClass: "status-soon",
@@ -46,7 +46,7 @@ const products = [
   {
     name: "IvyERP",
     tagline: "Modular Enterprise Resource Platform",
-    desc: "A configurable, industry-specific ERP for North American SMEs and enterprises — with AI-native modules built in from day one.",
+    desc: "A configurable, industry-specific ERP for  n SMEs and enterprises — with AI-native modules built in from day one.",
     features: ["Finance & accounting","HR & payroll automation","Supply chain & inventory","CRM built-in","AI-powered forecasting","Industry-specific templates"],
     status: "In Development",
     statusClass: "status-soon",

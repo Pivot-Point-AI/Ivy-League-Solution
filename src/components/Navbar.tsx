@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
+const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/",                  label: "Home"     },
   { href: "/services",          label: "Services" },
   { href: "/solutions",         label: "Portfolio"},
   { href: "/products",          label: "Products" },
-  { href: "http://aibrigade.ai/", label: "AI", external: true },
+  { href: "/ai", label: "AI" },
   { href: "/about",             label: "About"    },
   { href: "/contact",           label: "Contact"  },
 ];
@@ -32,35 +32,37 @@ export default function Navbar() {
       <nav
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-          background: scrolled ? "rgba(11,31,58,0.97)" : "#0B1F3A",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          background: scrolled ? "rgba(11,31,58,0.98)" : "rgba(11,31,58,0.95)",
+          backdropFilter: "blur(16px)",
+          borderBottom: scrolled ? "1px solid rgba(200,169,110,0.15)" : "1px solid rgba(255,255,255,0.08)",
+          boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.25)" : "none",
           transition: "all 0.3s ease",
         }}
       >
-        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
+        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 70 }}>
           {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none" }}>
             <div style={{
-              width: 34, height: 34, borderRadius: 6,
+              width: 40, height: 40, borderRadius: 8,
               background: "var(--accent)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 15, color: "var(--navy)",
+              fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 17, color: "var(--navy)",
+              boxShadow: "0 2px 12px rgba(200,169,110,0.35)",
             }}>
               IL
             </div>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: "white", lineHeight: 1.2 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "white", lineHeight: 1.2, letterSpacing: "0.01em" }}>
                 Ivy League Solutions
               </div>
-              <div style={{ fontSize: 9, fontWeight: 500, color: "var(--accent)", letterSpacing: "0.15em", textTransform: "uppercase", lineHeight: 1 }}>
-                North America
+              <div style={{ fontSize: 9, fontWeight: 500, color: "var(--accent)", letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1, marginTop: 2 }}>
+                Enterprise Technology
               </div>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <div style={{ gap: 2 }} className="hidden md:flex">
+          <div style={{ gap: 4 }} className="hidden md:flex">
             {navLinks.map((link) =>
               link.external ? (
                 <a
@@ -70,9 +72,9 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="nav-link"
                   style={{
-                    padding: "6px 14px",
-                    borderRadius: 5,
-                    fontSize: 12,
+                    padding: "7px 16px",
+                    borderRadius: 6,
+                    fontSize: 13,
                     fontWeight: 400,
                     textDecoration: "none",
                     transition: "color 0.2s",
@@ -86,9 +88,9 @@ export default function Navbar() {
                   href={link.href}
                   className={`nav-link ${pathname === link.href ? "nav-link-active" : ""}`}
                   style={{
-                    padding: "6px 14px",
-                    borderRadius: 5,
-                    fontSize: 12,
+                    padding: "7px 16px",
+                    borderRadius: 6,
+                    fontSize: 13,
                     fontWeight: 400,
                     textDecoration: "none",
                     transition: "color 0.2s",

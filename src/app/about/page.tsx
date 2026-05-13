@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 };
 
 const timeline = [
-  { year: "2015", title: "Origins", desc: "MeeramTech founded in Dubai, UAE — beginning a tradition of meeting diversified enterprise technology needs." },
+  { year: "2015", title: "Origins", desc: "MeeramTech founded in Dubai, UAE — beginning a tradition of meeting diversified enterprise technology needs across the Middle East." },
   { year: "2018", title: "AppInSnap Launch", desc: "AppInSnap joins the portfolio, specializing in mobile-first solutions and rapid product development across the Middle East." },
   { year: "2020", title: "AI Division", desc: "Launch of AI Brigade — our dedicated machine learning and AI engineering practice for regulated verticals." },
   { year: "2022", title: "Datum Product", desc: "Released Datum, our proprietary spreadsheet intelligence platform — Excel/OpenXML compatible with enterprise-grade security." },
-  { year: "2024", title: "North America Launch", desc: "Ivy League Solutions launched to bring our decade of enterprise expertise to the North American market under one unified brand." },
-  { year: "2025+", title: "Scale & Expand", desc: "Expanding AI capabilities, growing North American presence, and building IvyFlow, IvyShield, and IvyERP product lines." },
+  { year: "2024", title: "Global Launch", desc: "Ivy League Solutions launched to bring our decade of enterprise expertise to global markets under one unified brand." },
+  { year: "2025+", title: "Scale & Expand", desc: "Expanding AI capabilities, growing our global presence, and building IvyFlow, IvyShield, and IvyERP product lines." },
 ];
 
 const values = [
@@ -28,13 +28,14 @@ const techPartners = [
 ];
 
 const leadership = [
-  { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "Farat brings 10+ years of enterprise IT consulting experience across the Middle East and South Asia, leading MeeramTech and AppInSnap before launching Ivy League Solutions for the North American market.", initials: "FI" },
-  { name: "Engineering Team", role: "50+ Engineers Globally", bio: "Distributed engineering talent spanning Pakistan, UAE, and North America — covering software engineering, infrastructure, AI/ML, UI/UX design, and cybersecurity.", initials: "ET" },
+  { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "Farat brings 10+ years of enterprise IT consulting experience across the Middle East and South Asia, leading MeeramTech and AppInSnap before launching Ivy League Solutions as a unified global brand.", initials: "FI" },
+  { name: "Engineering Team", role: "50+ Engineers Globally", bio: "Distributed engineering talent spanning South Asia, UAE, and the Gulf region — covering software engineering, infrastructure, AI/ML, UI/UX design, and cybersecurity.", initials: "ET" },
 ];
 
 export default function AboutPage() {
   return (
     <>
+      {/* 1 — Hero: navy */}
       <section className="hero" style={{ paddingTop: 140 }}>
         <div className="container">
           <div className="hero-inner" style={{ maxWidth: 760 }}>
@@ -42,30 +43,31 @@ export default function AboutPage() {
             <h1 className="hero-title font-display">
               A Decade of <em>Engineering</em>
               <br />
-              Redefined for <em>North America</em>
+              Redefined for <em>Enterprise</em>
             </h1>
             <p className="hero-desc" style={{ maxWidth: 640 }}>
               Ivy League Solutions brings together MeeramTech&apos;s enterprise infrastructure expertise
-              and AppInSnap&apos;s product agility — unified for the North American market.
+              and AppInSnap&apos;s product agility — unified for global enterprise delivery.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="section section-navy">
+      {/* 2 — Mission: white */}
+      <section className="section">
         <div className="container">
           <div className="sh">
-            <div className="eyebrow" style={{ color: "var(--accent)" }}>Our Mission</div>
-            <h2 className="font-display light">We Solve <em>Complex Problems</em></h2>
+            <div className="eyebrow">Our Mission</div>
+            <h2 className="font-display">We Solve <em>Complex Problems</em></h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 24 }}>
             <div>
-              <p style={{ fontSize: 14, color: "white", lineHeight: 1.8, marginBottom: 14 }}>
+              <p style={{ fontSize: 14, color: "var(--gray-600)", lineHeight: 1.8, marginBottom: 14 }}>
                 We offer both customized and off-the-shelf software solutions, helping SMEs and
                 corporate-level clients unlock opportunities of tomorrow. We build platforms that
                 make it easy and efficient to develop and operate real-time applications.
               </p>
-              <p style={{ fontSize: 14, color: "white", lineHeight: 1.8 }}>
+              <p style={{ fontSize: 14, color: "var(--gray-600)", lineHeight: 1.8 }}>
                 From Fintech, Transportation, and Healthcare to Retail and beyond — we build solutions
                 across verticals with long-standing relationships with business-leading vendors.
               </p>
@@ -77,10 +79,10 @@ export default function AboutPage() {
                 { v: "50+", l: "Team Members", sub: "Engineers & designers" },
                 { v: "15+", l: "Industries Served", sub: "Deep domain expertise" },
               ].map((s) => (
-                <div key={s.l} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: 18 }}>
+                <div key={s.l} style={{ background: "var(--gray-50)", border: "1px solid var(--gray-100)", borderRadius: 8, padding: 18 }}>
                   <div className="font-display" style={{ fontSize: 30, color: "var(--accent)", marginBottom: 6 }}>{s.v}</div>
-                  <div style={{ fontSize: 12, color: "white", marginBottom: 3 }}>{s.l}</div>
-                  <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>{s.sub}</div>
+                  <div style={{ fontSize: 12, color: "var(--gray-800)", marginBottom: 3 }}>{s.l}</div>
+                  <div style={{ fontSize: 10, color: "var(--gray-400)" }}>{s.sub}</div>
                 </div>
               ))}
             </div>
@@ -88,6 +90,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* 3 — Timeline: off-white (alt) */}
       <section className="section section-alt">
         <div className="container">
           <div className="sh">
@@ -108,6 +111,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* 4 — Values: white */}
       <section className="section">
         <div className="container">
           <div className="sh">
@@ -127,21 +131,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section-alt">
+      {/* 5 — Leadership: navy */}
+      <section className="section section-navy">
         <div className="container">
           <div className="sh">
-            <div className="eyebrow">Leadership</div>
-            <h2 className="font-display">The Team Behind <em>Ivy League</em></h2>
+            <div className="eyebrow" style={{ color: "var(--accent)" }}>Leadership</div>
+            <h2 className="font-display light">The Team Behind <em>Ivy League</em></h2>
             <div className="rule" />
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             {leadership.map((l) => (
-              <div key={l.name} className="lead-card">
-                <div className="lead-avatar">{l.initials}</div>
+              <div key={l.name} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: 24, display: "flex", gap: 16, alignItems: "flex-start" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 8, background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 600, color: "var(--navy)", flexShrink: 0 }}>{l.initials}</div>
                 <div>
-                  <div className="lead-name">{l.name}</div>
-                  <div className="lead-role">{l.role}</div>
-                  <div className="lead-bio">{l.bio}</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "white", marginBottom: 2 }}>{l.name}</div>
+                  <div style={{ fontSize: 10, fontWeight: 500, color: "var(--accent)", letterSpacing: "0.06em", textTransform: "uppercase" as const, marginBottom: 8 }}>{l.role}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>{l.bio}</div>
                 </div>
               </div>
             ))}
@@ -149,6 +154,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* 6 — Tech Partners: white */}
       <section className="section">
         <div className="container">
           <div className="sh">
@@ -164,7 +170,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      {/* 7 — CTA: off-white (alt) */}
+      <section className="section section-alt">
         <div className="container">
           <div className="cta-block">
             <div>

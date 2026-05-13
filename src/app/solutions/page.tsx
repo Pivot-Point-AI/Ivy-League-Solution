@@ -26,7 +26,7 @@ export default function SolutionsPage() {
             Delivered Solutions,<br /><em style={{ color: "var(--accent)", fontStyle: "italic" }}>Proven Results</em>
           </h1>
           <p style={{ fontSize: 15, color: "white", lineHeight: 1.75, maxWidth: 480, fontWeight: 300 }}>
-            200+ enterprise deployments spanning 15+ industries and 20+ countries.
+            200+ enterprise deployments spanning 15+ industries across the world.
           </p>
         </div>
       </section>
