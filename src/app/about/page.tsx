@@ -29,7 +29,7 @@ const techPartners = [
 
 const leadership = [
   { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "Farat brings 10+ years of enterprise IT consulting experience across the Middle East and South Asia, leading MeeramTech and AppInSnap before launching Ivy League Solutions as a unified global brand.", initials: "FI" },
-  { name: "Engineering Team", role: "50+ Engineers Globally", bio: "Distributed engineering talent spanning South Asia, UAE, and the Gulf region — covering software engineering, infrastructure, AI/ML, UI/UX design, and cybersecurity.", initials: "ET" },
+  { name: "Engineering Team", role: "250+ Engineers Globally", bio: "Distributed engineering talent spanning South Asia, UAE, and the Gulf region — covering software engineering, infrastructure, AI/ML, UI/UX design, and cybersecurity.", initials: "ET" },
 ];
 
 export default function AboutPage() {
@@ -76,7 +76,7 @@ export default function AboutPage() {
               {[
                 { v: "10+", l: "Years of Experience", sub: "Since 2015" },
                 { v: "200+", l: "Projects Delivered", sub: "Global portfolio" },
-                { v: "50+", l: "Team Members", sub: "Engineers & designers" },
+                { v: "250+", l: "Team Members", sub: "Engineers & designers" },
                 { v: "15+", l: "Industries Served", sub: "Deep domain expertise" },
               ].map((s) => (
                 <div key={s.l} style={{ background: "var(--gray-50)", border: "1px solid var(--gray-100)", borderRadius: 8, padding: 18 }}>

@@ -6,7 +6,7 @@ const stats = [
   { value: 10,  suffix: "+", label: "Years of Experience", sub: "Since 2015",             icon: "◈", color: "#C8A96E" },
   { value: 200, suffix: "+", label: "Projects Delivered",  sub: "Across 15+ industries",  icon: "◇", color: "#C8A96E" },
   { value: 98,  suffix: "%", label: "Client Satisfaction", sub: "Long-term partnerships", icon: "△", color: "#C8A96E" },
-  { value: 50,  suffix: "+", label: "Expert Engineers",    sub: "Global talent",           icon: "○", color: "#C8A96E" },
+  { value: 250,  suffix: "+", label: "Expert Engineers",    sub: "Global talent",           icon: "○", color: "#C8A96E" },
 ];
 
 function useCountUp(target: number, duration = 2000, start = false, delay = 0) {

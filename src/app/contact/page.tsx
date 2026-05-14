@@ -19,8 +19,8 @@ const contactInfo = [
   {
     icon: "✉",
     label: "Email",
-    value: "info@ivyleaguesolutions.com",
-    href: "mailto:info@ivyleaguesolutions.com",
+    value: "contact@ivyleaguesolutions.com",
+    href: "mailto:contact@ivyleaguesolutions.com",
   },
   {
     icon: "☎",
