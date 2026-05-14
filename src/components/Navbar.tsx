@@ -138,21 +138,20 @@ function Logo() {
     <Link href="/" onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
       style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none" }}>
       <div style={{
-        width: 36, height: 36, borderRadius: 8,
+        width: 76, height: 76, borderRadius: 8,
         overflow: "hidden",
         transition: "all 0.25s",
-        boxShadow: h ? "0 0 0 4px rgba(200,169,110,0.22)" : "0 2px 10px rgba(200,169,110,0.28)",
         transform: h ? "scale(1.07)" : "scale(1)",
       }}>
-        <Image src="/logo.png" alt="Ivy League Solutions" width={36} height={36} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <Image src="/image.png" alt="Ivy League Solutions" width={76} height={76} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
       <div>
-        <div style={{ fontSize: 13.5, fontWeight: 600, color: "white", letterSpacing: "0.01em", lineHeight: 1.2, transition: "color 0.2s" }}>
+        {/* <div style={{ fontSize: 13.5, fontWeight: 600, color: "white", letterSpacing: "0.01em", lineHeight: 1.2, transition: "color 0.2s" }}>
           Ivy League Solutions
         </div>
         <div style={{ fontSize: 8.5, fontWeight: 500, color: h ? "var(--accent)" : "rgba(200,169,110,0.6)", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: 2, transition: "color 0.25s" }}>
           Enterprise Technology
-        </div>
+        </div> */}
       </div>
     </Link>
   );

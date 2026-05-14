@@ -78,6 +78,3 @@ vercel deploy
 Or any Node.js hosting (Railway, Render, AWS, etc.)
 
 ---
-
-Built with ❤️ by Ivy League Solutions Engineering Team
-"# Ivy-League-Solution" 

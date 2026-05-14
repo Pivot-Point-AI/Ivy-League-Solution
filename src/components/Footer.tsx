@@ -35,18 +35,15 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", width: "fit-content" }}>
-              <div style={{ width: 34, height: 34, borderRadius: 6, overflow: "hidden" }}>
-                <Image src="/logo.png" alt="Ivy League Solutions" width={34} height={34} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <div style={{ width: 74, height: 74, borderRadius: 6, overflow: "hidden" }}>
+                <Image src="/image.png" alt="Ivy League Solutions" width={74} height={74} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: "white", lineHeight: 1.2 }}>Ivy League Solutions</div>
-                <div style={{ fontSize: 9, fontWeight: 500, color: "var(--accent)", letterSpacing: "0.15em", textTransform: "uppercase" }}> </div>
-              </div>
+           
             </Link>
             <p>Premium custom IT products, enterprise software, and AI-powered solutions engineered for  n businesses.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
               {[
-                { label: "info@ivyleaguesolutions.com", href: "mailto:info@ivyleaguesolutions.com" },
+                { label: "contact@ivyleaguesolutions.com", href: "mailto:contact@ivyleaguesolutions.com" },
                 { label: "+1 (800) 555-0100",          href: "tel:+18005550100" },
               ].map((c) => (
                 <a key={c.label} href={c.href} className="footer-meta-link" style={{ fontSize: 12, textDecoration: "none", transition: "color 0.2s" }}>
