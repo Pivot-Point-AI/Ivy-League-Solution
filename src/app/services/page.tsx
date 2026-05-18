@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = { title: "Services" };
 
+
 const dts = [
   { icon: "⬡", id: "software",    title: "Software Development",   desc: "Web, mobile, and enterprise apps from concept to production.", tech: ["React","Next.js","Node.js","Python",".NET"] },
   { icon: "✦", id: "ai",          title: "AI & Machine Learning",   desc: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation.", tech: ["LLMs","MLOps","Fintech AI","Health AI"] },
