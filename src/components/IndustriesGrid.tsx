@@ -230,7 +230,8 @@ export default function IndustriesGrid() {
   return (
     <div
       ref={ref}
-      style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}
+      className="ind-grid-main"
+      style={{ gap: 14 }}
     >
       {industries.map((item, i) => (
         <IndCard key={item.name} item={item} index={i} visible={visible} />

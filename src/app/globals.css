@@ -333,3 +333,150 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
   .form-row { grid-template-columns: 1fr; }
   .hero-split { display: block !important; }
 }
+
+/* ── Navbar ── */
+.nav-root {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+.nav-inner {
+  height: 66px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-desktop-links {
+  position: relative; display: flex; align-items: center; gap: 0;
+}
+.nav-desktop-cta { display: flex; }
+.nav-hamburger {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  padding: 8px; flex-direction: column; gap: 5px;
+  justify-content: center; align-items: center;
+}
+
+@media (max-width: 768px) {
+  .nav-desktop-links { display: none !important; }
+  .nav-desktop-cta   { display: none !important; }
+  .nav-hamburger     { display: flex !important; }
+  .nav-inner         { height: 60px; }
+}
+
+/* ── Industries grid ── */
+.ind-grid-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ── Footer grid (desktop) ── */
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding: 64px 0 48px;
+}
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Landing page mobile responsive ── */
+@media (max-width: 768px) {
+  /* hero */
+  .hero { padding: 100px 0 56px; }
+  .hero-split { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .hero-title { font-size: 36px; }
+  .hero-stat-cards { display: none; }
+
+  /* services bento grid */
+  .services-bento-row1 { grid-template-columns: 1fr !important; }
+  .services-bento-row2 { grid-template-columns: 1fr 1fr !important; }
+
+  /* industries */
+  .ind-grid-main { grid-template-columns: 1fr 1fr !important; }
+
+  /* why-us cards */
+  .why-us-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* cta section */
+  .cta-three-col { grid-template-columns: 1fr !important; }
+  .cta-inner-two-col { grid-template-columns: 1fr !important; }
+  .cta-stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .cta-action-panel { width: 100% !important; }
+
+  /* partners strip */
+  .cta-partners-row { gap: 20px !important; justify-content: center !important; flex-wrap: wrap !important; }
+}
+
+@media (max-width: 480px) {
+  /* hero */
+  .hero { padding: 88px 0 48px; }
+  .hero-title { font-size: 28px; }
+  .hero-btns { flex-direction: column; }
+
+  /* services bento */
+  .services-bento-row1,
+  .services-bento-row2 { grid-template-columns: 1fr !important; }
+
+  /* why-us */
+  .why-us-grid { grid-template-columns: 1fr !important; }
+
+  /* cta */
+  .cta-three-col { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .cta-stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .cta-action-panel { width: 100% !important; }
+  .cta-partners-row { gap: 16px !important; }
+
+  /* industries */
+  .ind-grid { grid-template-columns: 1fr 1fr !important; }
+  .ind-grid-main { grid-template-columns: 1fr 1fr !important; }
+
+  /* stat cards */
+  .hero-stat-cards { display: none !important; }
+}
+
+/* ── Navbar mobile ── */
+@media (max-width: 768px) {
+  /* shrink logo on mobile */
+  .nav-logo-img { width: 54px !important; height: 54px !important; }
+  /* ensure container doesn't overflow */
+  .container { padding: 0 16px; }
+}
+
+/* ── Footer mobile ── */
+@media (max-width: 768px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 48px 0 36px;
+  }
+  /* brand column spans full width */
+  .footer-main-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 40px 0 32px;
+  }
+  .footer-main-grid > div:first-child {
+    grid-column: 1;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

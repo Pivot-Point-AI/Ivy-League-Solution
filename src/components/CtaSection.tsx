@@ -165,7 +165,7 @@ export default function CtaSection() {
         </div>
 
         {/* ── THREE COLUMNS ── */}
-        <div style={{
+        <div className="cta-three-col" style={{
           display: "grid", gridTemplateColumns: "1fr 1.5fr 1fr", gap: 24, alignItems: "start",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -180,7 +180,7 @@ export default function CtaSection() {
             }}>
               Partner with a globally recognized team across fintech, healthcare, ERP, and beyond to achieve real outcomes from proven partnerships.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <div className="cta-stats-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               {stats.map((s, i) => (
                 <div
                   key={s.label}
@@ -362,7 +362,7 @@ export default function CtaSection() {
           </div>
 
           {/* COL 3: Project Initiation Hub */}
-          <div style={{
+          <div className="cta-action-panel" style={{
             background: "rgba(255,255,255,0.03)",
             border: "1px solid rgba(200,169,110,0.18)",
             borderRadius: 16, padding: "28px 22px",
@@ -438,7 +438,7 @@ export default function CtaSection() {
           opacity: visible ? 1 : 0,
           transition: "opacity 0.7s ease 0.4s",
         }}>
-          <div style={{
+          <div className="cta-partners-row" style={{
             display: "flex", alignItems: "center", gap: 40,
             justifyContent: "space-between", flexWrap: "wrap",
           }}>

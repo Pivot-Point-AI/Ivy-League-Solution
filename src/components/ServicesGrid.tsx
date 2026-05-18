@@ -249,13 +249,13 @@ export default function ServicesGrid() {
   return (
     <div ref={ref} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Row 1: Software + AI featured */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 16 }}>
+      <div className="services-bento-row1" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 16 }}>
         <ServiceCard s={normals[0]} index={0} visible={visible} />
         {featured && <ServiceCard s={featured} index={1} visible={visible} />}
       </div>
 
       {/* Row 2: remaining 4 in equal columns */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+      <div className="services-bento-row2" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
         {normals.slice(1).map((s, i) => (
           <ServiceCard key={s.title} s={s} index={i + 2} visible={visible} />
         ))}

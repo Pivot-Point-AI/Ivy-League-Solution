@@ -65,12 +65,7 @@ export default function Footer() {
   return (
     <footer style={{ background: "linear-gradient(180deg, #07152A 0%, #09182E 100%)", borderTop: "1px solid rgba(200,169,110,0.12)" }}>
       <div className="container">
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "2.2fr 1fr 1fr 1fr",
-          gap: 48,
-          padding: "64px 0 48px",
-        }}>
+        <div className="footer-main-grid">
           {/* Brand */}
           <div>
             <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 12, textDecoration: "none", marginBottom: 20 }}>
@@ -172,11 +167,7 @@ export default function Footer() {
         </div>
 
         {/* bottom bar */}
-        <div style={{
-          borderTop: "1px solid rgba(255,255,255,0.07)",
-          padding: "20px 0",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-        }}>
+        <div className="footer-bottom-bar">
           <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", margin: 0 }}>
             © {new Date().getFullYear()} by League Solutions, Inc. All rights reserved.
           </p>

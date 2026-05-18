@@ -42,7 +42,9 @@ export default function HomePage() {
             </div>
 
             {/* Right — stat cards */}
-            <StatCards />
+            <div className="hero-stat-cards">
+              <StatCards />
+            </div>
           </div>
         </div>
       </section>
@@ -111,7 +113,7 @@ export default function HomePage() {
             <div className="rule center" />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, marginTop: 48 }}>
+          <div className="why-us-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, marginTop: 48 }}>
             {[
               {
                 icon: (
