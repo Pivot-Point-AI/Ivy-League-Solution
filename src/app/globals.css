@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -21,6 +21,12 @@
   --gray-800:    #1A202C;
   --font-display:'Playfair Display', Georgia, serif;
   --font-body:   'Inter', system-ui, sans-serif;
+  /* New green-scheme design tokens */
+  --rs-green:      #78EB54;
+  --rs-dark-green: #273F2B;
+  --rs-black:      #000000;
+  --rs-gray:       #F3F4F6;
+  --rs-font:       'Aeonik', 'DM Sans', 'Inter', system-ui, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -478,5 +484,34 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+}
+
+/* ── Hero mobile: stack content vertically on narrow screens ── */
+@media (max-width: 768px) {
+  /* Green card: full width at bottom-left */
+  .hero-card-mobile {
+    left: 5vw !important;
+    top: auto !important;
+    bottom: 2vh !important;
+    width: 44vw !important;
+    height: auto !important;
+    min-height: 180px !important;
+  }
+  /* Heading: repositioned for mobile */
+  .hero-h1-mobile {
+    left: 5vw !important;
+    top: 35vh !important;
+    width: 90vw !important;
+    font-size: clamp(28px, 9vw, 56px) !important;
+    height: auto !important;
+  }
+  /* Subtitle group: repositioned for mobile */
+  .hero-sub-mobile {
+    left: 52vw !important;
+    top: auto !important;
+    bottom: 4vh !important;
+    width: 42vw !important;
+    min-width: 160px !important;
   }
 }

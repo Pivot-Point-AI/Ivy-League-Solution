@@ -18,7 +18,7 @@ const projects = [
 export default function SolutionsPage() {
   return (
     <>
-      <section style={{ background: "var(--navy)", padding: "80px 0 68px", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "var(--navy)", padding: "140px 0 68px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", right: -80, top: -80, width: 520, height: 520, borderRadius: "50%", background: "rgba(200,169,110,0.05)", pointerEvents: "none" }} />
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <div className="eyebrow" style={{ marginBottom: 20 }}>Our Portfolio</div>
