@@ -1,0 +1,1357 @@
+/* ─────────────────────────────────────────────
+   page.module.css  –  Homepage component styles
+   Variables come from :root in globals.css
+───────────────────────────────────────────── */
+
+/* ── GreenBtn ── */
+.greenBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  background: var(--rs-green);
+  border-radius: 28px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--rs-black);
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--rs-font);
+}
+
+/* ── 1. Hero ── */
+.heroSection {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 700px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/hero-bg.png');
+  background-size: cover;
+  background-position: center center;
+}
+
+.heroDarkOverlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 90.09vh;
+  background: linear-gradient(24.44deg, rgba(0,0,0,0.6) 21.79%, rgba(0,0,0,0) 65.7%);
+  pointer-events: none;
+}
+
+.heroWhiteStrip {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 9.81vh;
+  background: linear-gradient(118.01deg, rgba(255,255,255,0.8) 32.64%, rgba(255,255,255,0) 67.74%);
+  filter: blur(33.5px);
+  pointer-events: none;
+}
+
+.heroStatsCard {
+  position: absolute;
+  left: 11.46vw;
+  top: 52.22vh;
+  width: 17.45vw;
+  height: 38.52vh;
+  min-width: 170px;
+  min-height: 230px;
+  background: var(--rs-green);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* shared base for all three stat card texts */
+.heroStatsText {
+  position: absolute;
+  margin: 0;
+  font-family: var(--rs-font);
+  color: var(--rs-black);
+}
+
+.heroStatsTextTop {
+  left: 5.97%;
+  top: 6.25%;
+  width: 88.06%;
+  font-size: clamp(11px, 1.15vw, 22px);
+  font-weight: 400;
+  line-height: clamp(16px, 2.22vh, 24px);
+}
+
+.heroStatsNum {
+  left: 5.97%;
+  top: 51.3%;
+  width: 60.9%;
+  font-size: clamp(36px, 9.26vh, 100px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.heroStatsTextBottom {
+  left: 5.97%;
+  top: 81.73%;
+  width: 88.06%;
+  font-size: clamp(11px, 1.15vw, 22px);
+  font-weight: 400;
+  line-height: clamp(16px, 2.22vh, 24px);
+}
+
+.heroH1 {
+  position: absolute;
+  left: 31.72vw;
+  top: 52.22vh;
+  width: 34.64vw;
+  height: 26.67vh;
+  display: flex;
+  align-items: center;
+  font-size: clamp(28px, 5vw, 96px);
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-family: var(--rs-font);
+  margin: 0;
+}
+
+.heroSubtitle {
+  position: absolute;
+  left: 63.44vw;
+  top: 74.63vh;
+  width: clamp(200px, 25.1vw, 482px);
+  margin: 0;
+  font-size: clamp(12px, 1.15vw, 22px);
+  font-weight: 400;
+  line-height: clamp(20px, 2.96vh, 32px);
+  text-align: justify;
+  color: #ffffff;
+  font-family: var(--rs-font);
+}
+
+.heroCtaLink {
+  position: absolute;
+  left: 76.67vw;
+  top: 89.56vh;
+  width: clamp(160px, 11.88vw, 228px);
+  height: clamp(44px, 5.19vh, 56px);
+  background: #ffffff;
+  border-radius: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(13px, 0.83vw, 16px);
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--rs-black);
+  text-decoration: none;
+  font-family: var(--rs-font);
+  white-space: nowrap;
+}
+
+/* ── 2. What We Do ── */
+.whatWeDoSection {
+  background: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left:   clamp(20px, 6.67vw, 128px);
+  padding-right:  clamp(20px, 6.67vw, 128px);
+  padding-top:    clamp(48px, 6vh, 80px);
+  padding-bottom: clamp(48px, 6vh, 80px);
+  box-sizing: border-box;
+}
+
+.whatWeDoInner {
+  display: grid;
+  grid-template-columns: minmax(200px, 560px) 1fr;
+  gap: clamp(40px, 7.57vw, 145px);
+  align-items: start;
+  max-width: 1607px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.whatWeDoLabel {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--rs-black);
+  margin: 0;
+  font-family: var(--rs-font);
+}
+
+.whatWeDoH2 {
+  font-size: clamp(30px, 3.125vw, 60px);
+  font-weight: 400;
+  line-height: clamp(42px, 6.67vh, 72px);
+  color: var(--rs-black);
+  margin: 23px 0 0;
+  font-family: var(--rs-font);
+}
+
+.whatWeDoDesc {
+  font-size: clamp(14px, 1.25vw, 24px);
+  font-weight: 400;
+  line-height: clamp(28px, 3.7vh, 40px);
+  color: var(--rs-black);
+  max-width: 560px;
+  margin: 32px 0 0;
+  font-family: var(--rs-font);
+}
+
+.serviceCardsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(20px, 4.1vw, 79px);
+  row-gap: clamp(36px, 6.53vh, 71px);
+}
+
+.serviceCardIconWrap {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(20px, 3.64vh, 39px);
+}
+
+.serviceCardTitle {
+  font-size: clamp(13px, 1.25vw, 24px);
+  font-weight: 500;
+  line-height: 29px;
+  color: var(--rs-black);
+  margin: 0 0 clamp(12px, 2.14vh, 23px);
+  font-family: var(--rs-font);
+  letter-spacing: 0;
+}
+
+.serviceCardDesc {
+  font-size: clamp(13px, 1.25vw, 24px);
+  font-weight: 400;
+  line-height: clamp(22px, 2.96vh, 32px);
+  color: var(--rs-black);
+  margin: 0;
+  font-family: var(--rs-font);
+}
+
+/* ── 3. Excellence Stats ── */
+.statsSection {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+  min-height: clamp(480px, 42.08vw, 808px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 7.42vw, 142px) clamp(20px, 6.67vw, 128px) clamp(60px, 7.69vw, 147px);
+  box-sizing: border-box;
+}
+
+.statsMapBg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.statsTitle {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(40px, 5.21vw, 100px);
+  font-weight: 500;
+  line-height: clamp(48px, 6.04vw, 116px);
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--rs-black);
+  font-family: var(--rs-font);
+  margin: 0 0 clamp(36px, 8.33vw, 160px);
+  max-width: clamp(80px, 63.7vw, 747px);
+}
+
+.statsRow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  max-width: clamp(600px, 75.36vw, 1447px);
+  text-align: center;
+}
+
+.statNum {
+  font-size: clamp(36px, 5.21vw, 100px);
+  font-weight: 700;
+  line-height: clamp(32px, 4.48vw, 86px);
+  color: var(--rs-green);
+  font-family: var(--rs-font);
+  margin-bottom: clamp(8px, 0.56vw, 12px);
+}
+
+.statLabel {
+  font-size: clamp(13px, 1.15vw, 22px);
+  font-weight: 400;
+  line-height: clamp(16px, 1.04vw, 20px);
+  color: var(--rs-black);
+  font-family: var(--rs-font);
+}
+
+/* ── 4. How It Works ── */
+.howSection {
+  padding: clamp(60px, 15.93vh, 172px) clamp(20px, 6.67vw, 128px);
+  background: var(--rs-gray);
+}
+
+.howRow1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(12px, 1.8vw, 35px);
+  margin-bottom: clamp(12px, 1.8vw, 35px);
+}
+
+.howRow2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.8vw, 35px);
+}
+
+.howDarkCard {
+  background: var(--rs-black);
+  border-radius: 22px;
+  padding: 48px 56px;
+  box-shadow: 0 13px 100px rgba(199,199,199,0.25);
+  min-height: 348px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.howDarkCardTitle {
+  font-size: clamp(28px, 2.5vw, 48px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 64px;
+  margin-bottom: 0;
+  font-family: var(--rs-font);
+}
+
+.howDarkCardCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 204px;
+  height: 72px;
+  background: var(--rs-green);
+  border-radius: 36px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--rs-black);
+  text-decoration: none;
+  letter-spacing: 1.28px;
+  font-family: var(--rs-font);
+}
+
+/* HowCard (white card component) */
+.howCard {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 48px 40px;
+  box-shadow: 0 13px 100px rgba(199,199,199,0.25);
+  min-height: 280px;
+}
+
+.howCardIconWrap {
+  width: 78px;
+  height: 81px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.howCardTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 16px;
+  line-height: 40px;
+  letter-spacing: -0.32px;
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+  margin-top: 0;
+}
+
+.howCardDesc {
+  font-size: 16.5px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 28px;
+  max-width: 280px;
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+  margin: 0;
+}
+
+/* ── 5. Marketing / Enterprise Vertical ── */
+.marketingSection {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  background-image: url('/marketing-bg.png'), linear-gradient(160deg, #1a2f1c 0%, #0e1f0f 50%, #243826 100%);
+  background-size: cover, cover;
+  background-position: center, center;
+}
+
+.marketingRightPanel {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: calc(clamp(180px, 15.4vw, 296px));
+  background: rgba(255,255,255,0.1);
+}
+
+.marketingArrowBtn {
+  position: absolute;
+  right: clamp(10px, 7.5vw, 144px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 111px;
+  height: 56px;
+  background: var(--rs-green);
+  border-radius: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.marketingServicesBtn {
+  position: absolute;
+  left: clamp(20px, 8.4vw, 162px);
+  top: calc(50% - 160px);
+}
+
+.marketingTextOverlay {
+  position: absolute;
+  left: clamp(20px, 8.4vw, 162px);
+  bottom: clamp(40px, 8.5vh, 92px);
+}
+
+.marketingLabel {
+  font-size: clamp(14px, 1.15vw, 22px);
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-family: var(--rs-font);
+  letter-spacing: 0;
+}
+
+.marketingH2 {
+  font-size: clamp(28px, 3.1vw, 60px);
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 72px;
+  margin: 0;
+  font-family: var(--rs-font);
+}
+
+/* ── 6. AI-First Delivery ── */
+.aiSection {
+  position: relative;
+  height: clamp(540px, 56.25vw, 1080px);
+  background: #f3f4f6;
+  overflow: hidden;
+}
+
+.aiLabel {
+  position: absolute;
+  left: clamp(60px, 6.98vw, 134px);
+  top: clamp(100px, 10.44vw, 200px);
+  margin: 0;
+  font-size: clamp(13px, 1.04vw, 20px);
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--rs-black);
+  font-family: var(--rs-font);
+}
+
+.aiTitle {
+  position: absolute;
+  left: clamp(60px, 6.98vw, 134px);
+  top: clamp(124px, 12.88vw, 247px);
+  width: clamp(240px, 35.89vw, 689px);
+  margin: 0;
+  font-size: clamp(28px, 3.125vw, 60px);
+  font-weight: 400;
+  line-height: clamp(36px, 3.75vw, 72px);
+  color: var(--rs-black);
+  font-family: var(--rs-font);
+}
+
+.aiBody {
+  position: absolute;
+  left: clamp(60px, 6.98vw, 134px);
+  top: clamp(172px, 17.27vw, 332px);
+  width: clamp(240px, 35.89vw, 689px);
+  margin: 0;
+  font-size: clamp(14px, 1.25vw, 24px);
+  font-weight: 400;
+  line-height: clamp(22px, 2.08vw, 40px);
+  color: var(--rs-black);
+  font-family: var(--rs-font);
+}
+
+.aiLearnMore {
+  position: absolute;
+  left: clamp(50px, 6.77vw, 130px);
+  top: calc(50% - 28px - 10.54px);
+  width: clamp(140px, 10.21vw, 196px);
+  height: 56px;
+  background: var(--rs-green);
+  border-radius: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(13px, 0.83vw, 16px);
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--rs-black);
+  text-decoration: none;
+  font-family: var(--rs-font);
+  white-space: nowrap;
+}
+
+.aiCardsCol {
+  position: absolute;
+  left: clamp(200px, 54.375vw, 1070px);
+  top: clamp(100px, 10.87vw, 204.63px);
+  width: clamp(280px, 40.73vw, 782px);
+  display: flex;
+  flex-direction: column;
+  gap: 16.3px;
+}
+
+.aiCard {
+  position: relative;
+  width: 100%;
+  height: 157px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4.07px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.aiCardIconWrap {
+  position: absolute;
+  left: -15.28px;
+  top: 33.53px;
+  height: 32.53px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16.27px;
+}
+
+.aiCardIconBox {
+  width: 32.53px;
+  height: 32.53px;
+  background: var(--rs-black);
+  border-radius: 4.07px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4.06px 4.07px 4.08px;
+  box-sizing: border-box;
+}
+
+.aiCardIconTitle {
+  font-weight: 700;
+  line-height: 32px;
+  color: #0c0e0f;
+  font-family: var(--rs-font);
+  white-space: nowrap;
+}
+
+/* Hidden on desktop, available for mobile use */
+.aiCardTitle { display: none; }
+
+.aiCardBody {
+  position: absolute;
+  right: 33.5px;
+  margin: 0;
+  font-size: 16.3px;
+  font-weight: 400;
+  line-height: 23px;
+  color: #0c0e0f;
+  font-family: var(--rs-font);
+}
+
+/* ── 7. Our Clients ── */
+.clientsSection {
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+  height: clamp(600px, 56.25vw, 1080px);
+}
+
+.clientsRing {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.collaborationsPill {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: clamp(32px, 4.53vw, 87px);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(40px, 5.05vw, 97px);
+  padding: 0 clamp(16px, 2.08vw, 40px);
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.1);
+  font-size: clamp(13px, 1.04vw, 20px);
+  font-weight: 400;
+  color: #ffffff;
+  font-family: var(--rs-font);
+  white-space: nowrap;
+}
+
+.clientsH2 {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: clamp(110px, 11.31vw, 217px);
+  transform: translateX(-50%);
+  font-size: clamp(22px, 2.799vw, 53.75px);
+  font-weight: 700;
+  line-height: 1.34;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+  font-family: var(--rs-font);
+  white-space: nowrap;
+}
+
+.clientsCircleRow {
+  position: absolute;
+  z-index: 1;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(calc(-50% + clamp(4px, 0.78vw, 15px)));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5px, 2.396vw, 46px);
+  padding: 0 clamp(8px, 1vw, 20px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.clientsCircleRow::-webkit-scrollbar { display: none; }
+
+.clientCenterCircle {
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: clamp(90px, 14.06vw, 270px);
+  aspect-ratio: 1 / 1;
+}
+
+.clientsBookCall {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: clamp(28px, 3.54vw, 68px);
+  transform: translateX(-50%);
+}
+
+/* ClientCircle component */
+.clientCircle {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #181818;
+  aspect-ratio: 1 / 1;
+}
+
+/* ── 8. Testimonials ── */
+.testimonialsSection {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+  min-height: clamp(480px, 56.25vw, 1080px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 9.3vh, 100px) 0;
+}
+
+.testimonialsH2 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(22px, 2.5vw, 48px);
+  font-weight: 400;
+  color: var(--rs-black);
+  text-align: center;
+  margin-bottom: clamp(24px, 4vh, 48px);
+  font-family: var(--rs-font);
+  padding: 0 clamp(16px, 2vw, 40px);
+}
+
+.profileDot {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 0;
+  background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+}
+
+.quoteCard {
+  position: relative;
+  z-index: 1;
+  background: var(--rs-gray);
+  border-radius: 60px;
+  width: clamp(280px, 45.78vw, 879px);
+  padding: clamp(24px, 2.9vh, 56px) clamp(24px, 3.13vw, 60px);
+}
+
+.quoteOpenMark {
+  font-size: clamp(40px, 3.6vw, 69px);
+  line-height: 1;
+  color: var(--rs-black);
+  font-family: Georgia, serif;
+  margin-bottom: clamp(8px, 1vh, 16px);
+  opacity: 0.85;
+}
+
+.quoteText {
+  font-size: clamp(14px, 1.56vw, 30px);
+  font-weight: 400;
+  line-height: clamp(22px, 2.19vw, 42px);
+  color: var(--rs-black);
+  text-align: center;
+  font-family: var(--rs-font);
+  margin: 0;
+}
+
+.quoteCloseMark {
+  font-size: clamp(40px, 3.6vw, 69px);
+  line-height: 1;
+  color: var(--rs-black);
+  font-family: Georgia, serif;
+  text-align: right;
+  margin-top: clamp(8px, 1vh, 16px);
+  transform: rotate(180deg);
+  opacity: 0.85;
+}
+
+/* ── 9. Why Us ── */
+.whyUsSection {
+  background: var(--rs-black);
+  padding: clamp(60px, 17.08vh, 184px) clamp(20px, 6.67vw, 128px);
+  position: relative;
+  overflow: hidden;
+}
+
+.whyUsInner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 600px) 1fr;
+  gap: clamp(40px, 5vw, 100px);
+  align-items: center;
+}
+
+.whyUsLeft { position: relative; }
+
+.whyUsLineTop {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: #151515;
+}
+
+.whyUsLineRight {
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 4px;
+  background: #151515;
+}
+
+.whyUsLineBottom {
+  position: absolute;
+  bottom: 0; left: 0;
+  right: 40%;
+  height: 4px;
+  background: #151515;
+}
+
+.whyUsPhotoWrap {
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 32px;
+  width: clamp(200px, 19vw, 367px);
+  height: clamp(180px, 17.7vw, 341px);
+}
+
+.whyUsStatRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.whyUsStatNum {
+  font-size: clamp(80px, 8.5vw, 163px);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1;
+  font-family: var(--rs-font);
+}
+
+.whyUsStatPlus {
+  font-size: clamp(24px, 2.5vw, 48px);
+  color: #ffffff;
+  margin-top: 8px;
+  font-family: var(--rs-font);
+}
+
+.whyUsStatLabel {
+  font-size: 20px;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  font-family: var(--rs-font);
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.whyUsRight { position: relative; }
+
+.whyUsEyebrow {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-family: var(--rs-font);
+  margin-top: 0;
+}
+
+.whyUsH2 {
+  font-size: clamp(28px, 3.1vw, 60px);
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 24px;
+  font-family: var(--rs-font);
+  max-width: 798px;
+}
+
+.whyUsBody {
+  font-size: clamp(14px, 1.25vw, 24px);
+  color: rgba(255,255,255,0.8);
+  line-height: 32px;
+  margin-bottom: 40px;
+  font-family: var(--rs-font);
+  max-width: 583px;
+  margin-top: 0;
+}
+
+.whyUsDecorWrap {
+  position: absolute;
+  right: clamp(-80px, -4vw, -20px);
+  bottom: clamp(-120px, -8vh, -60px);
+  width: clamp(140px, 13.7vw, 263px);
+  height: clamp(200px, 20.9vw, 401px);
+  border-radius: 4px;
+  overflow: visible;
+}
+
+.whyUsDecorInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.whyUsBadge {
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(163,163,163,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: clamp(30px, 3vh, 60px);
+  left: clamp(-52px, -3vw, -40px);
+  width: clamp(60px, 5.4vw, 104px);
+  height: clamp(60px, 5.4vw, 104px);
+}
+
+/* ── 10. CTA Carousel ── */
+.ctaCarouselSection {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+  height: clamp(380px, 39.7vw, 762px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ctaCarouselTrack {
+  overflow: hidden;
+  margin-bottom: clamp(24px, 3vh, 48px);
+}
+
+.ctaCarouselInner {
+  display: flex;
+  gap: clamp(6px, 0.8vw, 16px);
+  animation: ctaScroll 30s linear infinite;
+  width: max-content;
+}
+
+.ctaCarouselItem {
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e5e7eb;
+  width: clamp(180px, 27.3vw, 524px);
+  height: clamp(100px, 15.3vw, 294px);
+}
+
+.ctaCarouselText {
+  text-align: center;
+  padding: 0 clamp(16px, 2vw, 40px);
+}
+
+.ctaCarouselHeading {
+  font-size: clamp(28px, 2.9vw, 56px);
+  font-weight: 400;
+  color: var(--rs-black);
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  font-family: var(--rs-font);
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.ctaCarouselSubtext {
+  font-size: clamp(16px, 1.56vw, 30px);
+  font-weight: 400;
+  color: var(--rs-black);
+  line-height: clamp(24px, 2.19vw, 42px);
+  font-family: var(--rs-font);
+  width: clamp(280px, 31.1vw, 597px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── 11. Choose Your Path ── */
+.choosePathSection {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+  min-height: clamp(500px, 52.4vw, 1006px);
+  display: grid;
+  grid-template-columns: minmax(260px, 535px) 1fr;
+  gap: clamp(40px, 5vw, 100px);
+  padding: clamp(40px, 9.7vw, 187px) clamp(20px, 7.3vw, 140px);
+  align-items: center;
+}
+
+.choosePathH2 {
+  font-size: clamp(48px, 6.25vw, 120px);
+  font-weight: 700;
+  color: var(--rs-black);
+  line-height: 1.13;
+  font-family: var(--rs-font);
+  margin-bottom: clamp(24px, 3.7vw, 72px);
+  margin-top: 0;
+}
+
+.choosePathDesc {
+  font-size: clamp(14px, 1.25vw, 24px);
+  font-weight: 400;
+  color: var(--rs-black);
+  line-height: 1.5;
+  font-family: var(--rs-font);
+  max-width: 360px;
+  margin: 0;
+}
+
+.choosePathList { max-width: 645px; }
+
+.choosePathItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(20px, 2.6vw, 40px) 0;
+  border-top: 1px solid #000000;
+  text-decoration: none;
+  color: var(--rs-black);
+  font-family: var(--rs-font);
+  font-size: clamp(20px, 2.08vw, 40px);
+  font-weight: 700;
+  line-height: 1.05;
+  cursor: pointer;
+}
+
+.choosePathItemLast { border-bottom: 1px solid #000000; }
+
+.choosePathArrow {
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE  ≤ 768px
+   Desktop rules above are not touched.
+   Use min-height: 0 (not unset) for wider support.
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── 1. HERO ────────────────────────────── */
+  /*
+   * Convert hero to flex-column on mobile.
+   * Content elements come out of absolute flow so nothing is cut off.
+   * 100svh = small viewport height (excludes browser chrome on mobile).
+   *
+   *  ┌─ section ─────────────────────────┐
+   *  │  [bg image / overlays – absolute] │
+   *  │  padding-top: ~90px (navbar gap)  │
+   *  │  H1                               │
+   *  │  20px gap                         │
+   *  │  CTA button                       │
+   *  │  flex auto space                  │
+   *  │  Stats card (full width)          │
+   *  │  padding-bottom: 28px             │
+   *  └───────────────────────────────────┘
+   */
+  .heroSection {
+    width:          100%;
+    min-height:     100svh;
+    min-height:     100vh;   /* fallback for older browsers */
+    display:        flex;
+    flex-direction: column;
+    padding:        90px 20px 28px;
+    box-sizing:     border-box;
+  }
+
+  /* H1 – pull out of absolute, flow at top */
+  .heroH1 {
+    position:    relative;
+    left:        auto;
+    top:         auto;
+    width:       100%;
+    height:      auto;
+    font-size:   clamp(28px, 9vw, 52px);
+    line-height: 1.1;
+    display:     block;
+    align-items: unset;
+    margin:      0 0 20px;
+  }
+
+  /* CTA – flow right below H1 */
+  .heroCtaLink {
+    position:    relative;
+    left:        auto;
+    top:         auto;
+    bottom:      auto;
+    width:       auto;
+    height:      48px;
+    padding:     0 28px;
+    align-self:  flex-start;
+  }
+
+  /* Stats card – pushed to bottom by margin-top:auto */
+  .heroStatsCard {
+    position:      relative;
+    left:          auto;
+    top:           auto;
+    width:         100%;
+    height:        auto;
+    min-width:     unset;
+    min-height:    unset;
+    margin-top:    auto;
+    border-radius: 12px;
+    /* Switch internal layout from absolute to flex column */
+    display:       flex;
+    flex-direction: column;
+    gap:           10px;
+    padding:       20px;
+    overflow:      visible;
+    box-sizing:    border-box;
+  }
+
+  /* Card texts: pull out of absolute, stack naturally */
+  .heroStatsText {
+    position: relative;
+    left:     auto;
+    top:      auto;
+    width:    100%;
+    margin:   0;
+  }
+  .heroStatsTextTop    { font-size: clamp(11px, 3.5vw, 14px); line-height: 1.4; order: 1; }
+  .heroStatsNum        { font-size: clamp(40px, 12vw, 64px);  line-height: 1;   order: 2; width: auto; }
+  .heroStatsTextBottom { font-size: clamp(11px, 3.5vw, 14px); line-height: 1.4; order: 3; }
+
+  /* Subtitle – hidden on mobile (tiny text that overlaps the card) */
+  .heroSubtitle { display: none; }
+
+  /* ── 2. WHAT WE DO ──────────────────────── */
+  .whatWeDoSection {
+    min-height: 0;
+    padding-top:    60px;
+    padding-bottom: 60px;
+  }
+  .whatWeDoInner       { grid-template-columns: 1fr; gap: 40px; }
+  /* keep 2 cols for service cards – single col at 480 */
+  .serviceCardsGrid    { grid-template-columns: 1fr 1fr; }
+  .whatWeDoDesc        { max-width: 100%; }
+
+  /* ── 3. STATS ───────────────────────────── */
+  .statsSection {
+    min-height: 0;
+    padding: 60px 24px;
+  }
+  /* Remove the excessively narrow max-width */
+  .statsTitle {
+    max-width: 100%;
+    margin-bottom: 36px;
+  }
+  .statsRow { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+
+  /* ── 4. HOW IT WORKS ────────────────────── */
+  .howSection { padding: 56px 20px; }
+  .howRow1 { grid-template-columns: 1fr; }
+  .howRow2 { grid-template-columns: 1fr; }
+  .howDarkCard {
+    padding: 36px 28px;
+    min-height: 0;
+  }
+  /* Keep original button width — it fits fine inside mobile card */
+  .howDarkCardCta { width: 204px; }
+  .howCard { padding: 36px 28px; min-height: 0; }
+
+  /* ── 5. MARKETING ───────────────────────── */
+  /*
+   * Switch to a normal tall banner instead of 100vh
+   * so elements don't overlap on short screens.
+   */
+  .marketingSection {
+    height: auto;
+    min-height: 420px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .marketingRightPanel { display: none; }
+  /* Arrow btn: bottom-right corner */
+  .marketingArrowBtn {
+    top: 32px;
+    right: 20px;
+    transform: none;
+  }
+  /* Services btn: top-left */
+  .marketingServicesBtn {
+    top: 32px;
+    left: 20px;
+  }
+  /* Text overlay: flow, not absolute */
+  .marketingTextOverlay {
+    position: static;
+    padding: 0 20px;
+    left: auto;
+    bottom: auto;
+  }
+  .marketingLabel { margin-top: 0; }
+  .marketingH2    { line-height: 1.2; }
+
+  /* ── 6. AI-FIRST DELIVERY ───────────────── */
+  /*
+   * Convert fully absolute section to normal flex flow.
+   * All child positions become static.
+   */
+  .aiSection {
+    height: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 56px 20px 60px;
+  }
+  .aiLabel,
+  .aiTitle,
+  .aiBody,
+  .aiLearnMore {
+    position: static;
+    width: 100%;
+    top: auto; left: auto;
+  }
+  /* Restore a sensible width — group rule above set it to 100% */
+  .aiLearnMore { width: 160px; align-self: flex-start; }
+  .aiCardsCol  { position: static; width: 100%; top: auto; left: auto; }
+
+  /* Card: auto height, normal flow */
+  .aiCard {
+    height: auto;
+    padding: 16px;
+    overflow: hidden;
+  }
+  /* Icon + title row: static, wraps on narrow screens */
+  .aiCardIconWrap {
+    position: static;
+    height: auto;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  /* Allow title to wrap; cap font size */
+  .aiCardIconTitle {
+    white-space: normal;
+    font-size: 14px !important;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0;
+  }
+  /* Body: static flow, no inline top/left apply when static */
+  .aiCardBody {
+    position: static;
+    right: auto;
+    top: auto;
+    left: auto;
+    display: block;
+  }
+
+  /* ── 7. CLIENTS ─────────────────────────── */
+  .clientsSection  { height: clamp(400px, 80vw, 560px); }
+  .clientsCircleRow {
+    justify-content: flex-start;
+    padding: 0 16px;
+    gap: 8px;
+  }
+  .clientCenterCircle { width: clamp(60px, 16vw, 140px) !important; }
+  .collaborationsPill {
+    top: 14px;
+    height: 36px;
+    font-size: 12px;
+    padding: 0 14px;
+  }
+  .clientsH2       { top: 60px; font-size: clamp(16px, 5vw, 34px); }
+  .clientsBookCall { bottom: 14px; }
+
+  /* ── 8. TESTIMONIALS ────────────────────── */
+  .profileDot          { display: none; }
+  .testimonialsSection { min-height: 0; padding: 56px 20px; }
+  .quoteCard           { width: calc(100vw - 40px); border-radius: 28px; }
+
+  /* ── 9. WHY US ──────────────────────────── */
+  .whyUsSection  { padding: 56px 20px; }
+  .whyUsInner    { grid-template-columns: 1fr; gap: 40px; }
+  .whyUsDecorWrap { display: none; }
+  .whyUsPhotoWrap { width: 100%; height: clamp(180px, 50vw, 280px); }
+
+  /* ── 10. CTA CAROUSEL ───────────────────── */
+  .ctaCarouselSection {
+    height: auto;
+    padding: 40px 0 48px;
+  }
+  .ctaCarouselSubtext { width: 90%; max-width: 90%; }
+
+  /* ── 11. CHOOSE YOUR PATH ───────────────── */
+  .choosePathSection {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: 0;
+    padding-top:    56px;
+    padding-bottom: 56px;
+  }
+  .choosePathList { max-width: 100%; width: 100%; }
+}
+
+/* ═══════════════════════════════════════════════
+   NARROW MOBILE  ≤ 480px
+═══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* ── 1. Hero ── */
+  .heroSection   { padding: 80px 16px 20px; }
+  .heroH1        { font-size: clamp(26px, 8.5vw, 44px); }
+  .heroStatsCard { padding: 16px; gap: 8px; }
+
+  /* ── 2. What We Do ── */
+  .whatWeDoSection  { padding-top: 48px; padding-bottom: 48px; }
+  .serviceCardsGrid { grid-template-columns: 1fr; }
+
+  /* ── 3. Stats ── */
+  .statsSection { padding: 48px 16px; }
+  .statsRow     { grid-template-columns: 1fr; gap: 24px; }
+
+  /* ── 4. How It Works ── */
+  .howSection  { padding: 48px 16px; }
+  .howCard     { padding: 28px 20px; }
+  .howDarkCard { padding: 28px 20px; }
+
+  /* ── 5. Marketing ── */
+  .marketingSection { min-height: 340px; }
+  .marketingH2      { font-size: clamp(18px, 7vw, 38px); line-height: 1.2; }
+  .marketingLabel   { font-size: 12px; }
+  .marketingServicesBtn { display: none; }
+
+  /* ── 6. AI Section ── */
+  .aiSection { padding: 48px 16px; }
+  .aiCard    { padding: 14px; }
+
+  /* ── 7. Clients ── */
+  .clientsSection   { height: clamp(340px, 90vw, 460px); }
+  .clientsCircleRow { gap: 6px; padding: 0 10px; }
+  .clientCenterCircle { width: clamp(50px, 14vw, 100px) !important; }
+  .collaborationsPill { font-size: 11px; height: 30px; padding: 0 10px; }
+  .clientsH2          { font-size: clamp(14px, 4.5vw, 28px); top: 52px; }
+
+  /* ── 8. Testimonials ── */
+  .testimonialsSection { padding: 48px 16px; }
+  .quoteCard  { width: calc(100vw - 32px); padding: 22px 18px; border-radius: 20px; }
+
+  /* ── 9. Why Us ── */
+  .whyUsSection   { padding: 48px 16px; }
+  .whyUsPhotoWrap { height: clamp(160px, 45vw, 240px); }
+  .whyUsStatNum   { font-size: clamp(56px, 15vw, 110px); }
+
+  /* ── 10. CTA Carousel ── */
+  .ctaCarouselSubtext { width: calc(100% - 32px); max-width: 100%; }
+
+  /* ── 11. Choose Your Path ── */
+  .choosePathSection { padding: 48px 16px; }
+  .choosePathH2      { font-size: clamp(30px, 10vw, 56px); }
+}
