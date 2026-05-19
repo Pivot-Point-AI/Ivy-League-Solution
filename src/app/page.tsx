@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Ivy League Solutions — World-Class Remote Teams",
+  title: "Ivy League Solutions — Enterprise Software, AI & Digital Infrastructure",
 };
 
 const RS = {
@@ -11,7 +11,7 @@ const RS = {
   black:     "#000000",
   white:     "#FFFFFF",
   gray:      "#F3F4F6",
-  font:      "'DM Sans','Inter',system-ui,sans-serif",
+  font:      "'Aeonik','DM Sans','Inter',system-ui,sans-serif",
 };
 const profileImages = [
   "/Ellipse 263.png",
@@ -50,82 +50,91 @@ export default function HomePage() {
     <div style={{ fontFamily: RS.font, overflowX: "hidden" }}>
 
       {/* ─── 1. HERO ───
-          Figma 1920×1080. vw = px/1920*100, vh = px/1080*100.
-          Navbar is position:fixed transparent — hero fills 100vh from y=0. ── */}
+          Figma canvas: 1920×1080px. bg:#FFFFFF.
+          vw = px/1920*100  vh = px/1080*100
+          Navbar is position:fixed above — hero fills 100vh from y=0. ── */}
       <section style={{
         position:   "relative",
         width:      "100vw",
         height:     "100vh",
         minHeight:  700,
-        background: "#111",
+        background: "#FFFFFF",
         overflow:   "hidden",
       }}>
 
-        {/* ── Background images ── */}
+        {/* ── image 764 (main bg): 2353×1324px centred, top: calc(50%−662px−0.31px)
+               bleeds ±216px horizontally — use cover so it fills edge-to-edge ── */}
         <div style={{
           position:           "absolute",
           inset:              0,
           backgroundImage:    "url('/hero-bg.png')",
           backgroundSize:     "cover",
-          backgroundPosition: "60% center",
+          backgroundPosition: "center center",
         }} />
-        {/* dark overlay matching Rectangle 3 */}
+
+        {/* ── Rectangle 3: dark gradient from bottom, Figma h:973px = 90.09vh ── */}
         <div style={{
-          position:   "absolute",
-          inset:      0,
-          background: "linear-gradient(24.44deg,rgba(0,0,0,0.65) 21.79%,rgba(0,0,0,0.1) 65.7%)",
-          pointerEvents: "none",
-        }} />
-        {/* white blur top (Rectangle 1) */}
-        <div style={{
-          position:   "absolute",
-          width:      "100%",
-          height:     "9.81vh",
-          left:       0,
-          top:        0,
-          background: "linear-gradient(118.01deg,rgba(255,255,255,0.8) 32.64%,rgba(255,255,255,0) 67.74%)",
-          filter:     "blur(33.5px)",
+          position:      "absolute",
+          left:          0,
+          right:         0,
+          bottom:        0,
+          height:        "90.09vh",
+          background:    "linear-gradient(24.44deg,rgba(0,0,0,0.6) 21.79%,rgba(0,0,0,0) 65.7%)",
           pointerEvents: "none",
         }} />
 
-        {/* ── Frame 1618872285: left:220 top:564 w:335 h:416 ── */}
+        {/* ── Rectangle 1: white blur strip at top, Figma h:106px = 9.81vh ── */}
+        <div style={{
+          position:      "absolute",
+          left:          0,
+          right:         0,
+          top:           0,
+          height:        "9.81vh",
+          background:    "linear-gradient(118.01deg,rgba(255,255,255,0.8) 32.64%,rgba(255,255,255,0) 67.74%)",
+          filter:        "blur(33.5px)",
+          pointerEvents: "none",
+        }} />
+
+        {/* ── Frame 1618872285 (green stats card)
+               Figma: left:220 top:564 w:335 h:416  → 11.46vw 52.22vh 17.45vw 38.52vh ── */}
         <div className="hero-card-mobile" style={{
           position:     "absolute",
-          left:         "11.46vw",         /* 220/1920 */
-          top:          "52.22vh",         /* 564/1080 */
-          width:        "17.45vw",         /* 335/1920 */
-          height:       "38.52vh",         /* 416/1080 */
+          left:         "11.46vw",
+          top:          "52.22vh",
+          width:        "17.45vw",
+          height:       "38.52vh",
           minWidth:     170,
           minHeight:    230,
           background:   RS.green,
           borderRadius: 12,
           overflow:     "hidden",
         }}>
-          {/* "Businesses choose..." — top:26 left:20 w:295 h:96 font:22px line-height:24px */}
+          {/* "Businesses choose…"  Figma: left:20 top:26 w:295 h:96 fs:22 lh:24 */}
           <p style={{
             position:   "absolute",
-            left:       "5.97%",           /* 20/335 */
-            top:        "6.25%",           /* 26/416 */
-            width:      "88.06%",          /* 295/335 */
+            left:       "5.97%",
+            top:        "6.25%",
+            width:      "88.06%",
             fontSize:   "clamp(11px,1.15vw,22px)",
             fontWeight: 400,
-            lineHeight: "clamp(14px,2.22vh,24px)",
+            lineHeight: "clamp(16px,2.22vh,24px)",
             color:      RS.black,
             fontFamily: RS.font,
             margin:     0,
           }}>
-            Businesses choose Ivy League Solutions as a trusted hiring partner to scale faster with the right talent.
+            Trusted globally for custom technology, built for enterprise — from fintech to healthcare.
           </p>
 
-          {/* "120+" — top:255 left:20 w:204 font:100px line-height:24px (Figma exact) */}
+          {/* "120+"  Figma: left:20 top:255 w:204 fs:100 lh:24 */}
           <p style={{
+
             position:   "absolute",
-            left:       "5.97%",           /* 20/335 */
-            top:        "61.3%",           /* 255/416 */
-            width:      "60.9%",           /* 204/335 */
-            fontSize:   "clamp(36px,9.26vh,100px)",  /* 100/1080*100 = 9.26vh */
+            left:       "5.97%",
+            top:        "51.3%",  
+            width:      "60.9%",
+            fontSize:   "clamp(36px,9.26vh,100px)",
             fontWeight: 400,
-            lineHeight: "clamp(14px,2.22vh,24px)",
+            lineHeight: 1,
             color:      RS.black,
             fontFamily: RS.font,
             margin:     0,
@@ -133,32 +142,31 @@ export default function HomePage() {
             120+
           </p>
 
-          {/* "Companies hired through..." — top:340 left:20 w:295 h:48 font:22px */}
+          {/* "Companies hired through…"  Figma: left:20 top:340 w:295 h:48 fs:22 lh:24 */}
           <p style={{
             position:   "absolute",
-            left:       "5.97%",           /* 20/335 */
-            top:        "81.73%",          /* 340/416 */
-            width:      "88.06%",          /* 295/335 */
+            left:       "5.97%",
+            top:        "81.73%",
+            width:      "88.06%",
             fontSize:   "clamp(11px,1.15vw,22px)",
             fontWeight: 400,
-            lineHeight: "clamp(14px,2.22vh,24px)",
+            lineHeight: "clamp(16px,2.22vh,24px)",
             color:      RS.black,
             fontFamily: RS.font,
             margin:     0,
           }}>
-            Companies trust Ivy League Solutions
+            Companies hired through Ivy League Solutions
           </p>
         </div>
 
-        {/* ── world-class remote teams ──
-            Figma: left:609 top:564 w:665 h:288 font:96px line-height:100%
-                   display:flex align-items:center letter-spacing:-1px uppercase ── */}
+        {/* ── "world-class remote teams"
+               Figma: left:609 top:564 w:665 h:288 fs:96 lh:100% ls:-1px uppercase #FFF ── */}
         <h1 className="hero-h1-mobile" style={{
           position:      "absolute",
-          left:          "31.72vw",        /* 609/1920 */
-          top:           "52.22vh",        /* 564/1080 */
-          width:         "34.64vw",        /* 665/1920 */
-          height:        "26.67vh",        /* 288/1080 */
+          left:          "31.72vw",
+          top:           "52.22vh",
+          width:         "34.64vw",
+          height:        "26.67vh",
           display:       "flex",
           alignItems:    "center",
           fontSize:      "clamp(28px,5vw,96px)",
@@ -170,51 +178,50 @@ export default function HomePage() {
           fontFamily:    RS.font,
           margin:        0,
         }}>
-          World-Class Remote Teams
+          Enterprise Software & AI Delivery
         </h1>
 
-        {/* ── Subtitle + CTA: left:1218 top:806 w:482 ── */}
-        <div className="hero-sub-mobile" style={{
-          position:      "absolute",
-          left:          "63.44vw",
-          top:           "74.63vh",
-          width:         "25.1vw",
-          minWidth:      200,
-          maxWidth:      480,
-          display:       "flex",
-          flexDirection: "column",
-          gap:           "clamp(10px,1.5vh,18px)",
+        {/* ── Subtitle
+               Figma: left:1218 top:806 w:482 h:96 fs:22 lh:32 text-align:justify #FFF ── */}
+        <p className="hero-sub-mobile" style={{
+          position:   "absolute",
+          left:       "63.44vw",
+          top:        "74.63vh",
+          width:      "clamp(200px,25.1vw,482px)",
+          margin:     0,
+          fontSize:   "clamp(12px,1.15vw,22px)",
+          fontWeight: 400,
+          lineHeight: "clamp(20px,2.96vh,32px)",
+          textAlign:  "justify",
+          color:      RS.white,
+          fontFamily: RS.font,
         }}>
-          <p style={{
-            fontSize:   "clamp(12px,1.15vw,22px)",
-            fontWeight: 400,
-            lineHeight: "clamp(20px,2.96vh,32px)",
-            textAlign:  "justify",
-            color:      RS.white,
-            fontFamily: RS.font,
-            margin:     0,
-          }}>
-            Ivy League Solutions is your employer of record (EOR) partner. Hire pre-vetted virtual assistants, SDRs, and marketers instantly. Zero compliance risk.
-          </p>
-          <Link href="/contact" style={{
-            display:        "inline-flex",
-            alignItems:     "center",
-            justifyContent: "center",
-            alignSelf:      "flex-end",
-            width:          "clamp(160px,11.88vw,228px)",
-            height:         "clamp(44px,5.19vh,56px)",
-            background:     RS.white,
-            borderRadius:   28,
-            fontSize:       "clamp(13px,0.83vw,16px)",
-            fontWeight:     500,
-            color:          RS.black,
-            textDecoration: "none",
-            fontFamily:     RS.font,
-            whiteSpace:     "nowrap",
-          }}>
-            Book a free consultant
-          </Link>
-        </div>
+          Ivy League Solutions delivers premium custom software, AI systems, and digital infrastructure — engineered for enterprises across fintech, healthcare, logistics, and beyond.
+        </p>
+
+        {/* ── "Book a free consultant" CTA
+               Figma: left:1472 top:calc(50%−28+412)=924px w:228 h:56 r:28 bg:#FFF color:#000 ── */}
+        <Link href="/contact" style={{
+          position:       "absolute",
+          left:           "76.67vw",
+          top:            "89.56vh",
+          width:          "clamp(160px,11.88vw,228px)",
+          height:         "clamp(44px,5.19vh,56px)",
+          background:     RS.white,
+          borderRadius:   28,
+          display:        "inline-flex",
+          alignItems:     "center",
+          justifyContent: "center",
+          fontSize:       "clamp(13px,0.83vw,16px)",
+          fontWeight:     500,
+          lineHeight:     "24px",
+          color:          RS.black,
+          textDecoration: "none",
+          fontFamily:     RS.font,
+          whiteSpace:     "nowrap",
+        }}>
+          Start a Project →
+        </Link>
       </section>
 
       {/* ─── 2. WHAT WE DO ───
@@ -283,7 +290,7 @@ export default function HomePage() {
               margin:       "32px 0 0",
               fontFamily:   RS.font,
             }}>
-              We help businesses scale with pre trained remote professionals while managing hiring, payroll, and compliance end to end.
+              End-to-end technology services tailored for every industry and every scale — from custom software to AI, infrastructure, and beyond.
             </p>
 
             {/* CTA — w:196 h:56 radius:28; top gap from desc bottom = 533.83-(383.74+120)=30.09px */}
@@ -304,106 +311,53 @@ export default function HomePage() {
           }}>
             {[
               {
-                /*
-                  hugeicons:profile — icon 30×30 positioned at (3.62, 4.17) inside 38×38 frame
-                  Group/Vector 1 (body):  10.42% inset of 30 = 3.126px  → bbox 3.126→26.874 = 23.75×23.75
-                  Vector 2 (head circle): 29.17% inset of 30 = 8.751px  → bbox 8.751→21.249 = 12.5×12.5
-                  Both are stroke:1.5 #000, no fill — two concentric rounded shapes
-                */
                 icon: (
                   <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-                    {/* icon origin at (3.62, 4.17), drawing on 30×30 canvas */}
-                    <g transform="translate(3.62,4.17)">
-                      {/* Vector 1 — body outline: 10.42% inset = 3.126px on 30×30 */}
-                      <rect x="3.126" y="3.126" width="23.748" height="23.748" rx="11.874"
-                            stroke="#000" strokeWidth="1.5" fill="none"/>
-                      {/* Vector 2 — head: 29.17% inset = 8.751px on 30×30 */}
-                      <rect x="8.751" y="8.751" width="12.498" height="12.498" rx="6.249"
-                            stroke="#000" strokeWidth="1.5" fill="none"/>
-                    </g>
+                    <rect x="4" y="6" width="30" height="22" rx="3" stroke="#000" strokeWidth="1.5" fill="none"/>
+                    <line x1="10" y1="14" x2="28" y2="14" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="10" y1="19" x2="22" y2="19" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="14" y1="32" x2="24" y2="32" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="19" y1="28" x2="19" y2="32" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 ),
-                title: "REMOTE SALES TALENT",
-                desc:  "Hire trained sales professionals who handle lead generation, outreach, CRM management, and pipeline growth to drive consistent revenue.",
+                title: "SOFTWARE DEVELOPMENT",
+                desc:  "End-to-end custom software from concept to deployment. Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.",
               },
               {
-                /*
-                  streamline:money-graph — icon 27×27 at calc(50%-13.5+0.12, 50%-13.5-0.33) inside 38×38
-                  centre of 38 = 19, so icon origin = (19-13.5+0.12, 19-13.5-0.33) = (5.62, 5.17)
-                  Group: left:3.57% right:3.57% top:25% bottom:25% of 27 → x:0.963→26.037, y:6.75→20.25
-                  Vector 1 (arrowhead): left:67.86% right:3.57% top:25% bottom:46.43%
-                    → x:18.32→26.037, y:6.75→14.467   (stroke:1 #000)
-                  Vector 2 (full line):  same as group bounds  x:0.963→26.037, y:6.75→20.25  (stroke:1 #000)
-                  = ascending polyline across full width + right-angle arrowhead in top-right
-                */
                 icon: (
                   <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-                    <g transform="translate(5.62,5.17)">
-                      {/* ascending trend line: from bottom-left to top-right of group bounds */}
-                      <polyline
-                        points="0.963,20.25  8,14  16,17  26.037,6.75"
-                        stroke="#000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                      {/* arrowhead: vertical + horizontal lines at top-right */}
-                      <polyline
-                        points="18.32,6.75  26.037,6.75  26.037,14.467"
-                        stroke="#000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                    </g>
+                    <circle cx="19" cy="19" r="7" stroke="#000" strokeWidth="1.5" fill="none"/>
+                    <path d="M19 4 L19 10 M19 28 L19 34 M4 19 L10 19 M28 19 L34 19" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M9 9 L13 13 M25 25 L29 29 M9 29 L13 25 M25 13 L29 9" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 ),
-                title: "MARKETING & GROWTH SUPPORT",
-                desc:  "Scale your marketing with remote specialists who execute and optimize SEO, content, and performance campaigns for measurable results.",
+                title: "AI & MACHINE LEARNING",
+                desc:  "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale across fintech and healthcare.",
               },
               {
-                /*
-                  carbon:operations-record — full 38×38 frame (centred offset: -0.38, +0.17)
-                  Vector 2 (outer shape, bg:#000): left:7.59% right:7.59% top:6.25% bottom:6.25%
-                    → x:2.884→35.116 (w:32.232), y:2.375→35.625 (h:33.25)
-                  Vector 1 (inner block, bg:#000): left:31.25% right:6.25% top:31.25% bottom:6.25%
-                    → x:11.875→35.625 (w:23.75), y:11.875→35.625 (h:23.75)
-                  Both filled black = this is a two-layer mask icon.
-                  Rendered as: outer document rect (stroke) + inner content block suggestion
-                */
                 icon: (
                   <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-                    <g transform="translate(-0.38,0.17)">
-                      {/* outer document rect: stroke interpretation of filled shape */}
-                      <rect x="2.884" y="2.375" width="32.232" height="33.25" rx="2"
-                            stroke="#000" strokeWidth="1.5" fill="none"/>
-                      {/* inner content block — drawn as horizontal lines within Vector 1 bbox */}
-                      <line x1="11.875" y1="18" x2="35.625" y2="18"
-                            stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
-                      <line x1="11.875" y1="24" x2="35.625" y2="24"
-                            stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
-                      <line x1="11.875" y1="30" x2="29"     y2="30"
-                            stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
-                      {/* left vertical divider */}
-                      <line x1="11.875" y1="11.875" x2="11.875" y2="35.625"
-                            stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
-                    </g>
+                    <rect x="3" y="8" width="14" height="10" rx="2" stroke="#000" strokeWidth="1.5" fill="none"/>
+                    <rect x="21" y="8" width="14" height="10" rx="2" stroke="#000" strokeWidth="1.5" fill="none"/>
+                    <rect x="12" y="22" width="14" height="10" rx="2" stroke="#000" strokeWidth="1.5" fill="none"/>
+                    <line x1="10" y1="18" x2="10" y2="24" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="28" y1="18" x2="28" y2="24" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="10" y1="24" x2="28" y2="24" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="19" y1="24" x2="19" y2="22" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 ),
-                title: "OPERATIONS & CLIENT SUPPORT",
-                desc:  "Enhance efficiency with remote professionals who manage daily operations, workflows, and client communication seamlessly.",
+                title: "DIGITAL INFRASTRUCTURE",
+                desc:  "Network services, datacenter solutions, cloud migration and managed IT infrastructure at enterprise scale on AWS, Azure, Cisco, and Oracle.",
               },
               {
-                /*
-                  Employer of Record — inner frame 28×28 at offset (4.62, 5.17) inside 38×38
-                  Vector: left:8.33% right:8.33% top:8.33% bottom:8.33% of 28 = 2.332px inset
-                    → rect x:2.332→25.668, y:2.332→25.668 = 23.336×23.336
-                    border:1.5px solid #000 (stroke only, no fill)
-                  = a single stroked square — no interior lines per Figma spec
-                */
                 icon: (
                   <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-                    <g transform="translate(4.62,5.17)">
-                      {/* single stroked rect: 8.33% inset of 28×28 */}
-                      <rect x="2.332" y="2.332" width="23.336" height="23.336" rx="1.5"
-                            stroke="#000" strokeWidth="1.5" fill="none"/>
-                    </g>
+                    <path d="M19 5 L6 11 L6 20 C6 27 12 33 19 35 C26 33 32 27 32 20 L32 11 Z" stroke="#000" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+                    <path d="M13 19 L17 23 L25 15" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 ),
-                title: "EMPLOYER OF RECORD",
-                desc:  "Ivy League Solution manages global hiring, payroll, compliance, and HR, enabling you to hire remote talent without legal or administrative complexity.",
+                title: "CYBERSECURITY & SOC",
+                desc:  "24/7 threat monitoring, incident response, compliance automation, and security operations center with Zero Trust architecture built in.",
               },
             ].map((s) => (
               <div key={s.title}>
@@ -525,9 +479,11 @@ export default function HomePage() {
           fontFamily:    RS.font,
           margin:        0,
           marginBottom:  "clamp(36px,8.33vw,160px)",
-          maxWidth:      "clamp(280px,33.7vw,647px)",
+          
+          maxWidth:      "clamp(80px,63.7vw,747px)",
         }}>
-          A big record of<br />Excellence
+          Redefining Enterprise-Grade Solutions, Built on Trust
+
         </h2>
 
         {/* Stats row */}
@@ -541,10 +497,10 @@ export default function HomePage() {
           textAlign:           "center",
         }}>
           {[
-            { num:"100+", label:"Happy Sellers"     },
-            { num:"200+", label:"Talent Placed"     },
-            { num:"40+",  label:"Industries Served" },
-            { num:"30+",  label:"Projects Delivered"},
+            { num:"200+", label:"Projects Delivered"    },
+            { num:"98%",  label:"Client Satisfaction"   },
+            { num:"15+",  label:"Industries Served"     },
+            { num:"90%",  label:"Faster Processing Time"},
           ].map((s) => (
             <div key={s.label}>
               <div style={{
@@ -595,7 +551,7 @@ export default function HomePage() {
             }}>
               <div>
                 <h2 style={{ fontSize:"clamp(28px,2.5vw,48px)", fontWeight:700, color:RS.white, lineHeight:"64px", marginBottom:0, fontFamily:RS.font }}>
-                  How Ivy League Works
+                  How Ivy League Delivers
                 </h2>
               </div>
               <div>
@@ -626,8 +582,8 @@ export default function HomePage() {
             {/* White card: Understand Your Needs */}
             <HowCard
               icon={<svg width="60" height="59" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>}
-              title="Understand Your Needs"
-              desc="We take time to understand your role requirements, business goals, and team expectations."
+              title="Understand Your Goals"
+              desc="We take time to understand your business domain, technical requirements, and enterprise objectives before writing a single line of code."
             />
           </div>
 
@@ -639,18 +595,18 @@ export default function HomePage() {
           }}>
             <HowCard
               icon={<svg width="72" height="71" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>}
-              title="Trained Talent Match"
-              desc="We carefully shortlist pre-vetted, pre-trained professionals who are ready to integrate and deliver from day one."
+              title="Dedicated Team Assembly"
+              desc="You get a named project manager, senior engineers, and a QA lead — purpose-built for your project and vertical."
             />
             <HowCard
               icon={<svg width="59" height="59" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>}
-              title="Interview and Approve"
-              desc="You meet the candidates, evaluate their skills, and choose the one that fits your team best."
+              title="Agile Development"
+              desc="We build in iterative sprints with full transparency — demos, reviews, and course corrections at every milestone."
             />
             <HowCard
               icon={<svg width="59" height="59" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>}
-              title="Complete Visibility"
-              desc="We take care of payroll, HR, compliance, and provide continuous support so you can focus on your core business."
+              title="Post-Launch Support"
+              desc="24/7 monitoring, SLA-backed incident response, and proactive performance tuning long after go-live."
             />
           </div>
         </div>
@@ -702,7 +658,7 @@ export default function HomePage() {
           left:     "clamp(20px,8.4vw,162px)",
           top:      "calc(50% - 160px)",
         }}>
-          <GreenBtn href="/services" width={196}>Career Paths</GreenBtn>
+          <GreenBtn href="/services" width={196}>Our Services</GreenBtn>
         </div>
 
         {/* Text overlay */}
@@ -712,10 +668,10 @@ export default function HomePage() {
           bottom:   "clamp(40px,8.5vh,92px)",
         }}>
           <p style={{ fontSize:"clamp(14px,1.15vw,22px)", fontWeight:500, color:RS.white, marginBottom:8, fontFamily:RS.font, letterSpacing:0 }}>
-            VIRTUAL ASSISTANT ROLES FOR
+            DEEP EXPERTISE ACROSS
           </p>
           <h2 style={{ fontSize:"clamp(28px,3.1vw,60px)", fontWeight:500, color:RS.white, lineHeight:"72px", margin:0, fontFamily:RS.font }}>
-            MARKETING AGENCIES
+            EVERY ENTERPRISE VERTICAL
           </h2>
         </div>
       </section>
@@ -770,7 +726,7 @@ export default function HomePage() {
     color:      RS.black,
     fontFamily: RS.font,
   }}>
-    Employer of Record (EOR)
+    AI-First Delivery
   </h2>
 
   {/* Body — Figma: left:134px top:331.63px w:689px fs:24px lh:40px h:120px */}
@@ -786,7 +742,7 @@ export default function HomePage() {
     color:      RS.black,
     fontFamily: RS.font,
   }}>
-    RepStack serves as the legal employer for your remote team, managing HR, payroll, taxes, and labor compliance so you can scale globally with confidence and zero complexity.
+    Production-grade AI systems for Fintech, Healthcare, and enterprise operations — deployed globally with MLOps, LLMs, and intelligent automation at the core of every solution.
   </p>
 
   {/* Button — Figma: left:130px top:calc(50% - 56px/2 - 10.54px) w:196px h:56px r:28px bg:#78EB54 */}
@@ -818,8 +774,8 @@ export default function HomePage() {
       w:782px h:677px gap:16.3px */}
   <div style={{
     position:      "absolute",
-    left:          "clamp(300px,59.375vw,1140px)",
-    top:           "clamp(150px,15.87vw,304.63px)",
+    left:          "clamp(200px,54.375vw,1070px)",
+    top:           "clamp(100px,10.87vw,204.63px)",
     width:         "clamp(280px,40.73vw,782px)",
     display:       "flex",
     flexDirection: "column",
@@ -828,8 +784,8 @@ export default function HomePage() {
     {([
       {
         fontSize: 23.2563,
-        title: "Employer of Record services",
-        desc:  "We act as the legal employer on your behalf, managing all employment responsibilities so you can hire global talent without setting up local entities.",
+        title: "Fraud Detection & Risk AI",
+        desc:  "Real-time ML models that identify fraud patterns, assess credit risk, and automate compliance decisions at scale for fintech and banking platforms.",
         // 1 vertical bar: left:46.85% right:46.85% → x≈11.43 w≈1.54
         icon: (
           <svg width="24.39" height="24.39" viewBox="0 0 24.39 24.39">
@@ -841,8 +797,8 @@ export default function HomePage() {
       },
       {
         fontSize: 22.6844,
-        title: "Payroll & tax management",
-        desc:  "Accurate, on-time payroll processing with full tax handling, ensuring compliance across regions while removing administrative complexity.",
+        title: "Predictive Analytics",
+        desc:  "Data pipelines and analytics platforms that surface business intelligence, demand forecasting, and operational insights across your enterprise.",
         // 2 vertical bars: left:34.35%→x=8.38, left:59.35%→x=14.48
         icon: (
           <svg width="24.39" height="24.39" viewBox="0 0 24.39 24.39">
@@ -855,8 +811,8 @@ export default function HomePage() {
       },
       {
         fontSize: 23.2563,
-        title: "Legal contracts & compliance",
-        desc:  "Locally compliant employment contracts and adherence to labor laws, reducing legal risk and ensuring smooth international hiring.",
+        title: "LLM-Powered Workflows",
+        desc:  "Custom large language model integrations and intelligent automation that streamline operations, document processing, and customer interactions.",
         // 3 vertical bars: x=5.33, x=11.43, x=17.53
         icon: (
           <svg width="24.39" height="24.39" viewBox="0 0 24.39 24.39">
@@ -870,8 +826,8 @@ export default function HomePage() {
       },
       {
         fontSize: 23.6375,
-        title: "Benefits & HR support",
-        desc:  "End-to-end HR support, including benefits administration, employee management, and ongoing assistance for your remote workforce.",
+        title: "MLOps & Model Deployment",
+        desc:  "End-to-end MLOps pipelines — model training, versioning, monitoring, and continuous delivery to keep your AI systems production-ready.",
         // 3 vectors: left:21.85%→x=5.33 w=1.53, left:47.31%→x=11.54 w=4.36, left:59.81%→x=14.59 w=4.36
         icon: (
           <svg width="24.39" height="24.39" viewBox="0 0 24.39 24.39">
@@ -957,126 +913,203 @@ export default function HomePage() {
 
       {/* ─── 7. OUR CLIENTS ─── */}
       {/*
-        Figma 1920×1080 black section.
-        Circles: ONE horizontal row, all vertically centred (top: 50%-size/2+15px).
-        Sizes L→R: 80 90 120 180 [270 centre] 180 120 90 80. Equal 46px gap between each.
-        BG rings: three concentric circles ~597 / ~997 / ~1556px diameter (clipped by overflow:hidden).
+        Pixel-perfect Figma 1920x1080 black section.
+        Concentric rings: 597/997/1556px dia centred (opacity 0.35/0.20/0.14).
+        Collaborations pill: top 87px = 4.53vw. OUR CLIENTS: top 217px = 11.31vw.
+        Circle row centred at 50%+15px. Gap=46px=2.396vw. Book A Call: bottom 68px.
+        Circle sizes L to R: 80 90 120 180 [270 centre] 180 120 90 80 px.
       */}
       <section style={{
-        position:       "relative",
-        background:     RS.black,
-        overflow:       "hidden",
-        minHeight:      "clamp(560px,56.25vw,1080px)",
-        display:        "flex",
-        flexDirection:  "column",
-        alignItems:     "center",
-        justifyContent: "center",
-        padding:        "clamp(60px,7.4vh,80px) 0",
-        gap:            "clamp(16px,2.2vh,24px)",
+        position: "relative",
+        background: "#000000",
+        overflow: "hidden",
+        height: "clamp(600px,56.25vw,1080px)",
       }}>
-
-        {/* ── 3 concentric ring BG (Figma: ~597, ~997, ~1556px dia) ── */}
-        {([597,997,1556] as const).map((d,i) => (
+        {/* 3 concentric rings centred */}
+        {([
+          { d:597,  op:0.35 },
+          { d:997,  op:0.20 },
+          { d:1556, op:0.14 },
+        ] as { d:number; op:number }[]).map(({ d, op }) => (
           <div key={d} style={{
             position:     "absolute",
-            width:        `clamp(${Math.round(d*0.38)}px,${(d/19.2).toFixed(1)}vw,${d}px)`,
+            left:         "50%",
+            top:          "50%",
+            transform:    "translate(-50%,-50%)",
+            width:        `clamp(${Math.round(d*0.32)}px,${(d/19.2).toFixed(2)}vw,${d}px)`,
             aspectRatio:  "1/1",
             borderRadius: "50%",
-            border:       `1px solid rgba(255,255,255,${([0.35,0.2,0.14])[i]})`,
+            border:       `1px solid rgba(255,255,255,${op})`,
             pointerEvents:"none",
             zIndex:       0,
           }} />
         ))}
 
-        {/* ── "Collaborations" pill ── Figma: height:97px, centered, border+bg */}
+        {/* Collaborations pill — Figma: h:97px top:87px */}
         <div style={{
-          position:       "relative",
-          zIndex:         1,
+          position:       "absolute",
+          zIndex:         2,
+          left:           "50%",
+          top:            "clamp(32px,4.53vw,87px)",
+          transform:      "translateX(-50%)",
           display:        "inline-flex",
           alignItems:     "center",
           justifyContent: "center",
-          height:         "clamp(44px,4.5vw,97px)",
-          padding:        "0 clamp(20px,2.1vw,40px)",
+          height:         "clamp(40px,5.05vw,97px)",
+          padding:        "0 clamp(16px,2.08vw,40px)",
           borderRadius:   100,
           border:         "1px solid rgba(255,255,255,0.1)",
           background:     "rgba(255,255,255,0.1)",
-          fontSize:       "clamp(14px,1.04vw,20px)",
-          color:          RS.white,
+          fontSize:       "clamp(13px,1.04vw,20px)",
+          fontWeight:     400,
+          color:          "#FFFFFF",
           fontFamily:     RS.font,
+          whiteSpace:     "nowrap",
         }}>
           Collaborations
         </div>
 
-        {/* ── "OUR CLIENTS" heading ── Figma: font-size:53.75px, weight:700 */}
+        {/* OUR CLIENTS — Figma: top:217.16px fs:53.75px fw:700 uppercase */}
         <h2 style={{
-          position:      "relative",
-          zIndex:        1,
-          fontSize:      "clamp(24px,2.8vw,53.75px)",
+          position:      "absolute",
+          zIndex:        2,
+          left:          "50%",
+          top:           "clamp(110px,11.31vw,217px)",
+          transform:     "translateX(-50%)",
+          fontSize:      "clamp(22px,2.799vw,53.75px)",
           fontWeight:    700,
-          color:         RS.white,
+          lineHeight:    "1.34",
+          color:         "#FFFFFF",
           textTransform: "uppercase",
           margin:        0,
           fontFamily:    RS.font,
+          whiteSpace:    "nowrap",
         }}>
           OUR CLIENTS
         </h2>
 
-        {/* ── Horizontal circle row ──
-            Figma left-to-right: 80 90 120 180 [270] 180 120 90 80
-            All at same vertical centre. 46px gap between each at 1920px = 2.4vw.
-        */}
+        {/* Circle row — absolute centred, shifted down +15px from vertical mid */}
         <div style={{
-          position:       "relative",
+          position:       "absolute",
           zIndex:         1,
+          left:           0,
+          right:          0,
+          top:            "50%",
+          transform:      "translateY(calc(-50% + clamp(4px,0.78vw,15px)))",
           display:        "flex",
           alignItems:     "center",
           justifyContent: "center",
-          gap:            "clamp(6px,2.4vw,46px)",
-          padding:        "clamp(8px,1.4vh,15px) clamp(16px,2vw,40px)",
-          flexWrap:       "nowrap",
+          gap:            "clamp(5px,2.396vw,46px)",
+          padding:        "0 clamp(8px,1vw,20px)",
           overflowX:      "auto",
-          maxWidth:       "100vw",
           scrollbarWidth: "none",
-        }}>
-          {([
-            { s:80,  label:"◯",  color:"#A4BCFD" },
-            { s:90,  label:"◎",  color:"#FCB400" },
-            { s:120, label:"▲",  color:"#FF4405" },
-            { s:180, label:"◇",  color:"#6172F3" },
-            { s:270, label:"ILS",color:"#FFFFFF", centre:true },
-            { s:180, label:"G",  color:"#EA4335" },
-            { s:120, label:"⬡",  color:"#2E90FA" },
-            { s:90,  label:"◈",  color:"#2A9D8F" },
-            { s:80,  label:"◻",  color:"#F07167" },
-          ] as { s:number; label:string; color:string; centre?:boolean }[]).map((c,idx) => (
-            <div key={idx} style={{
-              width:          `clamp(${Math.round(c.s*0.3)}px,${(c.s/19.2).toFixed(1)}vw,${c.s}px)`,
-              aspectRatio:    "1/1",
-              borderRadius:   "50%",
-              background:     "#181818",
-              display:        "flex",
-              alignItems:     "center",
-              justifyContent: "center",
-              flexShrink:     0,
-            }}>
-              <span style={{
-                fontSize:      c.centre
-                  ? "clamp(9px,1vw,18px)"
-                  : `clamp(${Math.max(8,Math.round(c.s*0.14))}px,${(c.s*0.12/19.2*100).toFixed(1)}vw,${Math.round(c.s*0.18)}px)`,
-                fontWeight:    c.centre ? 700 : 500,
-                color:         c.color,
-                fontFamily:    RS.font,
-                letterSpacing: c.centre ? "-0.5px" : "0",
-                lineHeight:    1,
-              }}>
-                {c.label}
-              </span>
-            </div>
-          ))}
+        } as React.CSSProperties}>
+
+          {/* 80px left — indigo quad (A4BCFD/6172F3/3538CD) */}
+          <ClientCircle size={80}>
+            <svg viewBox="0 0 40 40" fill="none" width="56%" height="56%">
+              <rect x="2"  y="2"  width="16" height="16" rx="2" fill="#A4BCFD"/>
+              <rect x="22" y="2"  width="16" height="16" rx="2" fill="#6172F3"/>
+              <rect x="2"  y="22" width="16" height="16" rx="2" fill="#6172F3"/>
+              <rect x="22" y="22" width="16" height="16" rx="2" fill="#3538CD"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 90px left — orange sunburst (FF4405) */}
+          <ClientCircle size={90}>
+            <svg viewBox="0 0 48 48" fill="none" width="52%" height="52%">
+              {[0,45,90,135,180,225,270,315].map(a => (
+                <rect key={a} x="21.5" y="3" width="5" height="11" rx="2.5" fill="#FF4405"
+                  transform={`rotate(${a} 24 24)`}/>
+              ))}
+              <circle cx="24" cy="24" r="8" fill="#FF4405"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 120px left — Airtable-style (FCB400 + 18BFFF) */}
+          <ClientCircle size={120}>
+            <svg viewBox="0 0 60 60" fill="none" width="54%" height="54%">
+              <rect x="2"  y="6"  width="34" height="24" rx="4" fill="#FCB400"/>
+              <rect x="24" y="30" width="34" height="24" rx="4" fill="#18BFFF"/>
+              <rect x="2"  y="36" width="18" height="18" rx="3" fill="#FCB400" opacity="0.75"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 180px left — indigo constellation (A4BCFD/6172F3/3538CD) */}
+          <ClientCircle size={180}>
+            <svg viewBox="0 0 80 80" fill="none" width="52%" height="52%">
+              <circle cx="40" cy="40" r="28" stroke="#3538CD" strokeWidth="3.5" fill="none"/>
+              <circle cx="40" cy="14" r="7"  fill="#A4BCFD"/>
+              <circle cx="40" cy="66" r="7"  fill="#A4BCFD"/>
+              <circle cx="14" cy="40" r="7"  fill="#6172F3"/>
+              <circle cx="66" cy="40" r="7"  fill="#6172F3"/>
+              <circle cx="21" cy="21" r="5"  fill="#3538CD"/>
+              <circle cx="59" cy="59" r="5"  fill="#3538CD"/>
+              <rect   x="37"  y="37" width="6" height="6" rx="1.5" fill="#3538CD"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 270px centre — ILS logo */}
+          <div style={{
+            width:          "clamp(90px,14.06vw,270px)",
+            aspectRatio:    "1/1",
+            borderRadius:   "50%",
+            background:     "#181818",
+            display:        "flex",
+            alignItems:     "center",
+            justifyContent: "center",
+            flexShrink:     0,
+            zIndex:         2,
+          }}>
+            <img
+              src="/image 777.png"
+              alt="ILS"
+              style={{ width:"61%", height:"61%", objectFit:"contain" }}
+            />
+          </div>
+
+          {/* 180px right — two-tone overlap (F38744 orange + 2E90FA blue) */}
+          <ClientCircle size={180}>
+            <svg viewBox="0 0 80 80" fill="none" width="52%" height="52%">
+              <circle cx="27" cy="40" r="19" fill="#F38744"/>
+              <circle cx="53" cy="40" r="19" fill="#2E90FA" opacity="0.88"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 120px right — teal triangle (2A9D8F) */}
+          <ClientCircle size={120}>
+            <svg viewBox="0 0 60 60" fill="none" width="54%" height="54%">
+              <path d="M6 54 L30 6 L54 54 Z" stroke="#2A9D8F" strokeWidth="4" strokeLinejoin="round" fill="none"/>
+              <circle cx="30" cy="36" r="10" fill="#2A9D8F"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 90px right — rotated pill pair (2E90FA + EFD515) */}
+          <ClientCircle size={90}>
+            <svg viewBox="0 0 48 48" fill="none" width="52%" height="52%">
+              <rect x="6"  y="8"  width="36" height="14" rx="7" fill="#2E90FA" transform="rotate(-12 24 24)"/>
+              <rect x="6"  y="26" width="36" height="14" rx="7" fill="#EFD515" transform="rotate(-12 24 24)"/>
+            </svg>
+          </ClientCircle>
+
+          {/* 80px right — coral target rings (F07167) */}
+          <ClientCircle size={80}>
+            <svg viewBox="0 0 40 40" fill="none" width="56%" height="56%">
+              <circle cx="20" cy="20" r="15" stroke="#F07167" strokeWidth="2.5" fill="none"/>
+              <circle cx="20" cy="20" r="9"  stroke="#F07167" strokeWidth="2.5" fill="none"/>
+              <circle cx="20" cy="20" r="3"  fill="#F07167"/>
+            </svg>
+          </ClientCircle>
         </div>
 
-        {/* ── "Book A Call" CTA ── */}
-        <div style={{ position:"relative", zIndex:1 }}>
+        {/* Book A Call — Figma: w:196 h:56 r:28, bottom:68px */}
+        <div style={{
+          position:  "absolute",
+          zIndex:    2,
+          left:      "50%",
+          bottom:    "clamp(28px,3.54vw,68px)",
+          transform: "translateX(-50%)",
+        }}>
           <GreenBtn href="/contact" width={196}>Book A Call</GreenBtn>
         </div>
       </section>
@@ -1161,7 +1194,7 @@ export default function HomePage() {
             fontFamily: RS.font,
             margin:     0,
           }}>
-            I recently had the pleasure of working with Ivy League Solutions for the placement of an SDR, and the experience has been nothing short of phenomenal. Our CSM provided exceptional support. What has impressed me the most is the level of marketing skills they have.
+            Ivy League Solutions transformed our legacy banking infrastructure. Their AI-powered risk engine cut processing time by 90% and the dedicated team embedded seamlessly with our engineers from day one.
           </p>
 
           {/* Closing inverted comma — rotated 180°, right-aligned */}
@@ -1226,7 +1259,7 @@ export default function HomePage() {
         <span style={{ fontSize:"clamp(24px,2.5vw,48px)", color:RS.white, marginTop:8, fontFamily:RS.font }}>+</span>
       </div>
       <p style={{ fontSize:20, color:RS.white, letterSpacing:"0.05em", fontFamily:RS.font, marginTop:8 }}>
-        YEARS OF EXPERIENCE
+        YEARS IN ENTERPRISE TECH
       </p>
     </div>
 
@@ -1234,7 +1267,7 @@ export default function HomePage() {
     <div style={{ position:"relative" }}>
 
       <p style={{ fontSize:20, fontWeight:400, color:RS.white, marginBottom:16, fontFamily:RS.font }}>
-        WHY IVY LEAGUE
+        WHY CHOOSE US
       </p>
       <h2 style={{
         fontSize:     "clamp(28px,3.1vw,60px)",
@@ -1245,7 +1278,7 @@ export default function HomePage() {
         fontFamily:   RS.font,
         maxWidth:     798,
       }}>
-        UNLOCK THE EXPERTISE OF WORLD CLASS REMOTE PROFESSIONALS
+        THE IVY LEAGUE DIFFERENCE — WE EMBED, ENGINEER, AND SCALE WITH YOU
       </h2>
       <p style={{
         fontSize:     "clamp(14px,1.25vw,24px)",
@@ -1255,9 +1288,9 @@ export default function HomePage() {
         fontFamily:   RS.font,
         maxWidth:     583,
       }}>
-        Ivy League Solutions connects you with pre-trained, vetted remote professionals ready to deliver from day one. Focus on growing your business while we take care of building your dream team.
+        We don't just build software — we embed with your team, understand your operations, and engineer solutions with enterprise-grade security, AI-first architecture, and dedicated support that actually scales.
       </p>
-      <GreenBtn href="/contact">Talk to Us Now</GreenBtn>
+      <GreenBtn href="/contact">Start a Project</GreenBtn>
 
       {/* Rectangle 8 — cafe woman image */}
       <div style={{
@@ -1356,7 +1389,7 @@ export default function HomePage() {
       fontFamily:    RS.font,
       marginBottom:  8,
     }}>
-      Executive Assistant
+      Enterprise Solutions
     </p>
 <p style={{
   fontSize:   "clamp(16px,1.56vw,30px)",
@@ -1368,7 +1401,7 @@ export default function HomePage() {
   margin:     "0 auto",
   textAlign:  "center",
 }}>
-  Why Most Agencies Overhire in January (And how to Prevent It)
+  Partner with a globally recognized team across fintech, healthcare, ERP, and beyond to achieve real outcomes.
 </p>
   </div>
 
@@ -1424,18 +1457,18 @@ export default function HomePage() {
       fontFamily: RS.font,
       maxWidth:   360,
     }}>
-      Whether you are building a team or building a career and Immediately save up to 60% in payroll costs and get the best results
+      Whether you need enterprise software, AI systems, or digital infrastructure — we deliver at scale with a dedicated team and guaranteed outcomes.
     </p>
   </div>
 
   {/* ── RIGHT — accordion-style link list ── */}
   <div style={{ maxWidth: 645 }}>
     {[
-      { label: "Start Hiring Right Now", href: "/hire"      },
-      { label: "Find a Job",             href: "/jobs"      },
-      { label: "Book a Discovery Call",  href: "/discovery" },
-      { label: "Explore Roles for Your Team", href: "/roles"},
-      { label: "Talk to us",             href: "/contact"   },
+      { label: "Start a Project",            href: "/contact"   },
+      { label: "View Our Portfolio",         href: "/portfolio" },
+      { label: "Book a Discovery Call",      href: "/contact"   },
+      { label: "Explore Our AI Capabilities", href: "/services" },
+      { label: "Talk to Us",                 href: "/contact"   },
     ].map(({ label, href }, i, arr) => (
       <a
         key={i}
@@ -1503,6 +1536,23 @@ function ProfileDot({ size, left, top, src }: { size: number; left: string; top:
           objectFit: "cover",
         }}
       />
+    </div>
+  );
+}
+
+function ClientCircle({ size, children }: { size: number; children: React.ReactNode }) {
+  return (
+    <div style={{
+      width:          `clamp(${Math.round(size*0.32)}px,${(size/19.2).toFixed(2)}vw,${size}px)`,
+      aspectRatio:    "1/1",
+      borderRadius:   "50%",
+      background:     "#181818",
+      display:        "flex",
+      alignItems:     "center",
+      justifyContent: "center",
+      flexShrink:     0,
+    }}>
+      {children}
     </div>
   );
 }
