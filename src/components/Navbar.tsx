@@ -6,12 +6,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/solutions", label: "Solutions" },
-  { href: "/services",  label: "Roles"      },
-  { href: "/contact",   label: "Pricing"    },
-  { href: "/about",     label: "Blog"       },
-  { href: "/ai",        label: "Resources"  },
-  { href: "/contact",   label: "Contact"    },
+    { href: "/services",  label: "Services"      },
+
+  { href: "/solutions", label: "Portfolio"     },
+  { href: "/ai",        label: "AI Solutions"  },
+  { href: "/products",  label: "Products"      },
+  { href: "/about",     label: "About"         },
+  { href: "/contact",   label: "Contact"       },
 ];
 
 const RS = {
@@ -24,11 +25,18 @@ export default function Navbar() {
   const pathname    = usePathname();
   const [scrolled,    setScrolled]    = useState(false);
   const [mobileOpen,  setMobileOpen]  = useState(false);
+  const [isMobile,    setIsMobile]    = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onResize = () => setIsMobile(window.innerWidth <= 900);
+    onResize(); // set immediately
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
@@ -38,22 +46,48 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
+  // Homepage hero is white/image → transparent nav works fine.
+  // All other pages use dark (black) heroes → nav needs dark glass + white links.
+  const isHomepage  = pathname === "/";
+  const isDarkHero  = !isHomepage;
+
+  // Mobile → always solid white (logo + hamburger must be visible)
+  // Desktop homepage not scrolled → semi-transparent (matches hero design)
+  // Desktop dark-hero not scrolled → dark glass
+  // Scrolled (any page) → solid white
+  const navBg = isMobile
+    ? "rgba(255,255,255,0.97)"
+    : scrolled
+      ? "rgba(255,255,255,0.97)"
+      : isDarkHero
+        ? "rgba(0,0,0,0.5)"
+        : "rgba(255,255,255,0)";   // desktop homepage: frosted transparent
+
+  const navShadow = scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none";
+  const navBlur   = !isMobile && (scrolled || isDarkHero) ? "blur(16px)" : "none";
+
+  // onDark → white links / dark logo / white hamburger bars.
+  // Only on desktop dark-hero pages when not scrolled.
+  // Mobile is always white bar so onDark is never true there.
+  const onDark = !isMobile && isDarkHero && !scrolled;
+
   return (
     <>
       <nav style={{
-        position:   "fixed",
-        top:        0,
-        left:       0,
-        right:      0,
-        zIndex:     50,
-        height:     100,
-        background: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
-        boxShadow:  scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        transition: "background 0.3s, box-shadow 0.3s",
-        fontFamily: RS.font,
+        position:       "fixed",
+        top:            0,
+        left:           0,
+        right:          0,
+        zIndex:         50,
+        height:         70,
+        background:     navBg,
+        boxShadow:      navShadow,
+        backdropFilter: navBlur,
+        WebkitBackdropFilter: navBlur,
+        transition:     "background 0.3s, box-shadow 0.3s",
+        fontFamily:     RS.font,
       }}>
-        <div style={{
+        <div className="rs-nav-inner" style={{
           maxWidth:      1700,
           margin:        "0 auto",
           padding:       "0 clamp(20px, 11.5vw, 220px)",
@@ -67,7 +101,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
             <Image
-              src="/logo.png"
+              src={onDark ? "/logo-dark.webp" : "/logo.png"}
               alt="Ivy League Solutions"
               width={132}
               height={48}
@@ -85,7 +119,7 @@ export default function Navbar() {
             justifyContent: "center",
           }}>
             {navLinks.map((link) => (
-              <NavLink key={link.href + link.label} href={link.href} label={link.label} active={pathname === link.href} scrolled={scrolled} />
+              <NavLink key={link.href + link.label} href={link.href} label={link.label} active={pathname === link.href} onDark={onDark} />
             ))}
           </nav>
 
@@ -98,9 +132,11 @@ export default function Navbar() {
               justifyContent: "center",
               width:          92,
               height:         56,
-              background:     RS.darkGreen,
+              background:     onDark ? "rgba(255,255,255,0.1)" : RS.darkGreen,
+              border:         onDark ? "1px solid rgba(255,255,255,0.15)" : "none",
               borderRadius:   28,
               textDecoration: "none",
+              transition:     "background 0.3s",
             }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"/>
@@ -152,7 +188,7 @@ export default function Navbar() {
                 display:    "block",
                 width:      mobileOpen && i === 1 ? 0 : 24,
                 height:     2,
-                background: "#000",
+                background: onDark ? "#ffffff" : "#000000",
                 borderRadius: 2,
                 transition: "all 0.3s",
                 transform:  mobileOpen
@@ -181,9 +217,9 @@ export default function Navbar() {
   );
 }
 
-function NavLink({ href, label, active, scrolled }: { href: string; label: string; active: boolean; scrolled: boolean }) {
+function NavLink({ href, label, active, onDark }: { href: string; label: string; active: boolean; onDark: boolean }) {
   const [hov, setHov] = useState(false);
-  /* Figma: all nav links always color:#000000 */
+  const color = onDark ? "#ffffff" : "#000000";
   return (
     <Link
       href={href}
@@ -191,13 +227,13 @@ function NavLink({ href, label, active, scrolled }: { href: string; label: strin
       onMouseLeave={() => setHov(false)}
       style={{
         fontSize:       16,
-        fontWeight:     500,
-        color:          hov || active ? "#000000" : scrolled ? "#000000" : "#000000",
-        opacity:        hov || active ? 1 : 0.85,
+        fontWeight:     600,
+        color:          active ? (onDark ? RS.green : "#000000") : color,
+        opacity:        hov ? 1 : active ? 1 : 0.9,
         textDecoration: "none",
         whiteSpace:     "nowrap",
         fontFamily:     "'DM Sans','Inter',system-ui,sans-serif",
-        transition:     "opacity 0.18s",
+        transition:     "opacity 0.18s, color 0.18s",
       }}
     >
       {label}
@@ -207,7 +243,7 @@ function NavLink({ href, label, active, scrolled }: { href: string; label: strin
 
 function MobileDrawer({ open, pathname, onClose }: { open: boolean; pathname: string; onClose: () => void }) {
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 40, pointerEvents: open ? "auto" : "none" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 60, pointerEvents: open ? "auto" : "none" }}>
       <div onClick={onClose} style={{
         position:   "absolute",
         inset:      0,

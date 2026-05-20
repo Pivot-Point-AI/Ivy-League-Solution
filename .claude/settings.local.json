@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(dir \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\public\" /b)"
+    ]
+  }
+}

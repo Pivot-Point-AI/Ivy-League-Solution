@@ -1040,88 +1040,139 @@
 
   /* ── 1. HERO ────────────────────────────── */
   /*
-   * Convert hero to flex-column on mobile.
-   * Content elements come out of absolute flow so nothing is cut off.
-   * 100svh = small viewport height (excludes browser chrome on mobile).
+   * Split layout — full image visible on top, dark content below.
    *
-   *  ┌─ section ─────────────────────────┐
-   *  │  [bg image / overlays – absolute] │
-   *  │  padding-top: ~90px (navbar gap)  │
-   *  │  H1                               │
-   *  │  20px gap                         │
-   *  │  CTA button                       │
-   *  │  flex auto space                  │
-   *  │  Stats card (full width)          │
-   *  │  padding-bottom: 28px             │
-   *  └───────────────────────────────────┘
+   *  ┌──────────────────────────────────────┐
+   *  │  heroBg  (image, 65vw tall)          │  ← full image, no crop
+   *  ├──────────────────────────────────────┤
+   *  │  #000 content area:                  │
+   *  │    H1 (large, white)                 │
+   *  │    CTA button                        │
+   *  │    Stats card (green)                │
+   *  └──────────────────────────────────────┘
    */
   .heroSection {
     width:          100%;
-    min-height:     100svh;
-    min-height:     100vh;   /* fallback for older browsers */
+    height:         auto;
+    min-height:     unset;
+    background:     #000;
     display:        flex;
     flex-direction: column;
-    padding:        90px 20px 28px;
+    overflow:       hidden;
+    padding:        0;
+  }
+
+  /* Image: pull out of absolute, become first flex child */
+  .heroBg {
+    position:            relative;
+    inset:               auto;
+    width:               100%;
+    height:              72vw;
+    min-height:          240px;
+    max-height:          400px;
+    flex-shrink:         0;
+    background-size:     cover;
+    background-position: center 20%;
+    order:               0;
+  }
+
+  /* Hide overlays — not needed in split layout */
+  .heroDarkOverlay { display: none; }
+  .heroWhiteStrip  { display: none; }
+
+  /* H1 — dark content area, order 1 */
+  .heroH1 {
+    order:          1;
+    position:       relative;
+    left:           auto;
+    top:            auto;
+    width:          100%;
+    height:         auto;
+    font-size:      clamp(26px, 8vw, 40px);
+    line-height:    1.1;
+    letter-spacing: -0.02em;
+    display:        block;
+    align-items:    unset;
+    padding:        28px 20px 0;
+    margin:         0;
+    color:          #ffffff;
     box-sizing:     border-box;
   }
 
-  /* H1 – pull out of absolute, flow at top */
-  .heroH1 {
-    position:    relative;
-    left:        auto;
-    top:         auto;
-    width:       100%;
-    height:      auto;
-    font-size:   clamp(28px, 9vw, 52px);
-    line-height: 1.1;
-    display:     block;
-    align-items: unset;
-    margin:      0 0 20px;
-  }
-
-  /* CTA – flow right below H1 */
+  /* CTA — order 2 */
   .heroCtaLink {
+    order:       2;
     position:    relative;
     left:        auto;
     top:         auto;
     bottom:      auto;
     width:       auto;
-    height:      48px;
+    height:      50px;
     padding:     0 28px;
+    font-size:   15px;
+    font-weight: 500;
     align-self:  flex-start;
+    flex-shrink: 0;
+    margin:      16px 20px 24px;
   }
 
-  /* Stats card – pushed to bottom by margin-top:auto */
+  /* Stats card — order 3, full width green bar */
   .heroStatsCard {
-    position:      relative;
-    left:          auto;
-    top:           auto;
-    width:         100%;
-    height:        auto;
-    min-width:     unset;
-    min-height:    unset;
-    margin-top:    auto;
-    border-radius: 12px;
-    /* Switch internal layout from absolute to flex column */
-    display:       flex;
-    flex-direction: column;
-    gap:           10px;
-    padding:       20px;
-    overflow:      visible;
-    box-sizing:    border-box;
+    order:          3;
+    position:       relative;
+    left:           auto;
+    top:            auto;
+    width:          calc(100% - 40px);
+    margin:         0 20px 28px;
+    height:         auto;
+    min-width:      unset;
+    min-height:     unset;
+    border-radius:  14px;
+    display:        flex;
+    flex-direction: row;
+    align-items:    stretch;
+    overflow:       hidden;
+    box-sizing:     border-box;
+    gap:            0;
+    padding:        0;
   }
 
-  /* Card texts: pull out of absolute, stack naturally */
+  /* Card texts: three equal columns */
   .heroStatsText {
     position: relative;
-    left:     auto;
-    top:      auto;
-    width:    100%;
-    margin:   0;
+    left: auto; top: auto;
+    margin: 0;
+    width: auto;
   }
-  .heroStatsTextTop    { font-size: clamp(11px, 3.5vw, 14px); line-height: 1.4; order: 1; }
-  .heroStatsNum        { font-size: clamp(40px, 12vw, 64px);  line-height: 1;   order: 2; width: auto; }
-  .heroStatsTextBottom { font-size: clamp(11px, 3.5vw, 14px); line-height: 1.4; order: 3; }
+  .heroStatsTextTop {
+    order: 1; flex: 1;
+    padding:     14px 10px 14px 14px;
+    font-size:   clamp(10px, 3vw, 12px);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .heroStatsNum {
+    order:        2;
+    flex-shrink:  0;
+    padding:      10px 14px;
+    font-size:    clamp(38px, 11vw, 56px);
+    line-height:  1;
+    width:        auto;
+    border-left:  1px solid rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(0,0,0,0.15);
+    display:      flex;
+    align-items:  center;
+  }
+  .heroStatsTextBottom {
+    order: 3; flex: 1;
+    padding:     14px 14px 14px 10px;
+    font-size:   clamp(10px, 2.8vw, 12px);
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  /* Subtitle — hidden on mobile */
+  .heroSubtitle { display: none; }
 
   /* Subtitle – hidden on mobile (tiny text that overlaps the card) */
   .heroSubtitle { display: none; }
@@ -1305,9 +1356,13 @@
 @media (max-width: 480px) {
 
   /* ── 1. Hero ── */
-  .heroSection   { padding: 80px 16px 20px; }
-  .heroH1        { font-size: clamp(26px, 8.5vw, 44px); }
-  .heroStatsCard { padding: 16px; gap: 8px; }
+  .heroBg           { height: 68vw; min-height: 220px; }
+  .heroH1           { font-size: clamp(22px, 7.5vw, 34px); padding: 22px 16px 0; }
+  .heroCtaLink      { height: 46px; padding: 0 22px; font-size: 14px; margin: 14px 16px 20px; }
+  .heroStatsCard    { width: calc(100% - 32px); margin: 0 16px 20px; }
+  .heroStatsNum     { font-size: clamp(34px, 10vw, 48px); padding: 8px 12px; }
+  .heroStatsTextTop,
+  .heroStatsTextBottom { padding: 10px 8px; font-size: clamp(9px, 2.5vw, 11px); }
 
   /* ── 2. What We Do ── */
   .whatWeDoSection  { padding-top: 48px; padding-bottom: 48px; }
