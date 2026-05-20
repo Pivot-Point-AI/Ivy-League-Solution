@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { SharedNav, SharedFooter } from "@/components/SharedNav";
 
 /* ─── Data ─────────────────────────────────────────────── */
 const dts = [
@@ -64,6 +65,7 @@ export default function ServicesPage() {
 
   return (
     <>
+      <SharedNav />
       {/* ── 1. HERO ──────────────────────────────────────── */}
       <section className="page-hero" style={{ paddingBottom:"clamp(48px,6vw,96px)" }}>
         <div style={{ position:"absolute", right:-160, top:-160, width:720, height:720, borderRadius:"50%", border:"1px solid rgba(120,235,84,0.06)", pointerEvents:"none" }} />
@@ -250,6 +252,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <SharedFooter />
     </>
   );
 }

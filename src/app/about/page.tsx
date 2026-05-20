@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SharedNav, SharedFooter } from "@/components/SharedNav";
 
 export const metadata: Metadata = {
   title: "About Us — Ivy League Solutions",
@@ -63,6 +64,7 @@ const pillars = [
 export default function AboutPage() {
   return (
     <>
+      <SharedNav />
       {/* ── 1. HERO ──────────────────────────────────────── */}
       <section className="page-hero" style={{ paddingBottom: "clamp(48px,6vw,96px)" }}>
         {/* Rings */}
@@ -267,6 +269,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <SharedFooter />
     </>
   );
 }

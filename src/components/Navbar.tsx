@@ -271,7 +271,7 @@ function MobileDrawer({ open, pathname, onClose }: { open: boolean; pathname: st
           alignItems:    "center",
           justifyContent:"space-between",
         }}>
-          <Image src="/logo.png" alt="Ivy League Solutions" width={100} height={36} style={{ objectFit: "contain" }} />
+          <Image src="/logo-dark.webp" alt="Ivy League Solutions" width={100} height={36} style={{ objectFit: "contain" }} />
           <button onClick={onClose} style={{
             width: 36, height: 36, borderRadius: "50%",
             background: "#f5f5f5", border: "none",

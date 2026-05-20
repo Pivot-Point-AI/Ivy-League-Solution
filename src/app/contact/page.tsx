@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { SharedNav, SharedFooter } from "@/components/SharedNav";
 
 const services = [
   "Software Development",
@@ -62,6 +63,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <SharedNav />
       {/* ── 1. Hero ── */}
       <section className="page-hero">
         <div className="page-hero-circle" />
@@ -199,6 +201,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <SharedFooter />
     </>
   );
 }

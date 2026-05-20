@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SharedNav, SharedFooter } from "@/components/SharedNav";
 
 export const metadata: Metadata = {
   title: "AI Solutions — Ivy League Solutions",
@@ -120,6 +121,7 @@ const techStack = [
 export default function AIPage() {
   return (
     <>
+      <SharedNav />
       {/* ── 1. HERO ──────────────────────────────────────── */}
       <section className="page-hero" style={{ paddingBottom: "clamp(48px,6vw,96px)" }}>
         {/* Decorative rings */}
@@ -355,6 +357,7 @@ export default function AIPage() {
           </div>
         </div>
       </section>
+      <SharedFooter />
     </>
   );
 }
