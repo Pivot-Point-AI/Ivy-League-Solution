@@ -76,7 +76,7 @@ export default function WhyChooseUs() {
         {/* Lady image — hidden on mobile, visible on md+ */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/lady2.png"
+          src="/lady2.webp"
           alt=""
           className="hidden md:block"
           style={{
@@ -162,7 +162,7 @@ export default function WhyChooseUs() {
             <div style={{ borderRadius: 16, overflow: "hidden", marginTop: 8 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/lady2.png"
+                src="/lady2.webp"
                 alt="IT Support Professional"
                 style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center top", display: "block" }}
               />
