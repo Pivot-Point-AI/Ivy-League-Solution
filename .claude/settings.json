@@ -4,7 +4,10 @@
       "Bash(for f *)",
       "Read(//d/ivy-league-solutions/ivy-league-solutions-v2/ivy-league-solutions/src/app$f/**)",
       "Bash(npx tsc *)",
-      "Bash(git worktree *)"
+      "Bash(git worktree *)",
+      "Bash(npx eslint *)",
+      "Bash(python3 -)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

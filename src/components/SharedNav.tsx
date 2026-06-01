@@ -78,16 +78,17 @@ export function SharedNav() {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="text-white font-semibold text-[14px] rounded-full px-7"
+              className="font-semibold text-[14px] rounded-full px-7"
               style={{
                 height: 48,
-                background: "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)",
-                boxShadow: "0 8px 24px rgba(37,99,255,0.35)",
+                background: scrolled ? "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)" : "#ffffff",
+                color: scrolled ? "#ffffff" : "#2563FF",
+                boxShadow: scrolled ? "0 8px 24px rgba(37,99,255,0.35)" : "0 4px 16px rgba(0,0,0,0.18)",
                 border: "none",
                 cursor: "pointer",
               }}
             >
-          Build Your Solution
+              Build Your Solution
             </motion.button>
           </Link>
         </div>
@@ -174,11 +175,11 @@ export function SharedFooter() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5">
           <div className="flex flex-wrap items-center gap-1 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            <span>contact@ivyleaguesolutions.com</span>
+            <a href="mailto:contact@ivyleaguesolutions.com" className="hover:text-white/70 transition-colors">contact@ivyleaguesolutions.com</a>
             <span className="mx-3">|</span>
-            <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
+            <a href="/privacy-policy" className="hover:text-white/70 transition-colors">Privacy Policy</a>
             <span className="mx-3">|</span>
-            <a href="#" className="hover:text-white/70 transition-colors">Terms of Service</a>
+            <a href="/terms-of-service" className="hover:text-white/70 transition-colors">Terms of Service</a>
           </div>
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
             © {new Date().getFullYear()} Ivy League Solutions

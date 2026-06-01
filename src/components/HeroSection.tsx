@@ -432,9 +432,9 @@ function HeroDashCard() {
 
 const SERVICES = [
   { title: "Software Development", description: "End-to-end custom software from concept to deployment. Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.", img: "/softwaredevelopment.webp", filled: true },
-  { title: "AI & Machine Learning", description: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale across fintech and healthcare.", img: "/Managed IT Services.png", filled: false },
+  { title: "AI & Machine Learning", description: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale across fintech and healthcare.", img: "/Managed IT Services.png", filled: true },
   { title: "Digital Infrastructure", description: "Network services, datacenter solutions, cloud migration and managed IT infrastructure at enterprise scale on AWS, Azure, Cisco, and Oracle.", img: "/cloudsolution.webp", filled: true },
-  { title: "Cybersecurity & SOC", description: "24/7 threat monitoring, incident response, compliance automation, and security operations center with Zero Trust architecture built in.", img: "/cybersecurity.webp", filled: false },
+  { title: "Cybersecurity & SOC", description: "24/7 threat monitoring, incident response, compliance automation, and security operations center with Zero Trust architecture built in.", img: "/cybersecurity.webp", filled: true },
 ];
 
 /* ══ How We Deliver ══ */
@@ -681,7 +681,7 @@ function Testimonials() {
 
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setActive(a => (a + 1) % TESTIMONIALS.length), 4500);
+    const t = setInterval(() => setActive(a => (a + 1) % TESTIMONIALS.length), 9000);
     return () => clearInterval(t);
   }, [paused]);
 
@@ -746,7 +746,7 @@ function Testimonials() {
                     style={{ background: "linear-gradient(90deg,#60a5fa,#a78bfa)" }}
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
-                    transition={{ duration: 4.5, ease: "linear" }}
+                    transition={{ duration: 8, ease: "linear" }}
                     key={`bar-${active}`}
                   />
                 )}
@@ -917,7 +917,7 @@ function useScramble(text: string, trigger: boolean) {
 }
 
 /* ══ Ripple button ══ */
-function RippleButton({ children, style, className }: { children: React.ReactNode; style?: React.CSSProperties; className?: string }) {
+function RippleButton({ children, style, className, onClick }: { children: React.ReactNode; style?: React.CSSProperties; className?: string; onClick?: () => void }) {
   const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([]);
   const onDown = (e: React.MouseEvent<HTMLButtonElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -926,7 +926,7 @@ function RippleButton({ children, style, className }: { children: React.ReactNod
     setTimeout(() => setRipples(prev => prev.filter(rp => rp.id !== id)), 600);
   };
   return (
-    <motion.button onMouseDown={onDown} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
+    <motion.button onMouseDown={onDown} onClick={onClick} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
       className={`relative overflow-hidden ${className ?? ""}`} style={style}>
       {ripples.map(rp => (
         <motion.span key={rp.id} className="absolute rounded-full pointer-events-none"
@@ -1010,29 +1010,8 @@ const MARQUEE_ITEMS = [
   "Veeam", "SAP", "Huawei", "MLOps", "Zero Trust", "GraphQL",
 ];
 
-function Marquee() {
-  return (
-    <div className="relative overflow-hidden py-4" style={{ background: "rgba(7,27,90,0.95)", borderTop: "1px solid rgba(255,255,255,0.07)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-      <motion.div
-        className="flex gap-10 whitespace-nowrap"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        style={{ width: "max-content" }}
-      >
-        {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-          <span key={i} className="flex items-center gap-3 text-white/40 font-semibold uppercase tracking-widest" style={{ fontSize: 11 }}>
-            <span className="w-1 h-1 rounded-full bg-blue-500/60 flex-shrink-0" />
-            {item}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-
-/* ══ Bouncy headline — each letter reacts independently ══ */
-function BouncyText({ text, style, className }: { text: string; style?: React.CSSProperties; className?: string }) {
+/* ══ Bouncy text — per-character hover animation ══ */
+function BouncyText({ text, className, style }: { text: string; className?: string; style?: React.CSSProperties }) {
   return (
     <span className={className} style={style}>
       {text.split("").map((ch, i) => (
@@ -1071,7 +1050,7 @@ function SlotStat({ target, suffix, label }: { target: number; suffix: string; l
 
   return (
     <div ref={ref} className="flex flex-col cursor-default">
-      <span className="font-extrabold leading-none text-white tabular-nums" style={{ fontSize: 32 }}>
+      <span className="font-extrabold leading-none text-white tabular-nums" style={{ fontSize: "clamp(22px,2.4vw,32px)" }}>
         {val}{suffix}
       </span>
       <span className="text-white/45 mt-1.5 font-medium" style={{ fontSize: 11.5 }}>{label}</span>
@@ -1124,12 +1103,11 @@ export default function LandingPage() {
 
   return (
     <>
-      <CustomCursor />
       {/* ══════════════════════════════════════════ HERO */}
       <section
         ref={heroRef}
         onMouseMove={onMouseMove}
-        style={{ cursor: "none",minHeight: 920 }}
+        style={{ minHeight: "100svh" }}
         onMouseLeave={onMouseLeave}
         className="relative overflow-hidden"
       >
@@ -1162,7 +1140,7 @@ export default function LandingPage() {
 
         {/* Content */}
         <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col justify-center"
-          style={{ minHeight: 920, paddingTop: 96, zIndex: 3 }}>
+          style={{ minHeight: "100svh", paddingTop: "clamp(96px,10vw,130px)", paddingBottom: 80, zIndex: 3 }}>
 
           <TiltHero>
             <div className="w-full lg:w-[58%] flex flex-col justify-center py-16 lg:py-0">
@@ -1193,12 +1171,12 @@ export default function LandingPage() {
                 </div>
               </motion.div>
 
-              {/* Headline — hover to scramble chars */}
+              {/* Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.14 }}
-                className="text-white font-extrabold cursor-default select-none"
-                style={{ fontSize: "clamp(34px,3.6vw,68px)", letterSpacing: "-1.5px", lineHeight: 1.08, maxWidth: 550 }}
+                className="text-white font-extrabold cursor-default select-none hero-heading-responsive"
+                style={{ fontSize: "clamp(22px, 3.2vw, 58px)", letterSpacing: "-1px", lineHeight: 1.12, hyphens: "none" }}
                 onMouseEnter={() => setScramble(true)}
                 onMouseLeave={() => setScramble(false)}
               >
@@ -1207,7 +1185,7 @@ export default function LandingPage() {
                   : <BouncyText text={headingText} />
                 }
                 {","}{" "}built for{" "}
-                <span style={{ display: "inline-block", minWidth: 150 }}>
+                <span style={{ display: "inline-block", minWidth: "8ch" }}>
                   <TypingWord active={activeIndustry.name} color={activeIndustry.color} />
                 </span>
               </motion.h1>
@@ -1232,7 +1210,7 @@ export default function LandingPage() {
                         color: isActive ? ind.color : "rgba(255,255,255,0.5)",
                       }}
                       transition={{ duration: 0.25 }}
-                      style={{ borderRadius: 999, paddingInline: 14, paddingBlock: 6, fontSize: 12, fontWeight: 600, border: "1px solid", cursor: "pointer", backdropFilter: "blur(8px)", letterSpacing: "0.02em" }}
+                      style={{ borderRadius: 999, paddingInline: 13, paddingBlock: 6, fontSize: 12, fontWeight: 600, border: "1px solid", cursor: "pointer", backdropFilter: "blur(8px)", letterSpacing: "0.02em" }}
                     >
                       {isActive && (
                         <motion.span
@@ -1248,16 +1226,16 @@ export default function LandingPage() {
               </motion.div>
 
               {/* Dynamic sub-description */}
-              <div className="mt-4 overflow-hidden" style={{ minHeight: 52 }}>
+              <div className="mt-4 overflow-hidden" style={{ minHeight: 48 }}>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={industryIdx}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.35 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
                     className="leading-relaxed"
-                    style={{ fontSize: 14.5, maxWidth: 460, color: "rgba(255,255,255,0.58)" }}
+                    style={{ fontSize: "clamp(13px,1.2vw,15px)", maxWidth: 480, color: "rgba(255,255,255,0.58)" }}
                   >
                     {activeIndustry.desc}
                   </motion.p>
@@ -1268,37 +1246,39 @@ export default function LandingPage() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-4 mt-7"
+                className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 mt-7"
               >
                 <RippleButton
-                  className="text-white font-semibold rounded-full inline-flex items-center gap-2.5"
-                  style={{ height: 54, paddingInline: 34, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 10px 32px rgba(37,99,255,0.55), 0 0 0 1px rgba(99,160,255,0.2)", border: "none", cursor: "pointer" }}
+                  className="text-white font-semibold rounded-full inline-flex items-center justify-center gap-2.5"
+                  style={{ height: 52, paddingInline: 32, fontSize: 14.5, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 8px 28px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}
+                  onClick={() => window.location.href = "/contact"}
                 >
                   Get Started
                   <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>→</motion.span>
                 </RippleButton>
 
                 <MagneticButton
-                  className="font-semibold rounded-full text-white inline-flex items-center gap-2 relative overflow-hidden"
-                  style={{ height: 54, paddingInline: 34, fontSize: 15, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.22)", cursor: "pointer", backdropFilter: "blur(8px)" }}
+                  className="font-semibold rounded-full text-white inline-flex items-center justify-center gap-2 relative overflow-hidden"
+                  style={{ height: 52, paddingInline: 32, fontSize: 14.5, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.22)", cursor: "pointer", backdropFilter: "blur(8px)" }}
+                  onClick={() => window.location.href = "/solutions"}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"/>
                   </svg>
                   View Our Work
                 </MagneticButton>
               </motion.div>
 
-              {/* Stats — clean inline row */}
+              {/* Stats */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.55 }}
-                className="mt-9"
+                className="mt-8"
               >
                 <p className="text-white/20 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
                   Redefining Enterprise-Grade Solutions, Built on Trust
                 </p>
-                <div className="flex items-center flex-wrap gap-y-4">
+                <div className="grid grid-cols-2 sm:flex sm:items-center gap-y-5">
                   {STATS.map((s, i) => (
                     <motion.div
                       key={s.label}
@@ -1306,8 +1286,8 @@ export default function LandingPage() {
                       transition={{ type: "spring", stiffness: 400, damping: 18 }}
                       className="flex flex-col cursor-default"
                       style={{
-                        paddingRight: 32,
-                        paddingLeft: i === 0 ? 0 : 32,
+                        paddingRight: "clamp(16px,2vw,28px)" as string,
+                        paddingLeft: i === 0 ? 0 : "clamp(16px,2vw,28px)" as string,
                         borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : "none",
                       }}
                     >

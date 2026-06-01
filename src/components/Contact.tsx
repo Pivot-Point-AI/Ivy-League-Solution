@@ -215,6 +215,7 @@ export default function WhyChooseUs() {
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => window.location.href = "/contact"}
               style={{
                 height: 46,
                 paddingInline: 32,
