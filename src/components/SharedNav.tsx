@@ -73,10 +73,7 @@ export function SharedNav() {
 
         {/* Right: email + CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <div className="flex items-center gap-2 text-white/70">
-            <Phone className="w-3.5 h-3.5" />
-            <span className="text-[13px] font-medium">contact@ivyleaguesolutions.com</span>
-          </div>
+  
           <Link href="/contact">
             <motion.button
               whileHover={{ scale: 1.03 }}
@@ -90,7 +87,7 @@ export function SharedNav() {
                 cursor: "pointer",
               }}
             >
-              Get a Quote
+          Build Your Solution
             </motion.button>
           </Link>
         </div>
@@ -117,7 +114,7 @@ export function SharedNav() {
           <Link href="/contact" onClick={() => setOpen(false)}>
             <button className="mt-3 w-full text-white font-semibold py-3 rounded-full text-sm"
               style={{ background: "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)", border: "none", cursor: "pointer" }}>
-              Get a Quote
+   Build Your Solution
             </button>
           </Link>
         </div>

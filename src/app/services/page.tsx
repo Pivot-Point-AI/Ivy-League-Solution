@@ -55,7 +55,7 @@ export default function ServicesPage() {
           </motion.p>
           <motion.div {...fade(0.3)} className="flex flex-wrap gap-3">
             <Link href="/contact">
-              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2563FF)", boxShadow: "0 8px 24px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}>Get a Quote</motion.button>
+              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2563FF)", boxShadow: "0 8px 24px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}>Build Your Solution</motion.button>
             </Link>
             <Link href="/contact">
               <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "rgba(255,255,255,0.1)", border: "1.5px solid rgba(255,255,255,0.3)", cursor: "pointer" }}>Talk to an Expert</motion.button>

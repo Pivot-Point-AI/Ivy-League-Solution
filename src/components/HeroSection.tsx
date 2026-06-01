@@ -270,6 +270,162 @@ const STATS = [
   { target: 90,  suffix: "%", label: "Faster Processing",    icon: "⚡" },
 ];
 
+const TRUSTED_LOGOS = [
+  { name: "AWS",        abbr: "AWS" },
+  { name: "Azure",      abbr: "AZ"  },
+  { name: "Oracle",     abbr: "ORC" },
+  { name: "Cisco",      abbr: "CSC" },
+  { name: "Fortinet",   abbr: "FTN" },
+];
+
+/* ══ Floating dashboard card (right side) ══ */
+const LIVE_METRICS = [
+  { label: "Uptime SLA",      value: 99.98, suffix: "%",  color: "#34d399", sparkDelta: +0.02 },
+  { label: "Avg Deploy Time", value: 4.2,   suffix: "m",  color: "#60a5fa", sparkDelta: -0.3  },
+  { label: "Incidents (7d)",  value: 0,     suffix: "",   color: "#a78bfa", sparkDelta: 0     },
+];
+
+function LiveMetricRow({ label, value, suffix, color, index }: { label: string; value: number; suffix: string; color: string; index: number }) {
+  const [live, setLive] = useState(value);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const jitter = (Math.random() - 0.5) * 0.04;
+      setLive(+(value + jitter).toFixed(2));
+    }, 2000 + index * 800);
+    return () => clearTimeout(t);
+  }, [live, value, index]);
+  return (
+    <div className="flex items-center justify-between py-2.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+      <span style={{ fontSize: 11.5, color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>{label}</span>
+      <motion.span
+        key={live}
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        style={{ fontSize: 13, fontWeight: 700, color, fontVariantNumeric: "tabular-nums" }}
+      >
+        {live}{suffix}
+      </motion.span>
+    </div>
+  );
+}
+
+function HeroDashCard() {
+  const [activeProject, setActiveProject] = useState(0);
+  const projects = ["Fintech Platform", "Healthcare AI", "Logistics Cloud"];
+
+  useEffect(() => {
+    const t = setInterval(() => setActiveProject(p => (p + 1) % projects.length), 3200);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 60, y: 20 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="hidden lg:flex flex-col absolute"
+      style={{ right: "4%", top: "50%", transform: "translateY(-50%)", width: 280, zIndex: 10 }}
+    >
+      {/* Glow behind card */}
+      <div className="absolute -inset-4 rounded-3xl pointer-events-none" style={{ background: "radial-gradient(ellipse,rgba(37,99,255,0.25) 0%,transparent 70%)", filter: "blur(24px)" }} />
+
+      {/* Main card */}
+      <motion.div
+        className="relative rounded-2xl overflow-hidden flex flex-col"
+        style={{
+          background: "rgba(7,18,80,0.65)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          boxShadow: "0 32px 64px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)",
+          padding: 20,
+        }}
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 200, damping: 18 }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <motion.div
+              className="w-2 h-2 rounded-full bg-green-400"
+              animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 1.8, repeat: Infinity }}
+            />
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Live Status</span>
+          </div>
+          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>Jun 2025</span>
+        </div>
+
+        {/* Metrics */}
+        <div>
+          {LIVE_METRICS.map((m, i) => (
+            <LiveMetricRow key={m.label} {...m} index={i} />
+          ))}
+        </div>
+
+        {/* Active project ticker */}
+        <div className="mt-4 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>Active Deployment</p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={activeProject}
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.35 }}
+              style={{ fontSize: 13.5, fontWeight: 700, color: "#fff" }}
+            >
+              {projects[activeProject]}
+            </motion.p>
+          </AnimatePresence>
+          <div className="flex items-center gap-2 mt-2">
+            <motion.div
+              className="h-1 rounded-full flex-1"
+              style={{ background: "rgba(255,255,255,0.1)" }}
+            >
+              <motion.div
+                className="h-full rounded-full"
+                style={{ background: "linear-gradient(90deg,#2563FF,#a78bfa)" }}
+                animate={{ width: ["0%", "100%"] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                key={activeProject}
+              />
+            </motion.div>
+            <span style={{ fontSize: 10, color: "#60a5fa" }}>In Progress</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Floating activity toast */}
+      <motion.div
+        initial={{ opacity: 0, y: 16, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
+        className="rounded-2xl mt-3 flex items-center gap-3"
+        style={{
+          background: "rgba(7,18,80,0.65)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          boxShadow: "0 12px 32px rgba(0,0,0,0.3)",
+          padding: "12px 14px",
+        }}
+      >
+        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)" }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div>
+          <p style={{ fontSize: 11.5, fontWeight: 600, color: "#fff" }}>Sprint 14 deployed</p>
+          <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.4)" }}>2 min ago · Zero incidents</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 const SERVICES = [
   { title: "Software Development", description: "End-to-end custom software from concept to deployment. Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.", img: "/softwaredevelopment.webp", filled: true },
   { title: "AI & Machine Learning", description: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale across fintech and healthcare.", img: "/Managed IT Services.png", filled: false },
@@ -870,45 +1026,6 @@ function Marquee() {
   );
 }
 
-/* ══ Sparkle trail ══ */
-function SparkleTrail() {
-  const [sparks, setSparks] = useState<{id:number;x:number;y:number;size:number;color:string;angle:number}[]>([]);
-  useEffect(() => {
-    let last = Date.now();
-    const onMove = (e: MouseEvent) => {
-      const now = Date.now();
-      if (now - last < 40) return; // throttle
-      last = now;
-      const colors = ["#60a5fa","#a78bfa","#f0abfc","#34d399","#fbbf24"];
-      const id = now + Math.random();
-      setSparks(s => [...s.slice(-18), {
-        id, x: e.clientX, y: e.clientY,
-        size: Math.random() * 6 + 3,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        angle: Math.random() * 360,
-      }]);
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-  return (
-    <div className="fixed inset-0 pointer-events-none z-[9998]">
-      {sparks.map(s => (
-        <motion.div key={s.id} className="absolute"
-          style={{ left: s.x, top: s.y, width: s.size, height: s.size, marginLeft: -s.size/2, marginTop: -s.size/2 }}
-          initial={{ scale: 1, opacity: 0.9, rotate: s.angle }}
-          animate={{ scale: 0, opacity: 0, y: -24, rotate: s.angle + 180 }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          onAnimationComplete={() => setSparks(prev => prev.filter(p => p.id !== s.id))}
-        >
-          <svg viewBox="0 0 10 10" style={{ width: "100%", height: "100%" }}>
-            <path d="M5 0 L5.8 3.5 L9.5 5 L5.8 6.5 L5 10 L4.2 6.5 L0.5 5 L4.2 3.5Z" fill={s.color} />
-          </svg>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 /* ══ Bouncy headline — each letter reacts independently ══ */
 function BouncyText({ text, style, className }: { text: string; style?: React.CSSProperties; className?: string }) {
@@ -988,46 +1105,27 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 export default function LandingPage() {
-  const [mouse, setMouse] = useState({ x: -400, y: -400 });
-  const [normMouse, setNormMouse] = useState({ x: 0.5, y: 0.5 });
   const [scramble, setScramble] = useState(false);
-  const [hoveredStat, setHoveredStat] = useState<number|null>(null);
   const mouseRef = useRef({ x: -400, y: -400 });
   const heroRef = useRef<HTMLElement>(null);
 
   const headingText = "Trusted globally for custom technology";
   const scrambledHeading = useScramble(headingText, scramble);
 
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.5);
-  const smx = useSpring(mx, { stiffness: 50, damping: 20 });
-  const smy = useSpring(my, { stiffness: 50, damping: 20 });
-  const layer1x = useTransform(smx, [0,1], ["-2%","2%"]);
-  const layer1y = useTransform(smy, [0,1], ["-2%","2%"]);
-  const layer2x = useTransform(smx, [0,1], ["-5%","5%"]);
-  const layer2y = useTransform(smy, [0,1], ["-5%","5%"]);
-
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     const r = heroRef.current?.getBoundingClientRect();
     if (!r) return;
     const x = e.clientX - r.left, y = e.clientY - r.top;
-    const nx = x / r.width, ny = y / r.height;
-    setMouse({ x, y });
-    setNormMouse({ x: nx, y: ny });
     mouseRef.current = { x, y };
-    mx.set(nx); my.set(ny);
-  }, [mx, my]);
+  }, []);
 
   const onMouseLeave = useCallback(() => {
-    setMouse({ x: -400, y: -400 });
     mouseRef.current = { x: -400, y: -400 };
-    mx.set(0.5); my.set(0.5);
-  }, [mx, my]);
+  }, []);
 
   return (
     <>
       <CustomCursor />
-      <SparkleTrail />
       {/* ══════════════════════════════════════════ HERO */}
       <section
         ref={heroRef}
@@ -1049,36 +1147,15 @@ export default function LandingPage() {
         {/* Dark overlay */}
         <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1, background: "linear-gradient(105deg,rgba(4,12,80,0.94) 0%,rgba(7,27,143,0.82) 40%,rgba(20,50,180,0.40) 65%,rgba(80,40,200,0.04) 100%)" }} />
 
-        {/* Dynamic colour bloom — shifts with mouse */}
-        <div className="absolute pointer-events-none" style={{ zIndex: 2, left: mouse.x - 300, top: mouse.y - 300, width: 600, height: 600, borderRadius: "50%", background: `radial-gradient(circle,rgba(${Math.round(37+normMouse.x*60)},${Math.round(99+normMouse.y*40)},255,0.18) 0%,transparent 70%)`, filter: "blur(40px)", transition: "left 0.15s,top 0.15s" }} />
-
         {/* Canvas particle network — click anywhere to explode */}
         <ParticleNetwork mouseRef={mouseRef} />
 
-        {/* Parallax floating shapes — two depth layers */}
+        {/* Pulse rings — CSS-only, no spring tracking */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 3 }}>
-          <motion.div className="absolute inset-0" style={{ x: layer1x, y: layer1y }}>
-            {[{top:"14%",left:"7%",s:56,r:15,d:6},{top:"60%",left:"3%",s:38,r:-20,d:8},{top:"78%",right:"35%",s:20,r:-10,d:11}].map((sq,i)=>(
-              <motion.div key={i} className="absolute border border-white/10 rounded-xl"
-                style={{top:(sq as {top?:string}).top,left:(sq as {left?:string}).left,right:(sq as {right?:string}).right,width:sq.s,height:sq.s,background:"rgba(255,255,255,0.04)"}}
-                animate={{rotate:[sq.r,sq.r+360],y:[0,-12,0]}}
-                transition={{rotate:{duration:sq.d*2.5,repeat:Infinity,ease:"linear"},y:{duration:sq.d/1.5,repeat:Infinity,ease:"easeInOut"}}}
-              />
-            ))}
-          </motion.div>
-          <motion.div className="absolute inset-0" style={{ x: layer2x, y: layer2y }}>
-            {[{top:"22%",right:"25%",s:48,r:10,d:7},{bottom:"20%",right:"12%",s:34,r:30,d:9},{top:"45%",left:"48%",s:26,r:45,d:5}].map((sq,i)=>(
-              <motion.div key={i} className="absolute border border-white/15 rounded-xl"
-                style={{top:(sq as {top?:string}).top,left:(sq as {left?:string}).left,right:(sq as {right?:string}).right,bottom:(sq as {bottom?:string}).bottom,width:sq.s,height:sq.s,background:"rgba(255,255,255,0.06)"}}
-                animate={{rotate:[sq.r,sq.r-360],y:[0,-18,0]}}
-                transition={{rotate:{duration:sq.d*3,repeat:Infinity,ease:"linear"},y:{duration:sq.d/1.2,repeat:Infinity,ease:"easeInOut"}}}
-              />
-            ))}
-          </motion.div>
           {[1,2,3].map(i=>(
             <motion.div key={i} className="absolute rounded-full border border-blue-400/10"
               style={{top:"50%",left:"74%",width:i*150,height:i*150,marginLeft:-(i*75),marginTop:-(i*75)}}
-              animate={{scale:[1,1.2,1],opacity:[0.25,0,0.25]}}
+              animate={{scale:[1,1.15,1],opacity:[0.2,0,0.2]}}
               transition={{duration:3+i*0.8,repeat:Infinity,delay:i*0.9,ease:"easeInOut"}}
             />
           ))}
@@ -1089,23 +1166,32 @@ export default function LandingPage() {
           style={{ minHeight: 920, paddingTop: 96, zIndex: 3 }}>
 
           <TiltHero>
-            <div className="w-full lg:w-[52%] flex flex-col justify-center py-16 lg:py-0">
+            <div className="w-full lg:w-[58%] flex flex-col justify-center py-16 lg:py-0">
 
-              {/* Badge */}
+              {/* Badge — animated gradient ring */}
               <motion.div
                 initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
-                className="inline-flex items-center gap-2 mb-6 w-fit"
-                style={{ background: "rgba(96,130,255,0.15)", border: "1px solid rgba(96,130,255,0.35)", borderRadius: 999, paddingInline: 16, paddingBlock: 8 }}
+                className="inline-flex items-center gap-2.5 mb-7 w-fit relative"
+                style={{ borderRadius: 999, paddingInline: 3, paddingBlock: 3 }}
               >
-                <motion.span
-                  className="w-2 h-2 rounded-full bg-blue-400"
-                  animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                {/* Animated gradient border */}
+                <motion.div
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{ background: "linear-gradient(90deg,#2563FF,#a78bfa,#60a5fa,#2563FF)", backgroundSize: "300% 100%" }}
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 />
-                <span className="text-blue-300 font-semibold text-[11px] uppercase tracking-widest">
-                  Enterprise Software & AI Delivery
-                </span>
+                <div className="relative inline-flex items-center gap-2 rounded-full px-4 py-2" style={{ background: "rgba(7,18,80,0.85)", backdropFilter: "blur(10px)" }}>
+                  <motion.span
+                    className="w-2 h-2 rounded-full bg-blue-400"
+                    animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                  <span className="text-blue-300 font-semibold text-[11px] uppercase tracking-widest">
+                    Enterprise Software & AI Delivery
+                  </span>
+                </div>
               </motion.div>
 
               {/* Headline — hover to scramble chars */}
@@ -1113,11 +1199,10 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.14 }}
                 className="text-white font-extrabold cursor-default select-none"
-                style={{ fontSize: "clamp(30px,4vw,96px)", letterSpacing: "-1.5px", lineHeight: 1.08, maxWidth: 620 }}
+                style={{ fontSize: "clamp(36px,3.8vw,72px)", letterSpacing: "-1.5px", lineHeight: 1.08, maxWidth: 590 }}
                 onMouseEnter={() => setScramble(true)}
                 onMouseLeave={() => setScramble(false)}
               >
-                {/* Scramble on hover — bouncy letters underneath */}
                 {scramble
                   ? <span className="font-mono" style={{ letterSpacing: "-0.5px" }}>{scrambledHeading}</span>
                   : <BouncyText text={headingText} />
@@ -1130,7 +1215,7 @@ export default function LandingPage() {
               <motion.p
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.28 }}
-                className="text-white/65 mt-5 leading-relaxed"
+                className="text-white/60 mt-5 leading-relaxed"
                 style={{ fontSize: 15.5, maxWidth: 460 }}
               >
                 Premium custom software, AI systems, and digital infrastructure
@@ -1141,19 +1226,26 @@ export default function LandingPage() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-wrap gap-4 mt-8"
+                className="flex flex-wrap items-center gap-4 mt-8"
               >
                 <RippleButton
-                  className="text-white font-semibold rounded-full"
-                  style={{ height: 56, paddingInline: 40, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 10px 32px rgba(37,99,255,0.55)", border: "none", cursor: "pointer" }}
+                  className="text-white font-semibold rounded-full inline-flex items-center gap-2.5"
+                  style={{ height: 56, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 10px 32px rgba(37,99,255,0.55), 0 0 0 1px rgba(99,160,255,0.2)", border: "none", cursor: "pointer" }}
                 >
-                  Get Started →
+                  Get Started
+                  <motion.span
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >→</motion.span>
                 </RippleButton>
 
                 <MagneticButton
-                  className="font-semibold rounded-full text-white relative overflow-hidden"
-                  style={{ height: 56, paddingInline: 40, fontSize: 15, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.3)", cursor: "pointer" }}
+                  className="font-semibold rounded-full text-white inline-flex items-center gap-2 relative overflow-hidden"
+                  style={{ height: 56, paddingInline: 36, fontSize: 15, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.25)", cursor: "pointer", backdropFilter: "blur(8px)" }}
                 >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
                   View Our Work
                 </MagneticButton>
               </motion.div>
@@ -1164,20 +1256,47 @@ export default function LandingPage() {
                 transition={{ duration: 0.6, delay: 0.58 }}
                 className="mt-10"
               >
-                <p className="text-white/30 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
+                <p className="text-white/25 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
                   Redefining Enterprise-Grade Solutions, Built on Trust
                 </p>
                 <div className="flex flex-wrap">
                   {STATS.map((s, i) => (
-                    <div key={s.label} style={{ paddingRight: 28, paddingLeft: i === 0 ? 0 : 28, borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : "none" }}>
+                    <div key={s.label} style={{ paddingRight: 24, paddingLeft: i === 0 ? 0 : 24, borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
                       <SlotStat target={s.target} suffix={s.suffix} label={s.label} />
                     </div>
                   ))}
                 </div>
               </motion.div>
 
+              {/* Trusted by strip */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.75 }}
+                className="mt-10 flex items-center gap-4 flex-wrap"
+              >
+                <span style={{ fontSize: 10.5, color: "rgba(255,255,255,0.28)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", whiteSpace: "nowrap" }}>Trusted by</span>
+                <div className="flex items-center gap-3 flex-wrap">
+                  {TRUSTED_LOGOS.map((logo, i) => (
+                    <motion.div
+                      key={logo.name}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.75 + i * 0.07 }}
+                      whileHover={{ scale: 1.1, borderColor: "rgba(96,165,250,0.5)" }}
+                      className="rounded-lg px-3 py-1.5 flex items-center"
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(8px)", cursor: "default" }}
+                    >
+                      <span style={{ fontSize: 10.5, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em" }}>{logo.abbr}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
             </div>
           </TiltHero>
+
+          {/* Dashboard card — absolute positioned on the right */}
+          <HeroDashCard />
         </div>
 
         {/* Scroll down indicator */}
