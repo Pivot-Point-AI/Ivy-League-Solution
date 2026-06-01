@@ -30,7 +30,7 @@ export function SharedNav() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        height: 88,
+        height: 100,
         background: scrolled ? "#071B5A" : "transparent",
         boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.3)" : "none",
       }}
@@ -42,7 +42,7 @@ export function SharedNav() {
           <img
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
-            style={{ height: 48, width: "auto" }}
+            style={{ height: 84, width: "auto" }}
             className="object-contain"
           />
         </Link>
