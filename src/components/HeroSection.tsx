@@ -22,24 +22,28 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-/* ══ Rotating word ══ */
-const WORDS = ["Fintech", "Healthcare", "Logistics", "Enterprise", "EdTech", "Government"];
-function TypingWord() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setI(n => (n + 1) % WORDS.length), 2600);
-    return () => clearInterval(t);
-  }, []);
+/* ══ Industry data ══ */
+const INDUSTRIES = [
+  { name: "Fintech",    color: "#34d399", desc: "AI-powered risk engines, payment platforms, and compliance automation built for the speed of modern finance." },
+  { name: "Healthcare", color: "#60a5fa", desc: "HIPAA-compliant systems, clinical AI, and patient data platforms engineered for care delivery at scale." },
+  { name: "Logistics",  color: "#fbbf24", desc: "Real-time tracking, route optimisation, and warehouse automation that keep supply chains moving." },
+  { name: "Enterprise", color: "#a78bfa", desc: "Scalable internal platforms, ERP integrations, and enterprise AI that modernise operations end-to-end." },
+  { name: "EdTech",     color: "#f0abfc", desc: "Adaptive learning platforms, LMS systems, and student analytics tools built for outcomes at scale." },
+  { name: "Government", color: "#fb923c", desc: "Secure citizen portals, compliance-first infrastructure, and digital-transformation projects for public sector." },
+];
+
+/* ══ Rotating word — auto-cycles, but can be overridden ══ */
+function TypingWord({ active, color }: { active: string; color: string }) {
   return (
     <AnimatePresence mode="wait">
-      <motion.span key={i}
+      <motion.span key={active}
         initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-        transition={{ duration: 0.45 }}
-        style={{ color: "#60a5fa", display: "inline-block" }}
+        transition={{ duration: 0.4 }}
+        style={{ color, display: "inline-block" }}
       >
-        {WORDS[i]}
+        {active}
       </motion.span>
     </AnimatePresence>
   );
@@ -1044,50 +1048,34 @@ function BouncyText({ text, style, className }: { text: string; style?: React.CS
   );
 }
 
-/* ══ Slot-machine stat ══ */
+/* ══ Smooth count-up stat ══ */
 function SlotStat({ target, suffix, label }: { target: number; suffix: string; label: string }) {
   const [val, setVal] = useState(0);
-  const [rolling, setRolling] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!inView) return;
-    setRolling(true);
-    let cur = 0;
-    const steps = 28;
-    let step = 0;
-    const t = setInterval(() => {
-      step++;
-      if (step >= steps) { setVal(target); setRolling(false); clearInterval(t); return; }
-      // Ease-out: fast then slow
-      const progress = 1 - Math.pow(1 - step / steps, 3);
-      cur = Math.round(target * progress);
-      setVal(cur);
-    }, 40);
-    return () => clearInterval(t);
+    const duration = 2000;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // cubic ease-out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setVal(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }, [inView, target]);
 
   return (
-    <motion.div ref={ref} className="flex flex-col cursor-default"
-      whileHover={{ scale: 1.12 }}
-      transition={{ type: "spring", stiffness: 300 }}
-    >
+    <div ref={ref} className="flex flex-col cursor-default">
       <span className="font-extrabold leading-none text-white tabular-nums" style={{ fontSize: 32 }}>
-        {rolling ? (
-          <AnimatePresence mode="popLayout">
-            <motion.span key={val}
-              initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.1 }}
-              style={{ display: "inline-block" }}
-            >
-              {val}
-            </motion.span>
-          </AnimatePresence>
-        ) : val}{suffix}
+        {val}{suffix}
       </span>
-      <span className="text-white/40 mt-1" style={{ fontSize: 10.5 }}>{label}</span>
-    </motion.div>
+      <span className="text-white/45 mt-1.5 font-medium" style={{ fontSize: 11.5 }}>{label}</span>
+    </div>
   );
 }
 
@@ -1106,11 +1094,22 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function LandingPage() {
   const [scramble, setScramble] = useState(false);
+  const [industryIdx, setIndustryIdx] = useState(0);
+  const [userPicked, setUserPicked] = useState(false);
   const mouseRef = useRef({ x: -400, y: -400 });
   const heroRef = useRef<HTMLElement>(null);
 
   const headingText = "Trusted globally for custom technology";
   const scrambledHeading = useScramble(headingText, scramble);
+
+  const activeIndustry = INDUSTRIES[industryIdx];
+
+  // Auto-cycle unless user picked manually
+  useEffect(() => {
+    if (userPicked) return;
+    const t = setInterval(() => setIndustryIdx(i => (i + 1) % INDUSTRIES.length), 2800);
+    return () => clearInterval(t);
+  }, [userPicked]);
 
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     const r = heroRef.current?.getBoundingClientRect();
@@ -1199,7 +1198,7 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.14 }}
                 className="text-white font-extrabold cursor-default select-none"
-                style={{ fontSize: "clamp(36px,3.8vw,72px)", letterSpacing: "-1.5px", lineHeight: 1.08, maxWidth: 590 }}
+                style={{ fontSize: "clamp(34px,3.6vw,68px)", letterSpacing: "-1.5px", lineHeight: 1.08, maxWidth: 550 }}
                 onMouseEnter={() => setScramble(true)}
                 onMouseLeave={() => setScramble(false)}
               >
@@ -1208,62 +1207,112 @@ export default function LandingPage() {
                   : <BouncyText text={headingText} />
                 }
                 {","}{" "}built for{" "}
-                <span style={{ display: "inline-block", minWidth: 140 }}><TypingWord /></span>
+                <span style={{ display: "inline-block", minWidth: 150 }}>
+                  <TypingWord active={activeIndustry.name} color={activeIndustry.color} />
+                </span>
               </motion.h1>
 
-              {/* Sub */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.28 }}
-                className="text-white/60 mt-5 leading-relaxed"
-                style={{ fontSize: 15.5, maxWidth: 460 }}
+              {/* Industry selector pills */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.22 }}
+                className="flex flex-wrap gap-2 mt-5"
               >
-                Premium custom software, AI systems, and digital infrastructure
-                engineered for fintech, healthcare, and logistics.
-              </motion.p>
+                {INDUSTRIES.map((ind, i) => {
+                  const isActive = industryIdx === i;
+                  return (
+                    <motion.button
+                      key={ind.name}
+                      onClick={() => { setIndustryIdx(i); setUserPicked(true); }}
+                      whileHover={{ scale: 1.06, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        background: isActive ? `${ind.color}22` : "rgba(255,255,255,0.06)",
+                        borderColor: isActive ? ind.color : "rgba(255,255,255,0.15)",
+                        color: isActive ? ind.color : "rgba(255,255,255,0.5)",
+                      }}
+                      transition={{ duration: 0.25 }}
+                      style={{ borderRadius: 999, paddingInline: 14, paddingBlock: 6, fontSize: 12, fontWeight: 600, border: "1px solid", cursor: "pointer", backdropFilter: "blur(8px)", letterSpacing: "0.02em" }}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="pill-dot"
+                          className="inline-block w-1.5 h-1.5 rounded-full mr-1.5"
+                          style={{ background: ind.color, verticalAlign: "middle" }}
+                        />
+                      )}
+                      {ind.name}
+                    </motion.button>
+                  );
+                })}
+              </motion.div>
+
+              {/* Dynamic sub-description */}
+              <div className="mt-4 overflow-hidden" style={{ minHeight: 52 }}>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={industryIdx}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.35 }}
+                    className="leading-relaxed"
+                    style={{ fontSize: 14.5, maxWidth: 460, color: "rgba(255,255,255,0.58)" }}
+                  >
+                    {activeIndustry.desc}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
 
               {/* Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-4 mt-8"
+                className="flex flex-wrap items-center gap-4 mt-7"
               >
                 <RippleButton
                   className="text-white font-semibold rounded-full inline-flex items-center gap-2.5"
-                  style={{ height: 56, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 10px 32px rgba(37,99,255,0.55), 0 0 0 1px rgba(99,160,255,0.2)", border: "none", cursor: "pointer" }}
+                  style={{ height: 54, paddingInline: 34, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 10px 32px rgba(37,99,255,0.55), 0 0 0 1px rgba(99,160,255,0.2)", border: "none", cursor: "pointer" }}
                 >
                   Get Started
-                  <motion.span
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                  >→</motion.span>
+                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>→</motion.span>
                 </RippleButton>
 
                 <MagneticButton
                   className="font-semibold rounded-full text-white inline-flex items-center gap-2 relative overflow-hidden"
-                  style={{ height: 56, paddingInline: 36, fontSize: 15, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.25)", cursor: "pointer", backdropFilter: "blur(8px)" }}
+                  style={{ height: 54, paddingInline: 34, fontSize: 15, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.22)", cursor: "pointer", backdropFilter: "blur(8px)" }}
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"/>
                   </svg>
                   View Our Work
                 </MagneticButton>
               </motion.div>
 
-              {/* Stats */}
+              {/* Stats — clean inline row */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.58 }}
-                className="mt-10"
+                transition={{ duration: 0.6, delay: 0.55 }}
+                className="mt-9"
               >
-                <p className="text-white/25 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
+                <p className="text-white/20 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
                   Redefining Enterprise-Grade Solutions, Built on Trust
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex items-center flex-wrap gap-y-4">
                   {STATS.map((s, i) => (
-                    <div key={s.label} style={{ paddingRight: 24, paddingLeft: i === 0 ? 0 : 24, borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
+                    <motion.div
+                      key={s.label}
+                      whileHover={{ y: -3 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                      className="flex flex-col cursor-default"
+                      style={{
+                        paddingRight: 32,
+                        paddingLeft: i === 0 ? 0 : 32,
+                        borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : "none",
+                      }}
+                    >
                       <SlotStat target={s.target} suffix={s.suffix} label={s.label} />
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -1271,18 +1320,18 @@ export default function LandingPage() {
               {/* Trusted by strip */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.75 }}
-                className="mt-10 flex items-center gap-4 flex-wrap"
+                transition={{ duration: 0.6, delay: 0.72 }}
+                className="mt-8 flex items-center gap-4 flex-wrap"
               >
-                <span style={{ fontSize: 10.5, color: "rgba(255,255,255,0.28)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", whiteSpace: "nowrap" }}>Trusted by</span>
-                <div className="flex items-center gap-3 flex-wrap">
+                <span style={{ fontSize: 10.5, color: "rgba(255,255,255,0.25)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", whiteSpace: "nowrap" }}>Trusted by</span>
+                <div className="flex items-center gap-2.5 flex-wrap">
                   {TRUSTED_LOGOS.map((logo, i) => (
                     <motion.div
                       key={logo.name}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.75 + i * 0.07 }}
-                      whileHover={{ scale: 1.1, borderColor: "rgba(96,165,250,0.5)" }}
+                      transition={{ delay: 0.72 + i * 0.06 }}
+                      whileHover={{ scale: 1.12, background: "rgba(255,255,255,0.12)", borderColor: "rgba(96,165,250,0.45)" }}
                       className="rounded-lg px-3 py-1.5 flex items-center"
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(8px)", cursor: "default" }}
                     >
