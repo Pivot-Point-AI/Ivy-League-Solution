@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { label: "Portfolio",  href: "/solutions" },
   { label: "AI Solutions", href: "/ai"      },
   { label: "About",      href: "/about"     },
+  { label: "Careers",    href: "/careers"   },
   { label: "Contact",    href: "/contact"   },
 ];
 
@@ -138,7 +139,7 @@ export function SharedFooter() {
             <img
               src="/logo-dark.webp"
               alt="Ivy League Solutions"
-              style={{ height: 44, width: "auto" }}
+              style={{ height: 72, width: "auto" }}
               className="object-contain"
             />
           </Link>

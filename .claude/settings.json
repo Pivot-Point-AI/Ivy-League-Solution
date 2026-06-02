@@ -7,7 +7,10 @@
       "Bash(git worktree *)",
       "Bash(npx eslint *)",
       "Bash(python3 -)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(Get-ChildItem -Path \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\" -Recurse -Depth 2 -Directory)",
+      "Bash(Select-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\src\" -Recurse | Where-Object { $_.Extension -match '\\\\.\\(tsx|ts\\)$' } | Select-Object Name | Get-Unique -AsString | Sort-Object)"
     ]
   }
 }

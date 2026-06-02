@@ -270,7 +270,7 @@ function TiltHero({ children }: { children: React.ReactNode }) {
 const STATS = [
   { target: 200, suffix: "+", label: "Projects Delivered",   icon: "🚀" },
   { target: 98,  suffix: "%", label: "Client Satisfaction",  icon: "⭐" },
-  { target: 15,  suffix: "+", label: "Industries Served",    icon: "🌐" },
+  { target: 18,  suffix: "+", label: "Countries Served",     icon: "🌐" },
   { target: 90,  suffix: "%", label: "Faster Processing",    icon: "⚡" },
 ];
 

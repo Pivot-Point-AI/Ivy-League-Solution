@@ -15,13 +15,12 @@ const STATS = [
   { v: "10+",  l: "Years of Experience", sub: "Since 2015" },
   { v: "200+", l: "Projects Delivered",  sub: "Global portfolio" },
   { v: "250+", l: "Team Members",        sub: "Engineers & designers" },
-  { v: "15+",  l: "Industries Served",   sub: "Deep domain expertise" },
+  { v: "18+",  l: "Countries Served",    sub: "Global reach" },
 ];
 
 const TIMELINE = [
-  { year: "2015", title: "Origins",         desc: "MeeramTech founded in Dubai, UAE — beginning a tradition of meeting diversified enterprise technology needs across the Middle East." },
-  { year: "2018", title: "AppInSnap",       desc: "AppInSnap joins the portfolio, specialising in mobile-first solutions and rapid product development across the Middle East." },
-  { year: "2020", title: "AI Division",     desc: "Launch of AI Brigade — our dedicated machine learning and AI engineering practice for regulated verticals." },
+  { year: "2015", title: "Origins",         desc: "Ivy League Solutions founded in Dubai, UAE — beginning a tradition of meeting diversified enterprise technology needs across the Middle East." },
+  { year: "2020", title: "AI Division",     desc: "Launched our dedicated machine learning and AI engineering practice for regulated verticals." },
   { year: "2022", title: "Datum Product",   desc: "Released Datum, our proprietary spreadsheet intelligence platform — Excel/OpenXML compatible with enterprise-grade security." },
   { year: "2024", title: "Global Launch",   desc: "Ivy League Solutions launched to bring our decade of enterprise expertise to global markets under one unified brand." },
   { year: "2025+", title: "Scale & Expand", desc: "Expanding AI capabilities, growing our global presence, and building IvyFlow, IvyShield, and IvyERP product lines." },
@@ -34,10 +33,17 @@ const VALUES = [
   { icon: "○", title: "Transparent Delivery",     desc: "Weekly reporting, open codebases, and honest timelines. No surprises — just progress." },
 ];
 
-const PARTNERS = ["Oracle","Microsoft","AWS","Azure","Huawei","Fortinet","Cisco","Aruba","Veeam","CrowdStrike","SAP","VMware"];
+const TECH_STACK = [".NET Core","React","Node.js","Next.js","SQL Databases","Java","Kotlin & Swift","Cloud Solutions","Open-source Technologies","Android, iOS & Flutter","AI"];
+
+const MAJOR_PROJECTS = [
+  { icon: "💳", name: "Zindigi", sub: "Digital Wallet" },
+  { icon: "🏷️", name: "G-Tag", sub: "E-Toll Plaza System" },
+  { icon: "🏦", name: "BankIslami", sub: "Internet Banking" },
+  { icon: "🅿️", name: "E-Parking", sub: "Smart Parking System" },
+];
 
 const LEADERSHIP = [
-  { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "Farat brings 10+ years of enterprise IT consulting experience across the Middle East and South Asia, leading MeeramTech and AppInSnap before launching Ivy League Solutions as a unified global brand.", initials: "FI", tags: ["Enterprise IT","10+ Years","Dubai · South Asia"] },
+  { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "Farat brings 10+ years of enterprise IT consulting experience across the Middle East and South Asia, building and launching Ivy League Solutions as a unified global brand.", initials: "FI", tags: ["Enterprise IT","10+ Years","Dubai · South Asia"] },
   { name: "Engineering Team", role: "250+ Engineers Globally", bio: "Distributed engineering talent spanning South Asia, UAE, and the Gulf region — covering software engineering, infrastructure, AI/ML, UI/UX design, and cybersecurity.", initials: "ET", tags: ["Software","Infrastructure","AI/ML","UI/UX","Cybersecurity"] },
 ];
 
@@ -138,16 +144,36 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Partners */}
+      {/* Tech Stack */}
       <section className="bg-[#F8FAFF]" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
-          <motion.p {...fade()} className="text-[#2563FF] font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Technology Partners</motion.p>
-          <motion.h2 {...fade(0.1)} className="text-[#0F172A] font-bold mb-10" style={{ fontSize: "clamp(24px,2.5vw,36px)", letterSpacing: "-0.5px" }}>Best-in-Class Technology Stack</motion.h2>
+          <motion.p {...fade()} className="text-[#2563FF] font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Technologies We Use</motion.p>
+          <motion.h2 {...fade(0.1)} className="text-[#0F172A] font-bold mb-10" style={{ fontSize: "clamp(24px,2.5vw,36px)", letterSpacing: "-0.5px" }}>Our Tech Stack</motion.h2>
           <motion.div {...fade(0.2)} className="flex flex-wrap justify-center gap-3">
-            {PARTNERS.map(p => (
-              <span key={p} className="px-5 py-2.5 rounded-full font-semibold" style={{ background: "#fff", border: "1.5px solid #E2E8F0", color: "#475569", fontSize: 14, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }}>{p}</span>
+            {TECH_STACK.map(t => (
+              <span key={t} className="px-5 py-2.5 rounded-full font-semibold" style={{ background: "#fff", border: "1.5px solid #E2E8F0", color: "#475569", fontSize: 14, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }}>{t}</span>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Major Projects */}
+      <section className="bg-white" style={{ paddingTop: 80, paddingBottom: 80 }}>
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
+          <motion.div {...fade()} className="mb-12 text-center">
+            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Our Work</p>
+            <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Major Projects</h2>
+          </motion.div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {MAJOR_PROJECTS.map((p, i) => (
+              <motion.div key={i} {...fade(i * 0.08)} whileHover={{ y: -6, boxShadow: "0 20px 50px rgba(15,23,42,0.1)" }} transition={{ duration: 0.25 }}
+                className="rounded-2xl p-7 text-center" style={{ border: "1.5px solid #E2E8F0", boxShadow: "0 2px 16px rgba(15,23,42,0.06)" }}>
+                <div className="text-4xl mb-4">{p.icon}</div>
+                <h3 className="font-bold text-[#0F172A] mb-1" style={{ fontSize: 17 }}>{p.name}</h3>
+                <p className="text-[#64748B]" style={{ fontSize: 13 }}>{p.sub}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
