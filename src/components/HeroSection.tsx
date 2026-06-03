@@ -1078,8 +1078,11 @@ export default function LandingPage() {
   const mouseRef = useRef({ x: -400, y: -400 });
   const heroRef = useRef<HTMLElement>(null);
 
-  const headingText = "Trusted globally for custom technology";
-  const scrambledHeading = useScramble(headingText, scramble);
+  const headingLine1 = "Trusted globally for";
+  const headingLine2 = "custom technology,";
+  const scrambledLine1 = useScramble(headingLine1, scramble);
+  const scrambledLine2 = useScramble(headingLine2, scramble);
+  const headingText = headingLine1 + " " + headingLine2;
 
   const activeIndustry = INDUSTRIES[industryIdx];
 
@@ -1143,7 +1146,7 @@ export default function LandingPage() {
           style={{ minHeight: "100svh", paddingTop: "clamp(96px,10vw,130px)", paddingBottom: 80, zIndex: 3 }}>
 
           <TiltHero>
-            <div className="w-full lg:w-[58%] flex flex-col justify-center py-16 lg:py-0">
+            <div className="w-full lg:w-[55%] flex flex-col justify-center py-16 lg:py-0">
 
               {/* Badge — animated gradient ring */}
               <motion.div
@@ -1176,17 +1179,27 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.14 }}
                 className="text-white font-extrabold cursor-default select-none hero-heading-responsive"
-                style={{ fontSize: "clamp(22px, 3.2vw, 58px)", letterSpacing: "-1px", lineHeight: 1.12, hyphens: "none" }}
+                style={{ fontSize: "clamp(32px, 4.2vw, 64px)", letterSpacing: "-1.5px", lineHeight: 1.1, hyphens: "none" }}
                 onMouseEnter={() => setScramble(true)}
                 onMouseLeave={() => setScramble(false)}
               >
-                {scramble
-                  ? <span className="font-mono" style={{ letterSpacing: "-0.5px" }}>{scrambledHeading}</span>
-                  : <BouncyText text={headingText} />
-                }
-                {","}{" "}built for{" "}
-                <span style={{ display: "inline-block", minWidth: "8ch" }}>
-                  <TypingWord active={activeIndustry.name} color={activeIndustry.color} />
+                <span style={{ display: "block" }}>
+                  {scramble
+                    ? <span className="font-mono" style={{ letterSpacing: "-0.5px" }}>{scrambledLine1}</span>
+                    : <BouncyText text={headingLine1} />
+                  }
+                </span>
+                <span style={{ display: "block" }}>
+                  {scramble
+                    ? <span className="font-mono" style={{ letterSpacing: "-0.5px" }}>{scrambledLine2}</span>
+                    : <BouncyText text={headingLine2} />
+                  }
+                </span>
+                <span style={{ display: "block" }}>
+                  built for{" "}
+                  <span style={{ display: "inline-block", minWidth: "8ch" }}>
+                    <TypingWord active={activeIndustry.name} color={activeIndustry.color} />
+                  </span>
                 </span>
               </motion.h1>
 
