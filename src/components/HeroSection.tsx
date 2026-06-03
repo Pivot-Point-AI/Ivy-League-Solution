@@ -270,7 +270,7 @@ function TiltHero({ children }: { children: React.ReactNode }) {
 const STATS = [
   { target: 200, suffix: "+", label: "Projects Delivered",   icon: "🚀" },
   { target: 98,  suffix: "%", label: "Client Satisfaction",  icon: "⭐" },
-  { target: 18,  suffix: "+", label: "Countries Served",     icon: "🌐" },
+  { target: 0,   suffix: "",  label: "Globally",             icon: "🌐", isGlobal: true },
   { target: 90,  suffix: "%", label: "Faster Processing",    icon: "⚡" },
 ];
 
@@ -284,9 +284,9 @@ const TRUSTED_LOGOS = [
 
 /* ══ Floating dashboard card (right side) ══ */
 const LIVE_METRICS = [
-  { label: "Uptime SLA",      value: 99.98, suffix: "%",  color: "#34d399", sparkDelta: +0.02 },
+  { label: "Uptime SLA",      value: 99.99, suffix: "%",  color: "#34d399", sparkDelta: +0.01 },
   { label: "Avg Deploy Time", value: 4.2,   suffix: "m",  color: "#60a5fa", sparkDelta: -0.3  },
-  { label: "Incidents (7d)",  value: 0,     suffix: "",   color: "#a78bfa", sparkDelta: 0     },
+  { label: "Incidents (7d)",  value: 0,     suffix: "",   color: "#34d399", sparkDelta: 0     },
 ];
 
 function LiveMetricRow({ label, value, suffix, color, index }: { label: string; value: number; suffix: string; color: string; index: number }) {
@@ -316,7 +316,7 @@ function LiveMetricRow({ label, value, suffix, color, index }: { label: string; 
 
 function HeroDashCard() {
   const [activeProject, setActiveProject] = useState(0);
-  const projects = ["Fintech Platform", "Healthcare AI", "Logistics Cloud"];
+  const projects = ["Fintech Platform", "Healthcare AI", "Logistics Cloud", "Gov Portal", "EdTech Suite"];
 
   useEffect(() => {
     const t = setInterval(() => setActiveProject(p => (p + 1) % projects.length), 3200);
@@ -356,9 +356,11 @@ function HeroDashCard() {
               animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 1.8, repeat: Infinity }}
             />
-            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Live Status</span>
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>Live Status of our Projects</span>
           </div>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>Jun 2025</span>
+          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>
+            {new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+          </span>
         </div>
 
         {/* Metrics */}
@@ -422,8 +424,8 @@ function HeroDashCard() {
           </svg>
         </div>
         <div>
-          <p style={{ fontSize: 11.5, fontWeight: 600, color: "#fff" }}>Sprint 14 deployed</p>
-          <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.4)" }}>2 min ago · Zero incidents</p>
+          <p style={{ fontSize: 11.5, fontWeight: 600, color: "#fff" }}>Latest build deployed</p>
+          <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.4)" }}>Just now · Zero incidents</p>
         </div>
       </motion.div>
     </motion.div>
@@ -1028,30 +1030,29 @@ function BouncyText({ text, className, style }: { text: string; className?: stri
 }
 
 /* ══ Smooth count-up stat ══ */
-function SlotStat({ target, suffix, label }: { target: number; suffix: string; label: string }) {
+function SlotStat({ target, suffix, label, isGlobal }: { target: number; suffix: string; label: string; isGlobal?: boolean }) {
   const [val, setVal] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || isGlobal) return;
     const duration = 2000;
     const start = performance.now();
     const tick = (now: number) => {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // cubic ease-out
       const eased = 1 - Math.pow(1 - progress, 3);
       setVal(Math.round(target * eased));
       if (progress < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
-  }, [inView, target]);
+  }, [inView, target, isGlobal]);
 
   return (
     <div ref={ref} className="flex flex-col cursor-default">
       <span className="font-extrabold leading-none text-white tabular-nums" style={{ fontSize: "clamp(22px,2.4vw,32px)" }}>
-        {val}{suffix}
+        {isGlobal ? "Global" : `${val}${suffix}`}
       </span>
       <span className="text-white/45 mt-1.5 font-medium" style={{ fontSize: 11.5 }}>{label}</span>
     </div>
@@ -1304,7 +1305,7 @@ export default function LandingPage() {
                         borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : "none",
                       }}
                     >
-                      <SlotStat target={s.target} suffix={s.suffix} label={s.label} />
+                      <SlotStat target={s.target} suffix={s.suffix} label={s.label} isGlobal={(s as any).isGlobal} />
                     </motion.div>
                   ))}
                 </div>

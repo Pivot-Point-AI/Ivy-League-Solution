@@ -15,7 +15,7 @@ const STATS = [
   { v: "10+",  l: "Years of Experience", sub: "Since 2015" },
   { v: "200+", l: "Projects Delivered",  sub: "Global portfolio" },
   { v: "250+", l: "Team Members",        sub: "Engineers & designers" },
-  { v: "18+",  l: "Countries Served",    sub: "Global reach" },
+  { v: "Global", l: "Reach",             sub: "Worldwide presence" },
 ];
 
 const TIMELINE = [

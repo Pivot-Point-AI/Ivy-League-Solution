@@ -15,7 +15,7 @@ const HERO_STATS = [
   { v: "47+",   l: "AI Systems Deployed" },
   { v: "$340M", l: "Value Delivered" },
   { v: "3.2×",  l: "Avg Productivity Lift" },
-  { v: "18+",   l: "Countries Served" },
+  { v: "Global", l: "Reach" },
 ];
 
 const CAPABILITIES = [

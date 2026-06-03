@@ -29,7 +29,7 @@ const BENEFITS = [
 const STATS = [
   { v: "40+",  l: "Open Positions" },
   { v: "12",   l: "Departments" },
-  { v: "18+",  l: "Countries Hiring" },
+  { v: "Global",  l: "Hiring Worldwide" },
   { v: "250+", l: "Team Members" },
 ];
 
@@ -390,7 +390,7 @@ export default function CareersPage() {
             <span style={{ background: "linear-gradient(90deg,#A5B4FC,#C084FC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Starts Here.</span>
           </motion.h1>
           <motion.p {...fade(0.2)} className="text-white/70 leading-relaxed mb-12" style={{ fontSize: 17, maxWidth: 560 }}>
-            Build the future of enterprise technology with a team that spans 18+ countries. 40+ open roles waiting for the right talent.
+            Build the future of enterprise technology with a team that operates globally. 40+ open roles waiting for the right talent.
           </motion.p>
           <motion.div {...fade(0.3)} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {STATS.map((s, i) => (
