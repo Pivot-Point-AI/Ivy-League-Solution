@@ -166,6 +166,7 @@ function ApplyModal({ job, onClose }: ApplyModalProps) {
     if (!form.name.trim())  e.name  = "Please enter your full name";
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email address";
     if (!form.experience)   e.experience = "Please select your experience level";
+    if (!fileInfo)          e.cv = "Please upload your CV before submitting";
     return e;
   };
 
@@ -280,14 +281,16 @@ function ApplyModal({ job, onClose }: ApplyModalProps) {
               {errors.experience && <p className="flex items-center gap-1 mt-2" style={{ fontSize: 12, color: "#EF4444" }}><span>⚠</span> {errors.experience}</p>}
 
               {/* CV Upload */}
-              <p className="font-bold text-[#0F172A] mt-7 mb-4" style={{ fontSize: 13, letterSpacing: "0.03em" }}>Resume / CV</p>
+              <p className="font-bold text-[#0F172A] mt-7 mb-4" style={{ fontSize: 13, letterSpacing: "0.03em" }}>
+                Resume / CV <span style={{ color: "#EF4444" }}>*</span>
+              </p>
               <div
                 onDragOver={e => { e.preventDefault(); setDragOver(true); }}
                 onDragLeave={() => setDragOver(false)}
-                onDrop={e => { e.preventDefault(); setDragOver(false); attachFile(e.dataTransfer.files[0]); }}
+                onDrop={e => { e.preventDefault(); setDragOver(false); attachFile(e.dataTransfer.files[0]); if (errors.cv) setErrors(p => ({ ...p, cv: "" })); }}
                 onClick={() => fileRef.current?.click()}
                 className="rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all select-none"
-                style={{ border: dragOver ? `2px solid ${accent}` : fileInfo ? `2px solid ${accent}` : "2px dashed #CBD5E1", background: dragOver ? `${accent}06` : fileInfo ? `${accent}04` : "#FAFBFF", padding: "28px 20px", boxShadow: dragOver ? `0 0 0 4px ${accent}12` : "none" }}>
+                style={{ border: errors.cv ? "2px solid #EF4444" : dragOver ? `2px solid ${accent}` : fileInfo ? `2px solid ${accent}` : "2px dashed #CBD5E1", background: errors.cv ? "#FFF5F5" : dragOver ? `${accent}06` : fileInfo ? `${accent}04` : "#FAFBFF", padding: "28px 20px", boxShadow: errors.cv ? "0 0 0 4px rgba(239,68,68,0.08)" : dragOver ? `0 0 0 4px ${accent}12` : "none" }}>
                 {fileInfo ? (
                   <div className="flex items-center gap-3 w-full max-w-xs">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${accent}15` }}>
@@ -313,7 +316,12 @@ function ApplyModal({ job, onClose }: ApplyModalProps) {
                 )}
               </div>
               <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" className="hidden"
-                onChange={e => attachFile(e.target.files?.[0])} />
+                onChange={e => { attachFile(e.target.files?.[0]); if (errors.cv) setErrors(p => ({ ...p, cv: "" })); }} />
+              {errors.cv && (
+                <p className="flex items-center gap-1 mt-2" style={{ fontSize: 12, color: "#EF4444" }}>
+                  <span>⚠</span> {errors.cv}
+                </p>
+              )}
 
               {/* Cover note */}
               <p className="font-bold text-[#0F172A] mt-7 mb-4" style={{ fontSize: 13, letterSpacing: "0.03em" }}>
@@ -452,27 +460,53 @@ export default function CareersPage() {
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Find Your Role</h2>
           </motion.div>
 
-          {/* Filters */}
-          <motion.div {...fade(0.1)} className="flex flex-col sm:flex-row gap-3 mb-8 flex-wrap">
-            <div className="relative flex-1 min-w-[200px]">
-              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#94A3B8]" />
-              <input value={search} onChange={e => { setSearch(e.target.value); resetPage(); }} placeholder="Search roles, skills…"
-                className="w-full pl-10 pr-10 py-3 rounded-xl outline-none text-[#0F172A]"
-                style={{ border: "1.5px solid #E2E8F0", background: "#fff", fontSize: 14 }} />
-              {search && (
-                <button onClick={() => { setSearch(""); resetPage(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#0F172A]">
-                  <X size={14} />
-                </button>
-              )}
-            </div>
-            <select value={dept} onChange={e => { setDept(e.target.value); resetPage(); }} className="px-4 py-3 rounded-xl font-medium outline-none cursor-pointer"
-              style={{ border: "1.5px solid #E2E8F0", background: "#fff", color: "#0F172A", minWidth: 200, fontSize: 14 }}>
-              {DEPTS.map(d => <option key={d} value={d}>{d}</option>)}
-            </select>
-            <select value={level} onChange={e => { setLevel(e.target.value); resetPage(); }} className="px-4 py-3 rounded-xl font-medium outline-none cursor-pointer"
-              style={{ border: "1.5px solid #E2E8F0", background: "#fff", color: "#0F172A", minWidth: 150, fontSize: 14 }}>
-              {LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
-            </select>
+          {/* Search bar */}
+          <motion.div {...fade(0.1)} className="relative mb-6" style={{ maxWidth: 480 }}>
+            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#94A3B8]" strokeWidth={2} />
+            <input value={search} onChange={e => { setSearch(e.target.value); resetPage(); }} placeholder="Search roles, skills, departments…"
+              className="w-full pl-11 pr-10 outline-none text-[#0F172A]"
+              style={{ height: 48, borderRadius: 12, border: "1.5px solid #E2E8F0", background: "#fff", fontSize: 14, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }} />
+            {search && (
+              <button onClick={() => { setSearch(""); resetPage(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#0F172A]">
+                <X size={14} />
+              </button>
+            )}
+          </motion.div>
+
+          {/* Department filter pills */}
+          <motion.div {...fade(0.15)} className="flex flex-wrap gap-2 mb-4">
+            {DEPTS.map(d => (
+              <button key={d} onClick={() => { setDept(d); resetPage(); }}
+                className="px-4 py-2 rounded-full font-semibold text-sm transition-all"
+                style={{
+                  background: dept === d ? "linear-gradient(135deg,#2F6BFF,#2563FF)" : "#fff",
+                  color: dept === d ? "#fff" : "#64748B",
+                  border: dept === d ? "none" : "1.5px solid #E2E8F0",
+                  boxShadow: dept === d ? "0 4px 14px rgba(37,99,255,0.3)" : "none",
+                  cursor: "pointer",
+                  fontSize: 13,
+                }}>
+                {d}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Level filter pills */}
+          <motion.div {...fade(0.2)} className="flex flex-wrap gap-2 mb-8">
+            {LEVELS.map(l => (
+              <button key={l} onClick={() => { setLevel(l); resetPage(); }}
+                className="px-4 py-1.5 rounded-full font-semibold transition-all"
+                style={{
+                  background: level === l ? "#0F172A" : "#fff",
+                  color: level === l ? "#fff" : "#64748B",
+                  border: level === l ? "none" : "1.5px solid #E2E8F0",
+                  boxShadow: level === l ? "0 4px 12px rgba(15,23,42,0.2)" : "none",
+                  cursor: "pointer",
+                  fontSize: 12,
+                }}>
+                {l}
+              </button>
+            ))}
           </motion.div>
 
           {/* Results count */}
@@ -562,10 +596,6 @@ export default function CareersPage() {
 
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => {
                 const isCur = n === page;
-                const show  = n === 1 || n === totalPages || Math.abs(n - page) <= 1;
-                const showDot = !show && (n === 2 || n === totalPages - 1);
-                if (showDot) return <span key={n} className="text-[#CBD5E1] px-1" style={{ fontSize: 18 }}>…</span>;
-                if (!show)   return null;
                 return (
                   <button key={n} onClick={() => goPage(n)}
                     className="w-10 h-10 rounded-xl font-semibold transition-all"

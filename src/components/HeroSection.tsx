@@ -443,28 +443,28 @@ const SERVICES = [
 const STEPS = [
   {
     num: "01",
-    title: "Understand Your Goals",
-    desc: "We take time to understand your business domain, technical requirements, and enterprise objectives before writing a single line of code.",
+    title: "Requirements Gathering",
+    desc: "We sit down with your stakeholders to map out goals, user needs, and technical constraints — turning your vision into a clear, agreed-upon project brief before any work begins.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
       </svg>
     ),
   },
   {
     num: "02",
-    title: "Dedicated Team Assembly",
-    desc: "You get a named project manager, senior engineers, and a QA lead — purpose-built for your project and vertical.",
+    title: "UX / UI Design",
+    desc: "Our designers craft wireframes, prototypes, and high-fidelity mockups. You review and approve every screen before a single line of code is written — no surprises later.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/>
       </svg>
     ),
   },
   {
     num: "03",
     title: "Agile Development",
-    desc: "We build in iterative sprints with full transparency — demos, reviews, and course corrections at every milestone.",
+    desc: "We build in two-week sprints with full transparency — working demos, live progress boards, and regular check-ins so you stay in control at every milestone.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -473,8 +473,18 @@ const STEPS = [
   },
   {
     num: "04",
+    title: "QA & Testing",
+    desc: "Dedicated QA engineers run functional, performance, and security tests across all environments. We don't ship until the product meets your acceptance criteria — zero critical bugs at launch.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    ),
+  },
+  {
+    num: "05",
     title: "Post-Launch Support",
-    desc: "24/7 monitoring, SLA-backed incident response, and proactive performance tuning long after go-live.",
+    desc: "24/7 monitoring, SLA-backed incident response, and proactive performance tuning keep your product healthy long after go-live — so you can focus on growing your business.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -510,6 +520,7 @@ function HowWeDeliver() {
           </div>
           <motion.button
             whileHover={{ x: 4 }} whileTap={{ scale: 0.97 }}
+            onClick={() => window.location.href = "/services"}
             className="flex items-center gap-2 font-semibold text-[#2563FF]"
             style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}
           >
@@ -521,15 +532,15 @@ function HowWeDeliver() {
         </motion.div>
 
         {/* 4 step cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="flex gap-5 overflow-x-auto pb-2" style={{ scrollbarWidth: "none" }}>
           {STEPS.map((s, i) => {
             const isActive = active === i;
             return (
               <motion.div
                 key={s.num}
                 onClick={() => setActive(i)}
-                className="relative rounded-2xl p-7 cursor-pointer overflow-hidden flex flex-col"
-                style={{ minHeight: 260 }}
+                className="relative rounded-2xl p-7 cursor-pointer overflow-hidden flex flex-col flex-shrink-0"
+                style={{ minHeight: 280, width: "clamp(220px, 20vw, 280px)" }}
                 animate={{
                   background: isActive
                     ? "linear-gradient(145deg,#071B8F,#2563FF)"
@@ -613,8 +624,9 @@ function HowWeDeliver() {
 
                 {/* Arrow indicator */}
                 <motion.div
-                  className="mt-5 self-start flex items-center gap-1 font-semibold text-[13px]"
+                  className="mt-5 self-start flex items-center gap-1 font-semibold text-[13px] cursor-pointer"
                   animate={{ color: isActive ? "rgba(255,255,255,0.8)" : "#2563FF" }}
+                  onClick={(e) => { e.stopPropagation(); window.location.href = "/services"; }}
                 >
                   Learn More
                   <motion.svg
@@ -656,160 +668,160 @@ function HowWeDeliver() {
 const TESTIMONIALS = [
   {
     quote: "Ivy League Solutions transformed our legacy banking infrastructure. Their AI-powered risk engine cut processing time by 90% and the dedicated team embedded seamlessly with our engineers from day one.",
-    name: "Chief Technology Officer",
-    company: "Enterprise Fintech Client",
+    name: "James Thornton",
+    role: "Chief Technology Officer",
+    company: "NovaPay Financial",
     industry: "Fintech",
     stat: "90% faster processing",
+    photo: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     quote: "The cybersecurity team deployed a Zero Trust architecture across our entire hospital network in under 8 weeks. Compliance automation alone saved us hundreds of hours per quarter.",
-    name: "VP of IT & Operations",
-    company: "Healthcare Enterprise",
+    name: "Dr. Sarah Mitchell",
+    role: "VP of IT & Operations",
+    company: "MedCore Health Systems",
     industry: "Healthcare",
     stat: "8-week deployment",
+    photo: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     quote: "From discovery to launch, every sprint had full transparency. The project manager was reachable around the clock and the QA lead caught issues before they ever reached production.",
-    name: "Director of Engineering",
-    company: "Logistics Platform",
+    name: "Marcus Webb",
+    role: "Director of Engineering",
+    company: "SwiftRoute Logistics",
     industry: "Logistics",
     stat: "Zero critical bugs at launch",
+    photo: "https://randomuser.me/api/portraits/men/65.jpg",
+  },
+  {
+    quote: "We needed a partner who could move at startup speed but deliver enterprise-grade quality. Ivy League hit every milestone on time and the platform they built handles millions of transactions daily.",
+    name: "Priya Sharma",
+    role: "Head of Product",
+    company: "Crestline Commerce",
+    industry: "Enterprise",
+    stat: "Millions of daily transactions",
+    photo: "https://randomuser.me/api/portraits/women/68.jpg",
   },
 ];
 
-function Testimonials() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+const CARD_W = 456; // card width (430) + gap (26)
 
+function TestimonialCard({ item, isActive, dotActive }: { item: typeof TESTIMONIALS[0]; isActive: boolean; dotActive: boolean }) {
+  return (
+    <motion.div
+      className="relative rounded-2xl p-7 flex flex-col overflow-hidden flex-shrink-0"
+      animate={{
+        background: isActive
+          ? "linear-gradient(145deg,#071B8F 0%,#1E40AF 60%,#2563FF 100%)"
+          : "#ffffff",
+        boxShadow: isActive
+          ? "0 24px 64px rgba(37,99,255,0.28)"
+          : "0 2px 20px rgba(15,23,42,0.07)",
+        scale: isActive ? 1 : 0.97,
+      }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      style={{ border: isActive ? "none" : "1px solid #E2E8F0", minHeight: 320, width: 430 }}
+    >
+      {isActive && (
+        <motion.div
+          className="absolute top-0 left-0 h-1 rounded-t-2xl"
+          style={{ background: "linear-gradient(90deg,#60a5fa,#a78bfa)" }}
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 4.5, ease: "linear" }}
+          key={`bar-${item.name}`}
+        />
+      )}
+      <div className="flex gap-1 mb-5">
+        {[...Array(5)].map((_, s) => (
+          <svg key={s} width="16" height="16" viewBox="0 0 24 24" fill="#FCD34D" stroke="none">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        ))}
+      </div>
+      <p className="leading-relaxed flex-1 mb-6" style={{ fontSize: 14.5, color: isActive ? "rgba(255,255,255,0.85)" : "#475569", lineHeight: 1.75 }}>
+        &ldquo;{item.quote}&rdquo;
+      </p>
+      <div className="h-px mb-5" style={{ background: isActive ? "rgba(255,255,255,0.12)" : "#E2E8F0" }} />
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={item.photo} alt={item.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+            style={{ border: isActive ? "2px solid rgba(255,255,255,0.25)" : "2px solid #E2E8F0" }} />
+          <div>
+            <p className="font-semibold text-[13px]" style={{ color: isActive ? "#fff" : "#0F172A" }}>{item.name}</p>
+            <p className="text-[12px]" style={{ color: isActive ? "rgba(255,255,255,0.5)" : "#94A3B8" }}>{item.role} · {item.company}</p>
+          </div>
+        </div>
+        <span className="text-[11px] font-semibold px-3 py-1.5 rounded-full whitespace-nowrap"
+          style={{ background: isActive ? "rgba(255,255,255,0.12)" : "#EFF6FF", color: isActive ? "#93c5fd" : "#2563FF" }}>
+          {item.stat}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+function Testimonials() {
+  const n = TESTIMONIALS.length;
+  // Start at offset n so we can go left without hitting 0
+  const [index, setIndex] = useState(n);
+  const [animate, setAnimate] = useState(true);
+
+  // Clones: [...original, ...original, ...original] — middle set is "real"
+  const cloned = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
+  const dotActive = index % n;
+
+  const advance = useCallback((dir: 1 | -1) => {
+    setAnimate(true);
+    setIndex(i => i + dir);
+  }, []);
+
+  // Auto-scroll
   useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setActive(a => (a + 1) % TESTIMONIALS.length), 9000);
+    const t = setInterval(() => advance(1), 4500);
     return () => clearInterval(t);
-  }, [paused]);
+  }, [advance]);
+
+  // When we reach the clone boundary, silently reset to the middle copy
+  const handleAnimationComplete = useCallback(() => {
+    if (index >= n * 2) {
+      setAnimate(false);
+      setIndex(n);
+    } else if (index < n) {
+      setAnimate(false);
+      setIndex(n * 2 - 1);
+    }
+  }, [index, n]);
 
   return (
-    <section
-      className="bg-[#F8FAFF] overflow-hidden"
-      style={{ paddingTop: 100, paddingBottom: 100 }}
-    >
+    <section className="bg-[#F8FAFF] overflow-hidden" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.5 }}
-          className="mb-14"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.5 }} className="mb-14">
           <p className="text-[#2563FF] font-semibold text-[12px] uppercase tracking-[3px] mb-2">Client Stories</p>
           <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-0.5px" }}>
             What Our Customers Say About Us
           </h2>
         </motion.div>
 
-        {/* Draggable carousel */}
-        <div className="relative overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <div className="relative overflow-hidden">
           <motion.div
-            className="flex gap-6 cursor-grab active:cursor-grabbing"
-            drag="x"
-            dragConstraints={{ left: -(TESTIMONIALS.length - 1) * 420, right: 0 }}
-            dragElastic={0.1}
-            dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
-            animate={{ x: -(active * 420) }}
-            transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            onDragEnd={(_, info) => {
-              if (info.offset.x < -80) setActive(a => Math.min(a + 1, TESTIMONIALS.length - 1));
-              if (info.offset.x > 80)  setActive(a => Math.max(a - 1, 0));
-            }}
-            style={{ width: TESTIMONIALS.length * 420 }}
+            className="flex gap-6"
+            animate={{ x: -(index * CARD_W) }}
+            transition={animate ? { type: "spring", stiffness: 200, damping: 30 } : { duration: 0 }}
+            onAnimationComplete={handleAnimationComplete}
+            style={{ width: cloned.length * CARD_W }}
           >
-          {TESTIMONIALS.map((item, i) => {
-            const isActive = active === i;
-            return (
-              <motion.div
+            {cloned.map((item, i) => (
+              <TestimonialCard
                 key={i}
-                onClick={() => setActive(i)}
-                className="relative rounded-2xl p-8 flex flex-col overflow-hidden flex-shrink-0"
-                animate={{
-                  background: isActive
-                    ? "linear-gradient(145deg,#071B8F 0%,#1E40AF 60%,#2563FF 100%)"
-                    : "#ffffff",
-                  boxShadow: isActive
-                    ? "0 24px 64px rgba(37,99,255,0.28)"
-                    : "0 2px 20px rgba(15,23,42,0.07)",
-                  scale: isActive ? 1 : 0.97,
-                }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                style={{ border: isActive ? "none" : "1px solid #E2E8F0", minHeight: 320, width: 400 }}
-              >
-                {/* Progress bar on active */}
-                {isActive && (
-                  <motion.div
-                    className="absolute top-0 left-0 h-1 rounded-t-2xl"
-                    style={{ background: "linear-gradient(90deg,#60a5fa,#a78bfa)" }}
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 8, ease: "linear" }}
-                    key={`bar-${active}`}
-                  />
-                )}
-
-                {/* Stars */}
-                <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, s) => (
-                    <svg key={s} width="16" height="16" viewBox="0 0 24 24"
-                      fill={isActive ? "#FCD34D" : "#FCD34D"} stroke="none">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <p
-                  className="leading-relaxed flex-1 mb-6"
-                  style={{
-                    fontSize: 14.5,
-                    color: isActive ? "rgba(255,255,255,0.85)" : "#475569",
-                    lineHeight: 1.75,
-                  }}
-                >
-                  &ldquo;{item.quote}&rdquo;
-                </p>
-
-                {/* Divider */}
-                <div className="h-px mb-5" style={{ background: isActive ? "rgba(255,255,255,0.12)" : "#E2E8F0" }} />
-
-                {/* Author row */}
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0"
-                      style={{
-                        background: isActive ? "rgba(255,255,255,0.15)" : "linear-gradient(135deg,#2563FF,#6C3CFF)",
-                        color: "#fff",
-                      }}
-                    >
-                      {item.name.split(" ").map((w: string) => w[0]).join("").slice(0, 2)}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-[13px]" style={{ color: isActive ? "#fff" : "#0F172A" }}>{item.name}</p>
-                      <p className="text-[12px]" style={{ color: isActive ? "rgba(255,255,255,0.5)" : "#94A3B8" }}>{item.company}</p>
-                    </div>
-                  </div>
-
-                  {/* Stat */}
-                  <span
-                    className="text-[11px] font-semibold px-3 py-1.5 rounded-full whitespace-nowrap"
-                    style={{
-                      background: isActive ? "rgba(255,255,255,0.12)" : "#EFF6FF",
-                      color: isActive ? "#93c5fd" : "#2563FF",
-                    }}
-                  >
-                    {item.stat}
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
+                item={item}
+                isActive={i % n === dotActive}
+                dotActive={dotActive === i % n}
+              />
+            ))}
           </motion.div>
         </div>
 
@@ -819,8 +831,8 @@ function Testimonials() {
             {TESTIMONIALS.map((_, i) => (
               <motion.button
                 key={i}
-                onClick={() => setActive(i)}
-                animate={{ width: active === i ? 32 : 8, background: active === i ? "#2563FF" : "#CBD5E1" }}
+                onClick={() => { setAnimate(true); setIndex(n + i); }}
+                animate={{ width: dotActive === i ? 32 : 8, background: dotActive === i ? "#2563FF" : "#CBD5E1" }}
                 transition={{ duration: 0.3 }}
                 style={{ height: 8, borderRadius: 99, border: "none", cursor: "pointer" }}
               />
@@ -828,12 +840,12 @@ function Testimonials() {
           </div>
           <div className="flex gap-2">
             {[
-              { dir: -1, path: "M15 18l-6-6 6-6" },
-              { dir:  1, path: "M9 18l6-6-6-6" },
+              { dir: -1 as const, path: "M15 18l-6-6 6-6" },
+              { dir:  1 as const, path: "M9 18l6-6-6-6" },
             ].map(({ dir, path }) => (
               <motion.button
                 key={dir}
-                onClick={() => setActive(a => (a + dir + TESTIMONIALS.length) % TESTIMONIALS.length)}
+                onClick={() => advance(dir)}
                 whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }}
                 className="w-10 h-10 rounded-full flex items-center justify-center"
                 style={{ background: "#fff", border: "1.5px solid #E2E8F0", cursor: "pointer", boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
@@ -1412,12 +1424,11 @@ export default function LandingPage() {
                   <h3 className="font-bold text-[#0F172A] mt-4 text-center" style={{ fontSize: 17 }}>{svc.title}</h3>
                   <p className="text-[#64748B] mt-2 flex-1 leading-relaxed text-center" style={{ fontSize: 13 }}>{svc.description}</p>
                   <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+                    onClick={() => window.location.href = "/services"}
                     className="mt-6 font-semibold transition-all duration-200"
                     style={{
                       height: 48, width: "100%", borderRadius: 999, fontSize: 14, cursor: "pointer",
-                      ...(svc.filled
-                        ? { background: "linear-gradient(135deg,#2F6BFF,#2060FF)", color: "#fff", border: "none", boxShadow: "0 6px 18px rgba(37,99,255,0.35)" }
-                        : { background: "#fff", color: "#334155", border: "1.5px solid #CBD5E1" }),
+                      background: "linear-gradient(135deg,#2F6BFF,#2060FF)", color: "#fff", border: "none", boxShadow: "0 6px 18px rgba(37,99,255,0.35)",
                     }}
                   >
                     Learn More

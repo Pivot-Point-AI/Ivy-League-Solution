@@ -24,19 +24,49 @@ const QUICK_LINKS = [
   { label: "About Our Team",       href: "/about" },
 ];
 
+/* Strict email validation:
+   - Must be all lowercase
+   - Standard format: local@domain.tld
+   - No consecutive dots, no leading/trailing dots in local part
+*/
+function validateEmail(email: string): string | null {
+  if (!email.trim()) return "Email address is required.";
+  if (email !== email.toLowerCase()) return "Email must be all lowercase — please remove any uppercase letters.";
+  const re = /^[a-z0-9](?:[a-z0-9._%+\-]*[a-z0-9])?@[a-z0-9](?:[a-z0-9\-]*[a-z0-9])?(?:\.[a-z]{2,})+$/;
+  if (!re.test(email)) return "Please enter a valid email address (e.g. name@company.com).";
+  if (/\.{2,}/.test(email)) return "Email address cannot contain consecutive dots.";
+  return null;
+}
+
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", budget: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    // Clear field error on change
+    if (fieldErrors[name]) setFieldErrors(prev => ({ ...prev, [name]: "" }));
+  };
+
+  const validate = (): Record<string, string> => {
+    const errs: Record<string, string> = {};
+    if (!form.name.trim()) errs.name = "Full name is required.";
+    const emailErr = validateEmail(form.email);
+    if (emailErr) errs.email = emailErr;
+    if (!form.message.trim()) errs.message = "Please enter your message.";
+    return errs;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setSubmitError("");
+    const errs = validate();
+    if (Object.keys(errs).length) { setFieldErrors(errs); return; }
+    setFieldErrors({});
     setLoading(true);
     try {
       const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
@@ -46,11 +76,17 @@ export default function ContactPage() {
       }
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to send message. Please try again.");
+      setSubmitError(err instanceof Error ? err.message : "Failed to send message. Please try again.");
     } finally { setLoading(false); }
   };
 
-  const inputStyle: React.CSSProperties = { width: "100%", height: 52, background: "#F8FAFF", border: "1.5px solid #E2E8F0", borderRadius: 12, paddingInline: 16, fontSize: 14, color: "#0F172A", fontFamily: "'Poppins', sans-serif", outline: "none" };
+  const inputStyle = (field: string): React.CSSProperties => ({
+    width: "100%", height: 52, background: "#F8FAFF",
+    border: `1.5px solid ${fieldErrors[field] ? "#EF4444" : "#E2E8F0"}`,
+    borderRadius: 12, paddingInline: 16, fontSize: 14, color: "#0F172A",
+    fontFamily: "'Poppins', sans-serif", outline: "none",
+    boxShadow: fieldErrors[field] ? "0 0 0 3px rgba(239,68,68,0.10)" : "none",
+  });
   const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, color: "#0F172A", marginBottom: 6 };
 
   return (
@@ -116,15 +152,26 @@ export default function ContactPage() {
                   <p className="text-[#64748B]" style={{ fontSize: 15 }}>We&apos;ll be in touch within one business day.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                   <h3 className="font-bold text-[#0F172A] mb-7" style={{ fontSize: 22 }}>Send Us a Message</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                    <div><label style={labelStyle}>Full Name *</label><input required name="name" value={form.name} onChange={handleChange} placeholder="John Smith" style={inputStyle} /></div>
-                    <div><label style={labelStyle}>Email Address *</label><input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="john@company.com" style={inputStyle} /></div>
-                    <div><label style={labelStyle}>Company</label><input name="company" value={form.company} onChange={handleChange} placeholder="Company name" style={inputStyle} /></div>
+                    <div>
+                      <label style={labelStyle}>Full Name *</label>
+                      <input name="name" value={form.name} onChange={handleChange} placeholder="John Smith" style={inputStyle("name")} />
+                      {fieldErrors.name && <p style={{ fontSize: 12, color: "#EF4444", marginTop: 5 }}>⚠ {fieldErrors.name}</p>}
+                    </div>
+                    <div>
+                      <label style={labelStyle}>Email Address *</label>
+                      <input name="email" value={form.email} onChange={handleChange} placeholder="john@company.com" style={inputStyle("email")} autoComplete="email" />
+                      {fieldErrors.email && <p style={{ fontSize: 12, color: "#EF4444", marginTop: 5 }}>⚠ {fieldErrors.email}</p>}
+                    </div>
+                    <div>
+                      <label style={labelStyle}>Company</label>
+                      <input name="company" value={form.company} onChange={handleChange} placeholder="Company name" style={inputStyle("company")} />
+                    </div>
                     <div>
                       <label style={labelStyle}>Service Needed</label>
-                      <select name="service" value={form.service} onChange={handleChange} style={{ ...inputStyle, cursor: "pointer" }}>
+                      <select name="service" value={form.service} onChange={handleChange} style={{ ...inputStyle("service"), cursor: "pointer" }}>
                         <option value="">Select a service</option>
                         {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
@@ -132,9 +179,10 @@ export default function ContactPage() {
                   </div>
                   <div className="mb-5">
                     <label style={labelStyle}>Message *</label>
-                    <textarea required name="message" value={form.message} onChange={handleChange} placeholder="Describe your project or question..." rows={5} style={{ ...inputStyle, height: "auto", padding: "12px 16px", resize: "vertical" }} />
+                    <textarea name="message" value={form.message} onChange={handleChange} placeholder="Describe your project or question..." rows={5} style={{ ...inputStyle("message"), height: "auto", padding: "12px 16px", resize: "vertical" }} />
+                    {fieldErrors.message && <p style={{ fontSize: 12, color: "#EF4444", marginTop: 5 }}>⚠ {fieldErrors.message}</p>}
                   </div>
-                  {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                  {submitError && <p className="text-red-500 text-sm mb-4">⚠ {submitError}</p>}
                   <motion.button type="submit" disabled={loading} whileHover={{ scale: loading ? 1 : 1.02 }} whileTap={{ scale: 0.97 }}
                     className="w-full font-semibold rounded-2xl text-white"
                     style={{ height: 54, fontSize: 16, background: loading ? "#94A3B8" : "linear-gradient(135deg,#2F6BFF,#2563FF)", border: "none", cursor: loading ? "not-allowed" : "pointer", boxShadow: loading ? "none" : "0 8px 24px rgba(37,99,255,0.35)" }}>

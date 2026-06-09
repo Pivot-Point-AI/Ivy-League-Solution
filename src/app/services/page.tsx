@@ -12,23 +12,107 @@ const fade = (delay = 0) => ({
   transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
 });
 
+/* Consistent SVG icons — same size and stroke style for every card */
+const Icon = {
+  code: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+    </svg>
+  ),
+  brain: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.5 2a2.5 2.5 0 0 1 5 0"/><path d="M12 2v4"/><ellipse cx="12" cy="11" rx="7" ry="5"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M8 17v4"/><path d="M16 17v4"/>
+    </svg>
+  ),
+  cart: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+  ),
+  refresh: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/>
+    </svg>
+  ),
+  pen: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </svg>
+  ),
+  layers: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+    </svg>
+  ),
+  smartphone: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+    </svg>
+  ),
+  globe: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+  ),
+  heart: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.52 2 2 0 0 1 3.6 1.35h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/>
+    </svg>
+  ),
+  book: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+  ),
+  shield: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+  ),
+  cloud: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+    </svg>
+  ),
+  network: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/><rect x="9" y="16" width="6" height="6" rx="1"/><path d="M5 8v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/><line x1="12" y1="14" x2="12" y2="16"/>
+    </svg>
+  ),
+  server: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+    </svg>
+  ),
+  database: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+    </svg>
+  ),
+  harddrive: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/>
+    </svg>
+  ),
+};
+
 const SERVICES = [
-  { icon: "⬡", id: "software",      title: "Software Development",  desc: "Web, mobile, and enterprise apps from concept to production — built for scale, security, and long-term maintainability.", tech: ["React","Next.js","Node.js","Python",".NET"],            cat: "Software & Digital" },
-  { icon: "✦", id: "ai",            title: "AI & Machine Learning", desc: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale.", tech: ["LLMs","MLOps","Fintech AI","Health AI"],             cat: "Software & Digital" },
-  { icon: "◈", id: "commerce",      title: "Digital Commerce",      desc: "Custom storefronts, PIM, and payment integrations that scale from startup to enterprise.",                                tech: ["Shopify","WooCommerce","Custom","PIM"],              cat: "Software & Digital" },
-  { icon: "◇", id: "modernize",     title: "App Modernization",     desc: "Legacy to cloud-native migration and re-architecture — zero downtime, full data continuity.",                             tech: ["Microservices","Docker","Kubernetes","Cloud-native"], cat: "Software & Digital" },
-  { icon: "△", id: "uiux",          title: "UI/UX Design",          desc: "Design systems, prototyping, user research and brand identity — from wireframe to pixel-perfect delivery.",               tech: ["Figma","Design Systems","Prototyping","Research"],    cat: "Software & Digital" },
-  { icon: "✦", id: "erp",           title: "ERP Solutions",         desc: "Customised ERP for SMEs and enterprise organisations — Microsoft NAV, SAP, Oracle, and fully custom builds.",             tech: ["Microsoft NAV","SAP","Oracle","Custom ERP"],          cat: "Software & Digital" },
-  { icon: "◎", id: "banking",       title: "Mobile Banking",        desc: "FINTRAC-compliant mobile payment and banking platforms built for regulated financial environments.",                      tech: ["React Native","iOS","Android","Payment APIs"],         cat: "Software & Digital" },
-  { icon: "○", id: "web",           title: "Web & Full Stack",      desc: "End-to-end web development, APIs, and backend services — architected for performance and reliability.",                   tech: ["React","Vue","PostgreSQL","MongoDB"],                  cat: "Software & Digital" },
-  { icon: "⬟", id: "health",        title: "Health Solutions",      desc: "HIPAA-compliant healthcare platforms and EHR integrations that improve patient outcomes.",                                tech: ["FHIR","HL7","HIPAA","EHR"],                           cat: "Software & Digital" },
-  { icon: "◫", id: "academia",      title: "Academia Solutions",    desc: "LMS, adaptive testing, and institutional management — built for universities and EdTech startups.",                      tech: ["LMS","SCORM","AI Tutoring","Analytics"],               cat: "Software & Digital" },
-  { icon: "◉", id: "cybersecurity", title: "Cybersecurity & SOC",   desc: "24/7 threat monitoring, penetration testing, compliance automation and incident response.",                               tech: ["SOC","Fortinet","Zero Trust","SIEM"],                  cat: "Infrastructure" },
-  { icon: "◐", id: "cloud",         title: "Cloud & DevOps",        desc: "CI/CD pipelines, containerisation, infrastructure-as-code and multi-cloud deployments.",                                 tech: ["AWS","Docker","Kubernetes","Terraform"],               cat: "Infrastructure" },
-  { icon: "◑", id: "network",       title: "Network Services",      desc: "Certified design, deployment, and managed services across campus, WAN, and SD-WAN architectures.",                       tech: ["Cisco","SD-WAN","WAN","Campus"],                       cat: "Infrastructure" },
-  { icon: "▣", id: "datacenter",    title: "Datacenter Services",   desc: "Onsite, colocation, hyperscale, and edge datacenter design, construction, and enterprise SLA management.",               tech: ["Colocation","Edge","Hyperscale","SLA"],                cat: "Infrastructure" },
-  { icon: "◬", id: "database",      title: "Database Services",     desc: "Managed services for Oracle, SQL Server, PostgreSQL covering design, migration, optimisation, and HA/DR.",               tech: ["Oracle","SQL Server","PostgreSQL","HA/DR"],            cat: "Infrastructure" },
-  { icon: "▲", id: "backup",        title: "Backup & DR",           desc: "Veeam and Zerto solutions ensuring RPO/RTO commitments through tested, automated backup and disaster recovery.",          tech: ["Veeam","Zerto","RPO/RTO","DR"],                        cat: "Infrastructure" },
+  { icon: Icon.code,       id: "software",      title: "Software Development",  desc: "Web, mobile, and enterprise apps from concept to production — built for scale, security, and long-term maintainability.", tech: ["React","Next.js","Node.js","Python",".NET"],            cat: "Software & Digital" },
+  { icon: Icon.brain,      id: "ai",            title: "AI & Machine Learning", desc: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale.", tech: ["LLMs","MLOps","Fintech AI","Health AI"],             cat: "Software & Digital" },
+  { icon: Icon.cart,       id: "commerce",      title: "Digital Commerce",      desc: "Custom storefronts, PIM, and payment integrations that scale from startup to enterprise.",                                tech: ["Shopify","WooCommerce","Custom","PIM"],              cat: "Software & Digital" },
+  { icon: Icon.refresh,    id: "modernize",     title: "App Modernization",     desc: "Legacy to cloud-native migration and re-architecture — zero downtime, full data continuity.",                             tech: ["Microservices","Docker","Kubernetes","Cloud-native"], cat: "Software & Digital" },
+  { icon: Icon.pen,        id: "uiux",          title: "UI/UX Design",          desc: "Design systems, prototyping, user research and brand identity — from wireframe to pixel-perfect delivery.",               tech: ["Figma","Design Systems","Prototyping","Research"],    cat: "Software & Digital" },
+  { icon: Icon.layers,     id: "erp",           title: "ERP Solutions",         desc: "Customised ERP for SMEs and enterprise organisations — Microsoft NAV, SAP, Oracle, and fully custom builds.",             tech: ["Microsoft NAV","SAP","Oracle","Custom ERP"],          cat: "Software & Digital" },
+  { icon: Icon.smartphone, id: "banking",       title: "Mobile Banking",        desc: "FINTRAC-compliant mobile payment and banking platforms built for regulated financial environments.",                      tech: ["React Native","iOS","Android","Payment APIs"],         cat: "Software & Digital" },
+  { icon: Icon.globe,      id: "web",           title: "Web & Full Stack",      desc: "End-to-end web development, APIs, and backend services — architected for performance and reliability.",                   tech: ["React","Vue","PostgreSQL","MongoDB"],                  cat: "Software & Digital" },
+  { icon: Icon.heart,      id: "health",        title: "Health Solutions",      desc: "HIPAA-compliant healthcare platforms and EHR integrations that improve patient outcomes.",                                tech: ["FHIR","HL7","HIPAA","EHR"],                           cat: "Software & Digital" },
+  { icon: Icon.book,       id: "academia",      title: "Academia Solutions",    desc: "LMS, adaptive testing, and institutional management — built for universities and EdTech startups.",                      tech: ["LMS","SCORM","AI Tutoring","Analytics"],               cat: "Software & Digital" },
+  { icon: Icon.shield,     id: "cybersecurity", title: "Cybersecurity & SOC",   desc: "24/7 threat monitoring, penetration testing, compliance automation and incident response.",                               tech: ["SOC","Fortinet","Zero Trust","SIEM"],                  cat: "Infrastructure" },
+  { icon: Icon.cloud,      id: "cloud",         title: "Cloud & DevOps",        desc: "CI/CD pipelines, containerisation, infrastructure-as-code and multi-cloud deployments.",                                 tech: ["AWS","Docker","Kubernetes","Terraform"],               cat: "Infrastructure" },
+  { icon: Icon.network,    id: "network",       title: "Network Services",      desc: "Certified design, deployment, and managed services across campus, WAN, and SD-WAN architectures.",                       tech: ["Cisco","SD-WAN","WAN","Campus"],                       cat: "Infrastructure" },
+  { icon: Icon.server,     id: "datacenter",    title: "Datacenter Services",   desc: "Onsite, colocation, hyperscale, and edge datacenter design, construction, and enterprise SLA management.",               tech: ["Colocation","Edge","Hyperscale","SLA"],                cat: "Infrastructure" },
+  { icon: Icon.database,   id: "database",      title: "Database Services",     desc: "Managed services for Oracle, SQL Server, PostgreSQL covering design, migration, optimisation, and HA/DR.",               tech: ["Oracle","SQL Server","PostgreSQL","HA/DR"],            cat: "Infrastructure" },
+  { icon: Icon.harddrive,  id: "backup",        title: "Backup & DR",           desc: "Veeam and Zerto solutions ensuring RPO/RTO commitments through tested, automated backup and disaster recovery.",          tech: ["Veeam","Zerto","RPO/RTO","DR"],                        cat: "Infrastructure" },
 ];
 
 const CATS = ["All", "Software & Digital", "Infrastructure"];
@@ -85,15 +169,37 @@ export default function ServicesPage() {
                 className="bg-white rounded-2xl p-7 flex flex-col"
                 style={{ boxShadow: "0 2px 16px rgba(15,23,42,0.07)", border: "1px solid #F1F5F9" }}
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-2xl" style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)" }}>{svc.icon}</div>
+                {/* Consistent icon container */}
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 flex-shrink-0" style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)" }}>
+                  {svc.icon}
+                </div>
                 <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 18 }}>{svc.title}</h3>
                 <p className="text-[#64748B] leading-relaxed flex-1 mb-5" style={{ fontSize: 14 }}>{svc.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-5">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {svc.tech.map(t => <span key={t} className="text-[11px] font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{t}</span>)}
                 </div>
-                <Link href="/contact" className="flex items-center gap-1 font-semibold text-sm" style={{ color: "#2563FF" }}>
-                  Learn More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </Link>
+                {/* Action buttons */}
+                <div className="flex items-center gap-3 mt-auto">
+                  <Link href={`/services/${svc.id}`} className="flex-1">
+                    <motion.button
+                      whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+                      className="w-full font-semibold rounded-full text-white flex items-center justify-center gap-2"
+                      style={{ height: 42, fontSize: 13, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", border: "none", cursor: "pointer", boxShadow: "0 4px 14px rgba(37,99,255,0.3)" }}
+                    >
+                      Learn More
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </motion.button>
+                  </Link>
+                  <Link href="/contact">
+                    <motion.button
+                      whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+                      className="font-semibold rounded-full"
+                      style={{ height: 42, paddingInline: 18, fontSize: 13, background: "#fff", color: "#2563FF", border: "1.5px solid #2563FF", cursor: "pointer" }}
+                    >
+                      Contact Us
+                    </motion.button>
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>

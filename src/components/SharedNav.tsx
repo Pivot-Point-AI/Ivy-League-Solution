@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Home",       href: "/"          },
+  // { label: "Home",       href: "/"          },
   { label: "Services",   href: "/services"  },
   { label: "Portfolio",  href: "/solutions" },
   { label: "AI Solutions", href: "/ai"      },
