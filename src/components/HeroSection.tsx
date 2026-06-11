@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 /* ══ Count-up ══ */
@@ -745,8 +746,7 @@ function TestimonialCard({ item, isActive, dotActive }: { item: typeof TESTIMONI
       <div className="h-px mb-5" style={{ background: isActive ? "rgba(255,255,255,0.12)" : "#E2E8F0" }} />
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={item.photo} alt={item.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+          <Image src={item.photo} alt={item.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover flex-shrink-0"
             style={{ border: isActive ? "2px solid rgba(255,255,255,0.25)" : "2px solid #E2E8F0" }} />
           <div>
             <p className="font-semibold text-[13px]" style={{ color: isActive ? "#fff" : "#0F172A" }}>{item.name}</p>
@@ -1410,9 +1410,7 @@ export default function LandingPage() {
                   <SpotlightCard className="flex flex-col h-full" style={{ borderRadius: 16 }}>
                   <div className="flex flex-col h-full">
                   <div className="w-full flex items-center justify-center relative overflow-hidden" style={{ minHeight: 150 }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={svc.img} alt={svc.title} className="object-contain transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1"
-                      style={{ maxWidth: "100%", maxHeight: 150, width: "auto", height: "auto" }} />
+                    <Image src={svc.img} alt={svc.title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-contain p-4 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1" />
                     {/* Hover overlay */}
                     <motion.div
                       className="absolute inset-0 flex items-center justify-center rounded-xl"

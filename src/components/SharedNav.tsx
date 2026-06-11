@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -39,10 +40,12 @@ export function SharedNav() {
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
+            width={220}
+            height={84}
+            priority
             style={{ height: 84, width: "auto" }}
             className="object-contain"
           />
@@ -135,10 +138,11 @@ export function SharedFooter() {
         >
           {/* Logo */}
           <Link href="/">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/logo-dark.webp"
               alt="Ivy League Solutions"
+              width={188}
+              height={72}
               style={{ height: 72, width: "auto" }}
               className="object-contain"
             />

@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['aibrigade.vercel.app'],
+    remotePatterns: [
+      { protocol: "https", hostname: "aibrigade.vercel.app" },
+      { protocol: "https", hostname: "randomuser.me" },
+    ],
   },
 };
 

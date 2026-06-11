@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 function FadeUp({
@@ -74,21 +75,18 @@ export default function WhyChooseUs() {
         }}
       >
         {/* Lady image — hidden on mobile, visible on md+ */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/lady2.webp"
-          alt=""
-          className="hidden md:block"
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            height: "100%",
-            width: "65%",
-            objectFit: "cover",
-            objectPosition: "left center",
-          }}
-        />
+        <div className="hidden md:block" style={{ position: "absolute", top: 0, right: 0, height: "100%", width: "65%" }}>
+          <Image
+            src="/lady2.webp"
+            alt="IT support professional assisting a client"
+            fill
+            sizes="65vw"
+            style={{
+              objectFit: "cover",
+              objectPosition: "left center",
+            }}
+          />
+        </div>
 
         {/* White → transparent overlay — desktop only */}
         <div
@@ -159,12 +157,13 @@ export default function WhyChooseUs() {
             ))}
 
             {/* Lady image at bottom on mobile */}
-            <div style={{ borderRadius: 16, overflow: "hidden", marginTop: 8 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div style={{ borderRadius: 16, overflow: "hidden", marginTop: 8, position: "relative", height: 200 }}>
+              <Image
                 src="/lady2.webp"
-                alt="IT Support Professional"
-                style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center top", display: "block" }}
+                alt="IT support professional assisting a client"
+                fill
+                sizes="100vw"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
           </div>
