@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "Ivy League Solutions — Custom IT, Software & AI Solutions",
   },
   description:
-    "Ivy League Solutions delivers custom software development, enterprise IT, cloud, cybersecurity, and AI-powered solutions for businesses across the United States.",
+    "Ivy League Solutions delivers custom software, enterprise IT, cloud, cybersecurity, and AI solutions for businesses across the United States.",
   applicationName: SITE_NAME,
   alternates: {
     canonical: SITE_URL,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ivy League Solutions — Custom IT, Software & AI Solutions",
     description:
-      "Custom software development, enterprise IT, cloud, cybersecurity, and AI-powered solutions for businesses across the United States.",
+      "Custom software, enterprise IT, cloud, cybersecurity, and AI solutions for businesses across the United States.",
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ivy League Solutions — Custom IT, Software & AI Solutions",
     description:
-      "Custom software development, enterprise IT, cloud, cybersecurity, and AI-powered solutions for businesses across the United States.",
+      "Custom software, enterprise IT, cloud, cybersecurity, and AI solutions for businesses across the United States.",
     images: [DEFAULT_OG_IMAGE],
   },
   robots: {
