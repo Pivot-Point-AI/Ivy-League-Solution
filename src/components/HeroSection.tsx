@@ -1130,7 +1130,7 @@ export default function LandingPage() {
         {/* BG image — slow Ken Burns zoom */}
         <motion.img
           src="/landingpage.webp"
-          alt=""
+          alt="Enterprise software development and IT consulting team collaborating at Ivy League Solutions"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 0, transformOrigin: "60% 50%" }}
           animate={{ scale: [1, 1.06], x: [0, -12] }}
