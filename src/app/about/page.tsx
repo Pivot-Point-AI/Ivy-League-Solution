@@ -293,8 +293,8 @@ const MAJOR_PROJECTS = [
 const PROJECT_CATS = ["All", "Mobile", "Web", "ERP", "Infrastructure", "CRM"];
 
 const LEADERSHIP = [
-  { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "Farat brings 10+ years of enterprise IT consulting experience across the Middle East and South Asia, building and launching Ivy League Solutions as a unified global brand.", initials: "FI", tags: ["Enterprise IT", "10+ Years", "Dubai · South Asia"] },
-  { name: "Engineering Team", role: "250+ Engineers Globally", bio: "Distributed engineering talent spanning South Asia, UAE, and the Gulf region — covering software engineering, infrastructure, AI/ML, UI/UX design, and cybersecurity.", initials: "ET", tags: ["Software", "Infrastructure", "AI/ML", "UI/UX", "Cybersecurity"] },
+  { name: "Farat Iqbal", role: "Founder & Managing Director", bio: "10+ years of enterprise IT consulting experience across the Middle East and South Asia.", initials: "FI", tags: ["Enterprise IT", "10+ Years", "Dubai · South Asia"] },
+  { name: "Engineering Team", role: "250+ Engineers Globally", bio: "Distributed talent across South Asia, UAE, and the Gulf — software, infrastructure, AI/ML, UI/UX, and cybersecurity.", initials: "ET", tags: ["Software", "Infrastructure", "AI/ML", "UI/UX", "Cybersecurity"] },
 ];
 
 export default function AboutPage() {
@@ -311,22 +311,36 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
-          <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Our Story</motion.p>
-          <motion.h1 {...fade(0.1)} className="text-white font-bold mb-5" style={{ fontSize: "clamp(36px,4vw,58px)", letterSpacing: "-1px", lineHeight: 1.1, maxWidth: 680 }}>
-            A Decade of Enterprise Technology, Built on Trust
-          </motion.h1>
-          <motion.p {...fade(0.2)} className="text-white/70 leading-relaxed mb-10" style={{ fontSize: 16, maxWidth: 540 }}>
-            From Dubai to the world — we&apos;ve spent 10+ years engineering technology that enterprises rely on.
-          </motion.p>
-          <motion.div {...fade(0.3)} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {STATS.map((s, i) => (
-              <div key={i} className="rounded-2xl p-5 text-center" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
-                <p className="text-white font-extrabold mb-1" style={{ fontSize: 32 }}>{s.v}</p>
-                <p className="text-white/80 font-semibold" style={{ fontSize: 13 }}>{s.l}</p>
-                <p className="text-white/40" style={{ fontSize: 11, marginTop: 2 }}>{s.sub}</p>
-              </div>
-            ))}
+        <div className="absolute top-[-90px] right-[-90px] w-[460px] h-[460px] rounded-full opacity-20 pointer-events-none" style={{ background: "radial-gradient(circle,#a78bfa,transparent 70%)" }} />
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10 grid lg:grid-cols-[1fr_320px] gap-10 items-start">
+          <div>
+            <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Our Story</motion.p>
+            <motion.h1 {...fade(0.1)} className="text-white font-bold mb-5" style={{ fontSize: "clamp(36px,4vw,58px)", letterSpacing: "-1px", lineHeight: 1.1 }}>
+              A Decade of Enterprise Technology, Built on Trust
+            </motion.h1>
+            <motion.p {...fade(0.2)} className="text-white/70 leading-relaxed mb-10" style={{ fontSize: 16, maxWidth: 540 }}>
+              From Dubai to the world — we&apos;ve spent 10+ years engineering technology that enterprises rely on.
+            </motion.p>
+            <motion.div {...fade(0.3)} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {STATS.map((s, i) => (
+                <div key={i} className="rounded-2xl p-5 text-center" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <p className="text-white font-extrabold mb-1" style={{ fontSize: 32 }}>{s.v}</p>
+                  <p className="text-white/80 font-semibold" style={{ fontSize: 13 }}>{s.l}</p>
+                  <p className="text-white/40" style={{ fontSize: 11, marginTop: 2 }}>{s.sub}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Decorative badge — fills empty space on the right */}
+          <motion.div {...fade(0.25)} className="hidden lg:flex flex-col gap-4 rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(12px)" }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)" }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <p className="text-white font-bold" style={{ fontSize: 16 }}>Founded in Dubai, 2015</p>
+              <p className="text-white/55 mt-1" style={{ fontSize: 13 }}>Now serving enterprise clients across Fintech, Healthcare, Government, and EdTech worldwide.</p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -385,15 +399,15 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {LEADERSHIP.map((l, i) => (
               <motion.div key={i} {...fade(i * 0.1)} whileHover={{ y: -4 }} transition={{ duration: 0.25 }}
-                className="rounded-2xl p-8 flex gap-6" style={{ background: "linear-gradient(145deg,#F0F4FF,#fff)", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(37,99,255,0.06)" }}>
+                className="rounded-2xl p-8 flex gap-6 h-full" style={{ background: "linear-gradient(145deg,#F0F4FF,#fff)", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(37,99,255,0.06)" }}>
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 text-white" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)", fontSize: 18 }}>{l.initials}</div>
-                <div>
+                <div className="flex flex-col flex-1">
                   <h3 className="font-bold text-[#0F172A] mb-1" style={{ fontSize: 19 }}>{l.name}</h3>
                   <p className="text-[#2563FF] font-semibold mb-3" style={{ fontSize: 13 }}>{l.role}</p>
-                  <p className="text-[#64748B] leading-relaxed mb-4" style={{ fontSize: 14 }}>{l.bio}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {l.tags.map(t => <span key={t} className="text-[11px] font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{t}</span>)}
                   </div>
+                  <p className="text-[#64748B] leading-relaxed mt-auto" style={{ fontSize: 14 }}>{l.bio}</p>
                 </div>
               </motion.div>
             ))}

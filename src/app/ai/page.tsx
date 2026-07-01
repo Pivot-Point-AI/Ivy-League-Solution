@@ -82,18 +82,18 @@ export default function AIPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {CAPABILITIES.map((c, i) => (
               <motion.div key={i} {...fade(i * 0.08)} whileHover={{ y: -4 }} transition={{ duration: 0.25 }}
-                className="rounded-2xl p-8" style={{ background: i % 2 === 0 ? "linear-gradient(145deg,#F0F4FF,#fff)" : "#fff", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(37,99,255,0.06)" }}>
+                className="rounded-2xl p-8 flex flex-col h-full" style={{ background: i % 2 === 0 ? "linear-gradient(145deg,#F0F4FF,#fff)" : "#fff", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(37,99,255,0.06)" }}>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-2xl">{c.icon}</span>
                   <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{c.tag}</span>
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 20 }}>{c.headline}</h3>
-                <p className="text-[#64748B] leading-relaxed mb-5" style={{ fontSize: 14 }}>{c.desc}</p>
+                <p className="text-[#64748B] leading-relaxed mb-5" style={{ fontSize: 14, minHeight: 66 }}>{c.desc}</p>
                 <div className="rounded-xl p-4 mb-5" style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)" }}>
                   <span className="font-extrabold text-[#2563FF]" style={{ fontSize: 22 }}>{c.stat.v}</span>
                   <span className="text-[#64748B] ml-2" style={{ fontSize: 13 }}>{c.stat.l}</span>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-2 mt-auto">
                   {c.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm text-[#475569]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF] mt-1.5 flex-shrink-0" />
@@ -115,21 +115,25 @@ export default function AIPage() {
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>AI in Production</h2>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {RESULTS.map((r, i) => (
-              <motion.div key={i} {...fade(i * 0.1)} whileHover={{ y: -6, boxShadow: "0 24px 56px rgba(37,99,255,0.14)" }} transition={{ duration: 0.25 }}
-                className="bg-white rounded-2xl p-7" style={{ boxShadow: "0 4px 20px rgba(15,23,42,0.07)", border: "1px solid #F1F5F9" }}>
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{r.tag}</span>
-                  <div className="text-right">
-                    <p className="font-extrabold text-[#2563FF]" style={{ fontSize: 28 }}>{r.metric}</p>
-                    <p className="text-[#94A3B8]" style={{ fontSize: 11 }}>{r.metricLabel}</p>
+            {RESULTS.map((r, i) => {
+              const outcomeRest = r.outcome.replace(r.metric, "").trim().replace(/^\w/, (c) => c.toUpperCase());
+              return (
+                <motion.div key={i} {...fade(i * 0.1)} whileHover={{ y: -8, boxShadow: "0 24px 56px rgba(37,99,255,0.14)" }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative bg-white rounded-2xl p-7 pl-8 overflow-hidden" style={{ boxShadow: "0 4px 20px rgba(15,23,42,0.07)", border: "1px solid #F1F5F9" }}>
+                  <span className="absolute left-0 top-0 bottom-0" style={{ width: 4, background: "linear-gradient(180deg,#2563FF,#a78bfa)" }} />
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{r.tag}</span>
+                    <div className="text-right">
+                      <p className="font-extrabold text-[#2563FF]" style={{ fontSize: 28 }}>{r.metric}</p>
+                      <p className="text-[#94A3B8]" style={{ fontSize: 11 }}>{r.metricLabel}</p>
+                    </div>
                   </div>
-                </div>
-                <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 17 }}>{r.system}</h3>
-                <p className="text-[#64748B] mb-3" style={{ fontSize: 14 }}>{r.outcome}</p>
-                <p className="text-[#94A3B8] font-medium" style={{ fontSize: 12 }}>{r.client}</p>
-              </motion.div>
-            ))}
+                  <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 17 }}>{r.system}</h3>
+                  <p className="text-[#64748B] mb-3" style={{ fontSize: 14 }}>{outcomeRest}</p>
+                  <p className="text-[#94A3B8] font-medium" style={{ fontSize: 12 }}>{r.client}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

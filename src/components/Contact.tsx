@@ -68,14 +68,14 @@ export default function WhyChooseUs() {
       <section
         className="relative overflow-hidden"
         style={{
-          minHeight: 320,
-          paddingTop: 40,
-          paddingBottom: 40,
+          minHeight: 420,
+          paddingTop: 72,
+          paddingBottom: 72,
           background: "#ffffff",
         }}
       >
         {/* Lady image — hidden on mobile, visible on md+ */}
-        <div className="hidden md:block" style={{ position: "absolute", top: 0, right: 0, height: "100%", width: "65%" }}>
+        <div className="hidden md:block" style={{ position: "absolute", top: 0, right: 0, height: "100%", width: "55%" }}>
           <Image
             src="/lady2.webp"
             alt="IT support professional assisting a client"
@@ -107,34 +107,34 @@ export default function WhyChooseUs() {
           <FadeUp>
             <h2
               className="text-[#0F172A] font-bold"
-              style={{ fontSize: 22, marginBottom: 2 }}
+              style={{ fontSize: "clamp(24px,2.8vw,32px)", marginBottom: 4 }}
             >
               Why Choose Us?
             </h2>
-            <p style={{ fontSize: 12, color: "#475569", marginBottom: 28, marginTop: 3 }}>
+            <p style={{ fontSize: 13, color: "#475569", marginBottom: 36, marginTop: 3 }}>
               Your Trusted IT Partner
             </p>
           </FadeUp>
 
-          {/* Desktop: horizontal row capped at 50% width */}
+          {/* Desktop: horizontal row capped at 55% width */}
           {/* Mobile: vertical stack, full width */}
           <div
             className="hidden md:flex"
-            style={{ alignItems: "flex-start", width: "50%" }}
+            style={{ alignItems: "flex-start", width: "55%", gap: 8 }}
           >
             {FEATURES.map((f, i) => (
               <React.Fragment key={f.title}>
                 <FadeUp delay={i * 0.12} className="flex-1">
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", paddingInline: 8 }}>
-                    <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#4F46E5", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginBottom: 10 }}>
+                    <div style={{ width: 60, height: 60, borderRadius: "50%", background: "#4F46E5", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginBottom: 14, boxShadow: "0 8px 20px rgba(79,70,229,0.3)" }}>
                       {f.icon}
                     </div>
-                    <p style={{ fontWeight: 700, fontSize: 12, color: "#0F172A", marginBottom: 2 }}>{f.title}</p>
-                    <p style={{ fontSize: 10.5, color: "#64748B", lineHeight: 1.4 }}>{f.subtitle}</p>
+                    <p style={{ fontWeight: 700, fontSize: 13, color: "#0F172A", marginBottom: 4 }}>{f.title}</p>
+                    <p style={{ fontSize: 11, color: "#64748B", lineHeight: 1.4 }}>{f.subtitle}</p>
                   </div>
                 </FadeUp>
                 {i < FEATURES.length - 1 && (
-                  <div style={{ width: 1, height: 56, background: "rgba(15,23,42,0.15)", flexShrink: 0, alignSelf: "flex-start" }} />
+                  <div style={{ width: 1, height: 60, background: "rgba(15,23,42,0.15)", flexShrink: 0, alignSelf: "flex-start", marginTop: 4 }} />
                 )}
               </React.Fragment>
             ))}
@@ -174,8 +174,8 @@ export default function WhyChooseUs() {
       <section
         className="relative overflow-hidden"
         style={{
-          paddingTop: 64,
-          paddingBottom: 64,
+          paddingTop: 48,
+          paddingBottom: 48,
           background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)",
         }}
       >
@@ -194,8 +194,8 @@ export default function WhyChooseUs() {
             style={{ background: "radial-gradient(circle,#6C3CFF,transparent)" }} />
         </div>
 
-        <div className="relative max-w-[1280px] mx-auto px-6 md:px-12">
-          <FadeUp>
+        <div className="relative max-w-[1280px] mx-auto px-6 md:px-12 flex flex-col items-center text-center">
+          <FadeUp className="flex flex-col items-center">
             <h2
               className="text-white font-bold"
               style={{ fontSize: "clamp(26px,3vw,40px)", marginBottom: 4 }}

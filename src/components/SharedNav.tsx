@@ -178,6 +178,8 @@ export function SharedFooter() {
           </div>
         </div>
 
+        
+
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5">
           <div className="flex flex-wrap items-center gap-1 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
             <a href="mailto:contact@ivyleaguesolutions.com" className="hover:text-white/70 transition-colors">contact@ivyleaguesolutions.com</a>

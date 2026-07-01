@@ -226,7 +226,7 @@ export default function SolutionsPage() {
                   style={{ boxShadow: "0 4px 20px rgba(15,23,42,0.07)", border: "1px solid #F1F5F9" }}
                 >
                   {/* Card top bar */}
-                  <div className="flex items-center justify-between px-7 pt-6 pb-4" style={{ borderBottom: "1px solid #F1F5F9" }}>
+                  <div className="flex items-center justify-between px-7 pt-6 pb-4" style={{ borderBottom: "1px solid #F1F5F9", minHeight: 84 }}>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                         style={{ background: catColor.bg, color: catColor.text }}>

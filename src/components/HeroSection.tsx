@@ -50,43 +50,6 @@ function TypingWord({ active, color }: { active: string; color: string }) {
   );
 }
 
-/* ══ Magnetic button ══ */
-function MagneticButton({ children, style, className, onClick }: {
-  children: React.ReactNode;
-  style?: React.CSSProperties;
-  className?: string;
-  onClick?: () => void;
-}) {
-  const ref = useRef<HTMLButtonElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 200, damping: 15 });
-  const sy = useSpring(y, { stiffness: 200, damping: 15 });
-
-  const onMove = (e: React.MouseEvent) => {
-    const rect = ref.current!.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    x.set((e.clientX - cx) * 0.35);
-    y.set((e.clientY - cy) * 0.35);
-  };
-  const onLeave = () => { x.set(0); y.set(0); };
-
-  return (
-    <motion.button
-      ref={ref}
-      style={{ ...style, x: sx, y: sy }}
-      className={className}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-    >
-      {children}
-    </motion.button>
-  );
-}
-
 /* ══ Canvas particle network ══ */
 function ParticleNetwork({ mouseRef }: { mouseRef: React.MutableRefObject<{x:number;y:number}> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -558,10 +521,10 @@ function HowWeDeliver() {
                 <div
                   className="absolute select-none font-extrabold pointer-events-none"
                   style={{
-                    fontSize: 100,
+                    fontSize: 90,
                     lineHeight: 1,
-                    right: -8,
-                    bottom: -12,
+                    right: 12,
+                    bottom: -6,
                     color: isActive ? "rgba(255,255,255,0.06)" : "rgba(37,99,255,0.05)",
                   }}
                 >
@@ -705,9 +668,9 @@ const TESTIMONIALS = [
   },
 ];
 
-const CARD_W = 456; // card width (430) + gap (26)
+const GAP = 24;
 
-function TestimonialCard({ item, isActive, dotActive }: { item: typeof TESTIMONIALS[0]; isActive: boolean; dotActive: boolean }) {
+function TestimonialCard({ item, isActive, width }: { item: typeof TESTIMONIALS[0]; isActive: boolean; width: number }) {
   return (
     <motion.div
       className="relative rounded-2xl p-7 flex flex-col overflow-hidden flex-shrink-0"
@@ -721,7 +684,7 @@ function TestimonialCard({ item, isActive, dotActive }: { item: typeof TESTIMONI
         scale: isActive ? 1 : 0.97,
       }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      style={{ border: isActive ? "none" : "1px solid #E2E8F0", minHeight: 320, width: 430 }}
+      style={{ border: isActive ? "none" : "1px solid #E2E8F0", minHeight: 320, width }}
     >
       {isActive && (
         <motion.div
@@ -768,6 +731,24 @@ function Testimonials() {
   const [index, setIndex] = useState(n);
   const [animate, setAnimate] = useState(true);
 
+  // Measure container so exactly `visible` cards always fit — no partial cropped card
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [trackWidth, setTrackWidth] = useState(0);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setTrackWidth(el.offsetWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const visible = trackWidth >= 1024 ? 3 : trackWidth >= 640 ? 2 : 1;
+  const cardWidth = trackWidth > 0 ? (trackWidth - GAP * (visible - 1)) / visible : 380;
+  const CARD_W = cardWidth + GAP;
+
   // Clones: [...original, ...original, ...original] — middle set is "real"
   const cloned = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
   const dotActive = index % n;
@@ -806,20 +787,20 @@ function Testimonials() {
           </h2>
         </motion.div>
 
-        <div className="relative overflow-hidden">
+        <div ref={containerRef} className="relative overflow-hidden" style={{ paddingTop: 8, paddingBottom: 8, margin: "-8px 0" }}>
           <motion.div
-            className="flex gap-6"
+            className="flex"
+            style={{ gap: GAP, width: cloned.length * CARD_W - GAP }}
             animate={{ x: -(index * CARD_W) }}
             transition={animate ? { type: "spring", stiffness: 200, damping: 30 } : { duration: 0 }}
             onAnimationComplete={handleAnimationComplete}
-            style={{ width: cloned.length * CARD_W }}
           >
-            {cloned.map((item, i) => (
+            {trackWidth > 0 && cloned.map((item, i) => (
               <TestimonialCard
                 key={i}
                 item={item}
                 isActive={i % n === dotActive}
-                dotActive={dotActive === i % n}
+                width={cardWidth}
               />
             ))}
           </motion.div>
@@ -897,37 +878,23 @@ function SpotlightCard({ children, className, style }: { children: React.ReactNo
 
   return (
     <div ref={ref} onMouseMove={onMove} onMouseLeave={() => setPos(p => ({ ...p, opacity: 0 }))}
-      className={`relative overflow-hidden ${className ?? ""}`} style={style}>
+      className={`relative ${className ?? ""}`} style={style}>
       {/* Spotlight glow */}
       <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(280px circle at ${pos.x}px ${pos.y}px, rgba(37,99,255,0.10), transparent 80%)`,
-          opacity: pos.opacity,
-        }}
-      />
+        className="pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-300"
+        style={{ borderRadius: "inherit" }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(280px circle at ${pos.x}px ${pos.y}px, rgba(37,99,255,0.10), transparent 80%)`,
+            opacity: pos.opacity,
+          }}
+        />
+      </div>
       {children}
     </div>
   );
-}
-
-/* ══ Text scramble hook ══ */
-function useScramble(text: string, trigger: boolean) {
-  const [display, setDisplay] = useState(text);
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  useEffect(() => {
-    if (!trigger) { setDisplay(text); return; }
-    let iter = 0;
-    const t = setInterval(() => {
-      setDisplay(text.split("").map((c, i) =>
-        i < iter ? c : c === " " ? " " : chars[Math.floor(Math.random() * chars.length)]
-      ).join(""));
-      if (iter >= text.length) clearInterval(t);
-      iter += 1.5;
-    }, 28);
-    return () => clearInterval(t);
-  }, [trigger, text]);
-  return display;
 }
 
 /* ══ Ripple button ══ */
@@ -1085,7 +1052,6 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 export default function LandingPage() {
-  const [scramble, setScramble] = useState(false);
   const [industryIdx, setIndustryIdx] = useState(0);
   const [userPicked, setUserPicked] = useState(false);
   const mouseRef = useRef({ x: -400, y: -400 });
@@ -1093,9 +1059,6 @@ export default function LandingPage() {
 
   const headingLine1 = "Trusted globally for";
   const headingLine2 = "custom technology,";
-  const scrambledLine1 = useScramble(headingLine1, scramble);
-  const scrambledLine2 = useScramble(headingLine2, scramble);
-  const headingText = headingLine1 + " " + headingLine2;
 
   const activeIndustry = INDUSTRIES[industryIdx];
 
@@ -1193,20 +1156,12 @@ export default function LandingPage() {
                 transition={{ duration: 0.7, delay: 0.14 }}
                 className="text-white font-extrabold cursor-default select-none hero-heading-responsive"
                 style={{ fontSize: "clamp(32px, 4.2vw, 64px)", letterSpacing: "-1.5px", lineHeight: 1.1, hyphens: "none" }}
-                onMouseEnter={() => setScramble(true)}
-                onMouseLeave={() => setScramble(false)}
               >
                 <span style={{ display: "block" }}>
-                  {scramble
-                    ? <span className="font-mono" style={{ letterSpacing: "-0.5px" }}>{scrambledLine1}</span>
-                    : <BouncyText text={headingLine1} />
-                  }
+                  <BouncyText text={headingLine1} />
                 </span>
                 <span style={{ display: "block" }}>
-                  {scramble
-                    ? <span className="font-mono" style={{ letterSpacing: "-0.5px" }}>{scrambledLine2}</span>
-                    : <BouncyText text={headingLine2} />
-                  }
+                  <BouncyText text={headingLine2} />
                 </span>
                 <span style={{ display: "block" }}>
                   built for{" "}
@@ -1280,11 +1235,13 @@ export default function LandingPage() {
                   onClick={() => window.location.href = "/contact"}
                 >
                   Get Started
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>→</motion.span>
+                  <span>→</span>
                 </RippleButton>
 
-                <MagneticButton
-                  className="font-semibold rounded-full text-white inline-flex items-center justify-center gap-2 relative overflow-hidden"
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="font-semibold rounded-full text-white inline-flex items-center justify-center gap-2"
                   style={{ height: 52, paddingInline: 32, fontSize: 14.5, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.22)", cursor: "pointer", backdropFilter: "blur(8px)" }}
                   onClick={() => window.location.href = "/solutions"}
                 >
@@ -1292,7 +1249,7 @@ export default function LandingPage() {
                     <polygon points="5 3 19 12 5 21 5 3"/>
                   </svg>
                   View Our Work
-                </MagneticButton>
+                </motion.button>
               </motion.div>
 
               {/* Stats */}
@@ -1301,7 +1258,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.6, delay: 0.55 }}
                 className="mt-8"
               >
-                <p className="text-white/20 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
+                <p className="text-white/45 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
                   Redefining Enterprise-Grade Solutions, Built on Trust
                 </p>
                 <div className="grid grid-cols-2 sm:flex sm:items-center gap-y-5">
@@ -1329,7 +1286,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.6, delay: 0.72 }}
                 className="mt-8 flex items-center gap-4 flex-wrap"
               >
-                <span style={{ fontSize: 10.5, color: "rgba(255,255,255,0.25)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", whiteSpace: "nowrap" }}>Trusted by</span>
+                <span style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", whiteSpace: "nowrap" }}>Trusted by</span>
                 <div className="flex items-center gap-2.5 flex-wrap">
                   {TRUSTED_LOGOS.map((logo, i) => (
                     <motion.div
@@ -1388,7 +1345,7 @@ export default function LandingPage() {
 
       {/* ══════════════════════════════════════════ SERVICES — 2nd */}
       <section className="relative overflow-hidden"
-        style={{ paddingTop: 20, paddingBottom: 100, background: "linear-gradient(160deg,#F0F2FF 0%,#EBEEff 40%,#E8ECFF 100%)" }}>
+        style={{ paddingTop: 100, paddingBottom: 100, background: "linear-gradient(160deg,#F0F2FF 0%,#EBEEff 40%,#E8ECFF 100%)" }}>
         <div className="absolute top-0 right-0 w-[420px] h-[320px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse at top right,rgba(99,102,241,0.12),transparent 70%)" }} />
 

@@ -129,21 +129,45 @@ export default function ServicesPage() {
       <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none" style={{ background: "radial-gradient(circle,#60a5fa,transparent 70%)" }} />
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
-          <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>What We Build</motion.p>
-          <motion.h1 {...fade(0.1)} className="text-white font-bold mb-5" style={{ fontSize: "clamp(36px,4vw,58px)", letterSpacing: "-1px", lineHeight: 1.1, maxWidth: 680 }}>
-            Enterprise Solutions Across Every Layer of Technology
-          </motion.h1>
-          <motion.p {...fade(0.2)} className="text-white/70 leading-relaxed mb-8" style={{ fontSize: 16, maxWidth: 540 }}>
-            From AI-powered applications to hardened network infrastructure — we engineer technology that performs at enterprise scale.
-          </motion.p>
-          <motion.div {...fade(0.3)} className="flex flex-wrap gap-3">
-            <Link href="/contact">
-              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2563FF)", boxShadow: "0 8px 24px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}>Build Your Solution</motion.button>
-            </Link>
-            <Link href="/contact">
-              <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "rgba(255,255,255,0.1)", border: "1.5px solid rgba(255,255,255,0.3)", cursor: "pointer" }}>Talk to an Expert</motion.button>
-            </Link>
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>What We Build</motion.p>
+            <motion.h1 {...fade(0.1)} className="text-white font-bold mb-5" style={{ fontSize: "clamp(36px,4vw,58px)", letterSpacing: "-1px", lineHeight: 1.1 }}>
+              Enterprise Solutions Across Every Layer of Technology
+            </motion.h1>
+            <motion.p {...fade(0.2)} className="text-white/70 leading-relaxed mb-8" style={{ fontSize: 16, maxWidth: 540 }}>
+              From AI-powered applications to hardened network infrastructure — we engineer technology that performs at enterprise scale.
+            </motion.p>
+            <motion.div {...fade(0.3)} className="flex flex-wrap gap-3">
+              <Link href="/contact">
+                <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2563FF)", boxShadow: "0 8px 24px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}>Build Your Solution</motion.button>
+              </Link>
+              <Link href="/contact">
+                <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full" style={{ height: 52, paddingInline: 36, fontSize: 15, background: "rgba(255,255,255,0.1)", border: "1.5px solid rgba(255,255,255,0.3)", cursor: "pointer" }}>Talk to an Expert</motion.button>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Highlight cards — fill empty space on the right */}
+          <motion.div {...fade(0.25)} className="hidden lg:grid grid-cols-2 gap-5">
+            <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(12px)" }}>
+              <p className="text-white font-extrabold" style={{ fontSize: 34 }}>16</p>
+              <p className="text-white/60 font-medium mb-4" style={{ fontSize: 13 }}>Service Areas Covered</p>
+              <div className="flex flex-wrap gap-2">
+                {["Software","AI/ML","Cloud"].map(t => (
+                  <span key={t} className="text-[10.5px] font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.12)", color: "#fff" }}>{t}</span>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl p-6 mt-8" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(12px)" }}>
+              <p className="text-white font-extrabold" style={{ fontSize: 34 }}>24/7</p>
+              <p className="text-white/60 font-medium mb-4" style={{ fontSize: 13 }}>Support &amp; Monitoring</p>
+              <div className="flex flex-wrap gap-2">
+                {["SOC","DevOps","SRE"].map(t => (
+                  <span key={t} className="text-[10.5px] font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.12)", color: "#fff" }}>{t}</span>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

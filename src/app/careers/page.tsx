@@ -411,6 +411,24 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* ── We're Hiring Banner ── */}
+      <section style={{ background: "linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%)", paddingTop: 70, paddingBottom: 70 }}>
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
+          <motion.p {...fade(0)} className="font-extrabold text-white mb-4" style={{ fontSize: "clamp(32px,4vw,52px)", letterSpacing: "-1px" }}>
+            We&apos;re{" "}
+            <span style={{ background: "linear-gradient(90deg,#60A5FA,#A78BFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Hiring</span>
+          </motion.p>
+          <div className="w-16 mx-auto mb-8 rounded-full" style={{ height: 3, background: "linear-gradient(90deg,#2563FF,#6C3CFF)" }} />
+          <motion.div {...fade(0.1)} className="flex flex-wrap justify-center gap-3">
+            {["Developers","Database Engineers","QA Engineers","Project Managers","Business Analysts","AI Engineers","Network & Security Engineers"].map((role, i) => (
+              <span key={i} className="px-5 py-2 rounded-full font-semibold" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)", fontSize: 14 }}>
+                {role}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Why Join Us ── */}
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
@@ -434,24 +452,6 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ── We're Hiring Banner ── */}
-      <section style={{ background: "linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%)", paddingTop: 70, paddingBottom: 70 }}>
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
-          <motion.p {...fade(0)} className="font-extrabold text-white mb-4" style={{ fontSize: "clamp(32px,4vw,52px)", letterSpacing: "-1px" }}>
-            We&apos;re{" "}
-            <span style={{ background: "linear-gradient(90deg,#60A5FA,#A78BFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Hiring</span>
-          </motion.p>
-          <div className="w-16 mx-auto mb-8 rounded-full" style={{ height: 3, background: "linear-gradient(90deg,#2563FF,#6C3CFF)" }} />
-          <motion.div {...fade(0.1)} className="flex flex-wrap justify-center gap-3">
-            {["Developers","Database Engineers","QA Engineers","Project Managers","Business Analysts","AI Engineers","Network & Security Engineers"].map((role, i) => (
-              <span key={i} className="px-5 py-2 rounded-full font-semibold" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)", fontSize: 14 }}>
-                {role}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* ── Jobs Board ── */}
       <section ref={boardRef} className="bg-[#F8FAFF]" style={{ paddingTop: 100, paddingBottom: 120, scrollMarginTop: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
@@ -460,53 +460,31 @@ export default function CareersPage() {
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Find Your Role</h2>
           </motion.div>
 
-          {/* Search bar */}
-          <motion.div {...fade(0.1)} className="relative mb-6" style={{ maxWidth: 480 }}>
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#94A3B8]" strokeWidth={2} />
-            <input value={search} onChange={e => { setSearch(e.target.value); resetPage(); }} placeholder="Search roles, skills, departments…"
-              className="w-full pl-11 pr-10 outline-none text-[#0F172A]"
-              style={{ height: 48, borderRadius: 12, border: "1.5px solid #E2E8F0", background: "#fff", fontSize: 14, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }} />
-            {search && (
-              <button onClick={() => { setSearch(""); resetPage(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#0F172A]">
-                <X size={14} />
-              </button>
-            )}
-          </motion.div>
+          {/* Search bar + dropdown filters — aligned in one row */}
+          <motion.div {...fade(0.1)} className="flex flex-col sm:flex-row gap-3 mb-8">
+            <div className="relative flex-1" style={{ maxWidth: 480 }}>
+              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#94A3B8]" strokeWidth={2} />
+              <input value={search} onChange={e => { setSearch(e.target.value); resetPage(); }} placeholder="Search roles, skills, departments…"
+                className="w-full pl-11 pr-10 outline-none text-[#0F172A]"
+                style={{ height: 48, borderRadius: 12, border: "1.5px solid #E2E8F0", background: "#fff", fontSize: 14, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }} />
+              {search && (
+                <button onClick={() => { setSearch(""); resetPage(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#0F172A]">
+                  <X size={14} />
+                </button>
+              )}
+            </div>
 
-          {/* Department filter pills */}
-          <motion.div {...fade(0.15)} className="flex flex-wrap gap-2 mb-4">
-            {DEPTS.map(d => (
-              <button key={d} onClick={() => { setDept(d); resetPage(); }}
-                className="px-4 py-2 rounded-full font-semibold text-sm transition-all"
-                style={{
-                  background: dept === d ? "linear-gradient(135deg,#2F6BFF,#2563FF)" : "#fff",
-                  color: dept === d ? "#fff" : "#64748B",
-                  border: dept === d ? "none" : "1.5px solid #E2E8F0",
-                  boxShadow: dept === d ? "0 4px 14px rgba(37,99,255,0.3)" : "none",
-                  cursor: "pointer",
-                  fontSize: 13,
-                }}>
-                {d}
-              </button>
-            ))}
-          </motion.div>
+            <select value={dept} onChange={e => { setDept(e.target.value); resetPage(); }}
+              className="outline-none font-semibold text-[#0F172A] cursor-pointer"
+              style={{ height: 48, borderRadius: 12, border: "1.5px solid #E2E8F0", background: "#fff", fontSize: 14, paddingInline: 16, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }}>
+              {DEPTS.map(d => <option key={d} value={d}>{d}</option>)}
+            </select>
 
-          {/* Level filter pills */}
-          <motion.div {...fade(0.2)} className="flex flex-wrap gap-2 mb-8">
-            {LEVELS.map(l => (
-              <button key={l} onClick={() => { setLevel(l); resetPage(); }}
-                className="px-4 py-1.5 rounded-full font-semibold transition-all"
-                style={{
-                  background: level === l ? "#0F172A" : "#fff",
-                  color: level === l ? "#fff" : "#64748B",
-                  border: level === l ? "none" : "1.5px solid #E2E8F0",
-                  boxShadow: level === l ? "0 4px 12px rgba(15,23,42,0.2)" : "none",
-                  cursor: "pointer",
-                  fontSize: 12,
-                }}>
-                {l}
-              </button>
-            ))}
+            <select value={level} onChange={e => { setLevel(e.target.value); resetPage(); }}
+              className="outline-none font-semibold text-[#0F172A] cursor-pointer"
+              style={{ height: 48, borderRadius: 12, border: "1.5px solid #E2E8F0", background: "#fff", fontSize: 14, paddingInline: 16, boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }}>
+              {LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
+            </select>
           </motion.div>
 
           {/* Results count */}
@@ -618,19 +596,24 @@ export default function CareersPage() {
       {/* ── CTA ── */}
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
-          <motion.div {...fade()} className="rounded-3xl overflow-hidden relative" style={{ background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#6C3CFF 100%)", padding: "clamp(48px,6vw,80px)" }}>
+          <motion.div {...fade()} className="rounded-3xl overflow-hidden relative" style={{ background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#6C3CFF 100%)", padding: "clamp(40px,5vw,64px)" }}>
             <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "32px 32px" }} />
-            <div className="relative z-10 text-center">
-              <p className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Don&apos;t See a Fit?</p>
-              <h2 className="text-white font-extrabold mb-4" style={{ fontSize: "clamp(26px,3vw,42px)", letterSpacing: "-0.5px" }}>Send Us Your CV Anyway</h2>
-              <p className="text-white/65 mb-8 mx-auto" style={{ fontSize: 16, maxWidth: 480 }}>
-                We&apos;re always looking for exceptional talent. Drop us your resume and we&apos;ll reach out when the right role opens.
-              </p>
+            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-8">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                <Briefcase size={28} color="#fff" strokeWidth={1.8} />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <p className="text-blue-300 font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Don&apos;t See a Fit?</p>
+                <h2 className="text-white font-extrabold mb-3" style={{ fontSize: "clamp(24px,2.6vw,34px)", letterSpacing: "-0.5px" }}>Send Us Your CV Anyway</h2>
+                <p className="text-white/65" style={{ fontSize: 15, maxWidth: 460 }}>
+                  We&apos;re always looking for exceptional talent. Drop us your resume and we&apos;ll reach out when the right role opens.
+                </p>
+              </div>
               <button
                 onClick={() => setApplyJob({ id: 0, title: "General Application", dept: "General", location: "Any", type: "Full-time", level: "Any", icon: Briefcase, tags: [] })}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#0F172A] transition-all hover:scale-105"
-                style={{ background: "linear-gradient(135deg,#FFFFFF,#E0E7FF)", fontSize: 15, boxShadow: "0 8px 32px rgba(0,0,0,0.25)" }}>
-                Submit General Application <ChevronRight size={16} />
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-bold text-[#0F172A] transition-all hover:scale-105 flex-shrink-0"
+                style={{ background: "linear-gradient(135deg,#FFFFFF,#E0E7FF)", fontSize: 14, boxShadow: "0 8px 32px rgba(0,0,0,0.25)", whiteSpace: "nowrap" }}>
+                Submit CV <ChevronRight size={16} />
               </button>
             </div>
           </motion.div>
