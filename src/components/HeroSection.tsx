@@ -496,15 +496,18 @@ function HowWeDeliver() {
         </motion.div>
 
         {/* 4 step cards */}
-        <div className="flex gap-5 overflow-x-auto pb-2" style={{ scrollbarWidth: "none" }}>
+        <div
+          className="flex gap-5 overflow-x-auto pb-2"
+          style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        >
           {STEPS.map((s, i) => {
             const isActive = active === i;
             return (
               <motion.div
                 key={s.num}
                 onClick={() => setActive(i)}
-                className="relative rounded-2xl p-7 cursor-pointer overflow-hidden flex flex-col flex-shrink-0"
-                style={{ minHeight: 280, width: "clamp(220px, 20vw, 280px)" }}
+                className="relative rounded-2xl p-7 cursor-pointer overflow-hidden flex flex-col flex-shrink-0 w-full sm:w-[260px] lg:w-[clamp(220px,20vw,280px)]"
+                style={{ minHeight: 280, scrollSnapAlign: "start" }}
                 animate={{
                   background: isActive
                     ? "linear-gradient(145deg,#071B8F,#2563FF)"
