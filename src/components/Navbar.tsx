@@ -237,11 +237,12 @@ function NavLink({ href, label, active, onDark }: { href: string; label: string;
         fontFamily:     "'DM Sans','Inter',system-ui,sans-serif",
         padding:        "10px 16px",
         borderRadius:   999,
+        textShadow:     onDark ? "0 1px 4px rgba(0,0,0,0.5)" : "0 1px 4px rgba(255,255,255,0.6)",
         background:     active
           ? (onDark ? "rgba(120,235,84,0.16)" : RS.darkGreen)
           : isLit
             ? (onDark ? "rgba(255,255,255,0.16)" : "rgba(0,0,0,0.08)")
-            : "transparent",
+            : (onDark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.55)"),
         boxShadow:      isLit && !active ? "0 2px 10px rgba(0,0,0,0.12)" : "none",
         transform:      hov ? "translateY(-1px) scale(1.03)" : "translateY(0) scale(1)",
         transition:     "color 0.18s, background 0.18s, transform 0.18s, box-shadow 0.18s",

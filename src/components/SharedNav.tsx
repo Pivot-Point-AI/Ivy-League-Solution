@@ -23,18 +23,28 @@ export function SharedNav() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", fn);
+    let ticking = false;
+    const fn = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20);
+        ticking = false;
+      });
+    };
+    fn();
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50"
       style={{
         height: 100,
         background: scrolled ? "#071B5A" : "transparent",
         boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.3)" : "none",
+        transition: "background 0.15s ease-out, box-shadow 0.15s ease-out",
       }}
     >
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex items-center justify-between">
@@ -59,8 +69,11 @@ export function SharedNav() {
               <Link
                 key={href}
                 href={href}
-                className="relative text-[15px] font-medium transition-colors"
-                style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.75)" }}
+                className="relative text-[16px] font-semibold transition-colors hover:!text-white"
+                style={{
+                  color: isActive ? "#fff" : "rgba(255,255,255,0.92)",
+                  textShadow: "0 1px 3px rgba(0,0,0,0.45)",
+                }}
               >
                 {label}
                 {isActive && (
