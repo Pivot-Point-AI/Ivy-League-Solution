@@ -105,7 +105,6 @@ export default function Navbar() {
               alt="Ivy League Solutions"
               width={132}
               height={48}
-              style={{ objectFit: "contain" }}
               priority
             />
           </Link>
@@ -220,20 +219,32 @@ export default function Navbar() {
 function NavLink({ href, label, active, onDark }: { href: string; label: string; active: boolean; onDark: boolean }) {
   const [hov, setHov] = useState(false);
   const color = onDark ? "#ffffff" : "#000000";
+  const isLit = hov || active;
   return (
     <Link
       href={href}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        fontSize:       16,
-        fontWeight:     600,
-        color:          active ? (onDark ? RS.green : "#000000") : color,
-        opacity:        hov ? 1 : active ? 1 : 0.9,
+        position:       "relative",
+        fontSize:       20,
+        fontWeight:     800,
+        letterSpacing:  "0.02em",
+        color:          active ? (onDark ? RS.green : "#ffffff") : color,
+        opacity:        1,
         textDecoration: "none",
         whiteSpace:     "nowrap",
         fontFamily:     "'DM Sans','Inter',system-ui,sans-serif",
-        transition:     "opacity 0.18s, color 0.18s",
+        padding:        "10px 16px",
+        borderRadius:   999,
+        background:     active
+          ? (onDark ? "rgba(120,235,84,0.16)" : RS.darkGreen)
+          : isLit
+            ? (onDark ? "rgba(255,255,255,0.16)" : "rgba(0,0,0,0.08)")
+            : "transparent",
+        boxShadow:      isLit && !active ? "0 2px 10px rgba(0,0,0,0.12)" : "none",
+        transform:      hov ? "translateY(-1px) scale(1.03)" : "translateY(0) scale(1)",
+        transition:     "color 0.18s, background 0.18s, transform 0.18s, box-shadow 0.18s",
       }}
     >
       {label}

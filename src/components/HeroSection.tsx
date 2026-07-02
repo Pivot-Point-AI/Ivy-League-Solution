@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Package, Users, Globe2, Zap } from "lucide-react";
 
 /* ══ Count-up ══ */
 function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -232,10 +233,10 @@ function TiltHero({ children }: { children: React.ReactNode }) {
 }
 
 const STATS = [
-  { target: 200, suffix: "+", label: "Projects Delivered",   icon: "🚀" },
-  { target: 98,  suffix: "%", label: "Client Satisfaction",  icon: "⭐" },
-  { target: 0,   suffix: "",  label: "Globally",             icon: "🌐", isGlobal: true },
-  { target: 90,  suffix: "%", label: "Faster Processing",    icon: "⚡" },
+  { target: 200, suffix: "+", label: "Projects Delivered", sub: "Across industries",            icon: Package, isGlobal: false },
+  { target: 98,  suffix: "%", label: "Client Satisfaction", sub: "Long-term partnerships",       icon: Users,   isGlobal: false },
+  { target: 0,   suffix: "",  label: "Presence",            sub: "Serving clients worldwide",    icon: Globe2,  isGlobal: true },
+  { target: 90,  suffix: "%", label: "Faster Processing",   sub: "Through intelligent automation", icon: Zap,   isGlobal: false },
 ];
 
 const TRUSTED_LOGOS = [
@@ -245,156 +246,6 @@ const TRUSTED_LOGOS = [
   { name: "Cisco",      abbr: "CSC" },
   { name: "Fortinet",   abbr: "FTN" },
 ];
-
-/* ══ Floating dashboard card (right side) ══ */
-const LIVE_METRICS = [
-  { label: "Uptime SLA",      value: 99.99, suffix: "%",  color: "#34d399", sparkDelta: +0.01 },
-  { label: "Avg Deploy Time", value: 4.2,   suffix: "m",  color: "#60a5fa", sparkDelta: -0.3  },
-  { label: "Incidents (7d)",  value: 0,     suffix: "",   color: "#34d399", sparkDelta: 0     },
-];
-
-function LiveMetricRow({ label, value, suffix, color, index }: { label: string; value: number; suffix: string; color: string; index: number }) {
-  const [live, setLive] = useState(value);
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const jitter = (Math.random() - 0.5) * 0.04;
-      setLive(+(value + jitter).toFixed(2));
-    }, 2000 + index * 800);
-    return () => clearTimeout(t);
-  }, [live, value, index]);
-  return (
-    <div className="flex items-center justify-between py-2.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-      <span style={{ fontSize: 11.5, color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>{label}</span>
-      <motion.span
-        key={live}
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        style={{ fontSize: 13, fontWeight: 700, color, fontVariantNumeric: "tabular-nums" }}
-      >
-        {live}{suffix}
-      </motion.span>
-    </div>
-  );
-}
-
-function HeroDashCard() {
-  const [activeProject, setActiveProject] = useState(0);
-  const projects = ["Fintech Platform", "Healthcare AI", "Logistics Cloud", "Gov Portal", "EdTech Suite"];
-
-  useEffect(() => {
-    const t = setInterval(() => setActiveProject(p => (p + 1) % projects.length), 3200);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 60, y: 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="hidden lg:flex flex-col absolute"
-      style={{ right: "4%", top: "50%", transform: "translateY(-50%)", width: 280, zIndex: 10 }}
-    >
-      {/* Glow behind card */}
-      <div className="absolute -inset-4 rounded-3xl pointer-events-none" style={{ background: "radial-gradient(ellipse,rgba(37,99,255,0.25) 0%,transparent 70%)", filter: "blur(24px)" }} />
-
-      {/* Main card */}
-      <motion.div
-        className="relative rounded-2xl overflow-hidden flex flex-col"
-        style={{
-          background: "rgba(7,18,80,0.65)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          boxShadow: "0 32px 64px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)",
-          padding: 20,
-        }}
-        whileHover={{ y: -4 }}
-        transition={{ type: "spring", stiffness: 200, damping: 18 }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <motion.div
-              className="w-2 h-2 rounded-full bg-green-400"
-              animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-              transition={{ duration: 1.8, repeat: Infinity }}
-            />
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>Live Status of our Projects</span>
-          </div>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>
-            {new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" })}
-          </span>
-        </div>
-
-        {/* Metrics */}
-        <div>
-          {LIVE_METRICS.map((m, i) => (
-            <LiveMetricRow key={m.label} {...m} index={i} />
-          ))}
-        </div>
-
-        {/* Active project ticker */}
-        <div className="mt-4 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>Active Deployment</p>
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={activeProject}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.35 }}
-              style={{ fontSize: 13.5, fontWeight: 700, color: "#fff" }}
-            >
-              {projects[activeProject]}
-            </motion.p>
-          </AnimatePresence>
-          <div className="flex items-center gap-2 mt-2">
-            <motion.div
-              className="h-1 rounded-full flex-1"
-              style={{ background: "rgba(255,255,255,0.1)" }}
-            >
-              <motion.div
-                className="h-full rounded-full"
-                style={{ background: "linear-gradient(90deg,#2563FF,#a78bfa)" }}
-                animate={{ width: ["0%", "100%"] }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-                key={activeProject}
-              />
-            </motion.div>
-            <span style={{ fontSize: 10, color: "#60a5fa" }}>In Progress</span>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Floating activity toast */}
-      <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
-        className="rounded-2xl mt-3 flex items-center gap-3"
-        style={{
-          background: "rgba(7,18,80,0.65)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          border: "1px solid rgba(255,255,255,0.10)",
-          boxShadow: "0 12px 32px rgba(0,0,0,0.3)",
-          padding: "12px 14px",
-        }}
-      >
-        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)" }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-        </div>
-        <div>
-          <p style={{ fontSize: 11.5, fontWeight: 600, color: "#fff" }}>Latest build deployed</p>
-          <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.4)" }}>Just now · Zero incidents</p>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 const SERVICES = [
   { title: "Software Development", description: "End-to-end custom software from concept to deployment. Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.", img: "/softwaredevelopment.webp", filled: true },
@@ -1012,7 +863,7 @@ function BouncyText({ text, className, style }: { text: string; className?: stri
 }
 
 /* ══ Smooth count-up stat ══ */
-function SlotStat({ target, suffix, label, isGlobal }: { target: number; suffix: string; label: string; isGlobal?: boolean }) {
+function StatBoxItem({ target, suffix, label, sub, icon: Icon, isGlobal }: { target: number; suffix: string; label: string; sub: string; icon: React.ComponentType<{ size?: number; className?: string }>; isGlobal?: boolean }) {
   const [val, setVal] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -1032,12 +883,33 @@ function SlotStat({ target, suffix, label, isGlobal }: { target: number; suffix:
   }, [inView, target, isGlobal]);
 
   return (
-    <div ref={ref} className="flex flex-col cursor-default">
-      <span className="font-extrabold leading-none text-white tabular-nums" style={{ fontSize: "clamp(22px,2.4vw,32px)" }}>
-        {isGlobal ? "Global" : `${val}${suffix}`}
-      </span>
-      <span className="text-white/45 mt-1.5 font-medium" style={{ fontSize: 11.5 }}>{label}</span>
+    <div ref={ref} className="flex items-center gap-3.5 cursor-default">
+      <div className="flex items-center justify-center rounded-full shrink-0" style={{ width: 44, height: 44, background: "rgba(96,120,255,0.16)", border: "1px solid rgba(120,140,255,0.25)" }}>
+        <Icon size={19} className="text-blue-300" />
+      </div>
+      <div className="flex flex-col">
+        <span className="font-extrabold leading-none text-white tabular-nums" style={{ fontSize: "clamp(20px,2vw,26px)" }}>
+          {isGlobal ? "Global" : `${val}${suffix}`}
+        </span>
+        <span className="text-white/80 mt-1.5 font-semibold" style={{ fontSize: 13 }}>{label}</span>
+        <span className="text-white/40 mt-0.5" style={{ fontSize: 11.5 }}>{sub}</span>
+      </div>
     </div>
+  );
+}
+
+function StatsBar() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.6 }}
+      className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-10"
+      style={{ borderRadius: 20, border: "1px solid rgba(255,255,255,0.12)", background: "rgba(10,16,60,0.35)", backdropFilter: "blur(10px)", padding: "28px 32px" }}
+    >
+      {STATS.map((s) => (
+        <StatBoxItem key={s.label} target={s.target} suffix={s.suffix} label={s.label} sub={s.sub} icon={s.icon} isGlobal={s.isGlobal} />
+      ))}
+    </motion.div>
   );
 }
 
@@ -1093,18 +965,22 @@ export default function LandingPage() {
         onMouseLeave={onMouseLeave}
         className="relative overflow-hidden"
       >
-        {/* BG image — slow Ken Burns zoom */}
+        {/* Base background */}
+        <div className="absolute inset-0" style={{ zIndex: 0, background: "#050B3A" }} />
+
+        {/* Illustration — right side only, slow Ken Burns zoom */}
         <motion.img
-          src="/landingpage.webp"
+          src="/landing2.webp"
           alt="Enterprise software development and IT consulting team collaborating at Ivy League Solutions"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ zIndex: 0, transformOrigin: "60% 50%" }}
-          animate={{ scale: [1, 1.06], x: [0, -12] }}
+          className="hidden md:block absolute object-contain object-right"
+          style={{ zIndex: 0, top: 0, right: 0, bottom: 0, width: "58%", height: "100%", transformOrigin: "90% 50%" }}
+          animate={{ scale: [1, 1.05], x: [0, -8] }}
           transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
         />
 
+
         {/* Dark overlay */}
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1, background: "linear-gradient(105deg,rgba(4,12,80,0.94) 0%,rgba(7,27,143,0.82) 40%,rgba(20,50,180,0.40) 65%,rgba(80,40,200,0.04) 100%)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1, background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }} />
 
         {/* Canvas particle network — click anywhere to explode */}
         <ParticleNetwork mouseRef={mouseRef} />
@@ -1122,10 +998,10 @@ export default function LandingPage() {
 
         {/* Content */}
         <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col justify-center"
-          style={{ minHeight: "100svh", paddingTop: "clamp(96px,10vw,130px)", paddingBottom: 80, zIndex: 3 }}>
+          style={{ minHeight: "100svh", paddingTop: "clamp(96px,10vw,230px)", paddingBottom: 80, zIndex: 3 }}>
 
           <TiltHero>
-            <div className="w-full lg:w-[55%] flex flex-col justify-center py-16 lg:py-0">
+            <div className="w-full lg:w-[84%] flex flex-col justify-center py-16 lg:py-0">
 
               {/* Badge — animated gradient ring */}
               <motion.div
@@ -1255,34 +1131,6 @@ export default function LandingPage() {
                 </motion.button>
               </motion.div>
 
-              {/* Stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.55 }}
-                className="mt-8"
-              >
-                <p className="text-white/45 text-[10px] font-semibold uppercase tracking-[3px] mb-5">
-                  Redefining Enterprise-Grade Solutions, Built on Trust
-                </p>
-                <div className="grid grid-cols-2 sm:flex sm:items-center gap-y-5">
-                  {STATS.map((s, i) => (
-                    <motion.div
-                      key={s.label}
-                      whileHover={{ y: -3 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 18 }}
-                      className="flex flex-col cursor-default"
-                      style={{
-                        paddingRight: "clamp(16px,2vw,28px)" as string,
-                        paddingLeft: i === 0 ? 0 : "clamp(16px,2vw,28px)" as string,
-                        borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : "none",
-                      }}
-                    >
-                      <SlotStat target={s.target} suffix={s.suffix} label={s.label} isGlobal={(s as any).isGlobal} />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
               {/* Trusted by strip */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
@@ -1310,24 +1158,24 @@ export default function LandingPage() {
             </div>
           </TiltHero>
 
-          {/* Dashboard card — absolute positioned on the right */}
-          <HeroDashCard />
+          {/* Stats bar */}
+          <StatsBar />
         </div>
 
         {/* Scroll down indicator */}
         <motion.div
-          className="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer z-10"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
           onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
         >
-          <span className="text-white/40 font-medium uppercase tracking-[3px]" style={{ fontSize: 9 }}>Scroll</span>
+          <span className="text-white/70 font-semibold uppercase tracking-[3px]" style={{ fontSize: 11 }}>Scroll</span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
           </motion.div>
