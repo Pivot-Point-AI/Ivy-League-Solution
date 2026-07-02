@@ -20,7 +20,7 @@ const STATS = [
 ];
 
 const TIMELINE = [
-  { year: "2015", title: "Origins",         desc: "Ivy League Solutions founded in Dubai, UAE — beginning a tradition of meeting diversified enterprise technology needs across the Middle East." },
+  { year: "2015", title: "Origins",         desc: "Ivy League Solutions founded in 2015 — beginning a tradition of meeting diversified enterprise technology needs across the Middle East." },
   { year: "2020", title: "AI Division",     desc: "Launched our dedicated machine learning and AI engineering practice for regulated verticals." },
   { year: "2022", title: "Datum Product",   desc: "Released Datum, our proprietary spreadsheet intelligence platform — Excel/OpenXML compatible with enterprise-grade security." },
   { year: "2024", title: "Global Launch",   desc: "Ivy League Solutions launched to bring our decade of enterprise expertise to global markets under one unified brand." },
@@ -338,7 +338,7 @@ export default function AboutPage() {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <p className="text-white font-bold" style={{ fontSize: 16 }}>Founded in Dubai, 2015</p>
+              <p className="text-white font-bold" style={{ fontSize: 16 }}>Founded in 2015</p>
               <p className="text-white/55 mt-1" style={{ fontSize: 13 }}>Now serving enterprise clients across Fintech, Healthcare, Government, and EdTech worldwide.</p>
             </div>
           </motion.div>
