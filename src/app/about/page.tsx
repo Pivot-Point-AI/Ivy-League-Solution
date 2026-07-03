@@ -377,7 +377,7 @@ export default function AboutPage() {
           <div className="relative pl-8" style={{ borderLeft: "2px solid #E2E8F0" }}>
             {TIMELINE.map((t, i) => (
               <motion.div key={i} {...fade(i * 0.08)} className="relative mb-10 last:mb-0">
-                <div className="absolute -left-[13px] top-1.5 w-4 h-4 rounded-full border-2 border-white" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)", boxShadow: "0 0 0 3px rgba(37,99,255,0.2)" }} />
+                <div className="absolute -left-[39px] top-1.5 w-4 h-4 rounded-full border-2 border-white" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)", boxShadow: "0 0 0 3px rgba(37,99,255,0.2)" }} />
                 <div className="bg-white rounded-2xl p-6 ml-4" style={{ boxShadow: "0 2px 16px rgba(15,23,42,0.06)", border: "1px solid #F1F5F9" }}>
                   <span className="text-[#2563FF] font-bold text-sm uppercase tracking-wider">{t.year}</span>
                   <h3 className="font-bold text-[#0F172A] mt-1 mb-2" style={{ fontSize: 18 }}>{t.title}</h3>

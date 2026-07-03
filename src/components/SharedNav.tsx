@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, Calendar } from "lucide-react";
 
 const NAV_LINKS = [
   // { label: "Home",       href: "/"          },
@@ -41,15 +41,14 @@ export function SharedNav() {
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        height: 100,
-        background: scrolled ? "#071B5A" : "transparent",
+        background: scrolled || open ? "#071B5A" : "transparent",
         boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.3)" : "none",
         transition: "background 0.15s ease-out, box-shadow 0.15s ease-out",
       }}
     >
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-8 xl:px-14 flex items-center" style={{ height: 100 }}>
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="flex-shrink-0 ml-20 xl:ml-32 mr-6 xl:mr-10">
           <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
@@ -57,57 +56,96 @@ export function SharedNav() {
             height={84}
             priority
             style={{ height: 84, width: "auto" }}
-            className="object-contain"
+            className="object-contain hidden xl:block"
+          />
+          <Image
+            src="/logo-dark.webp"
+            alt="Ivy League Solutions"
+            width={170}
+            height={64}
+            priority
+            style={{ height: 64, width: "auto" }}
+            className="object-contain xl:hidden"
           />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-9">
-          {NAV_LINKS.map(({ label, href }) => {
-            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
-            return (
-              <Link
-                key={href}
-                href={href}
-                className="relative text-[16px] font-semibold transition-colors hover:!text-white"
+        {/* Nav + CTAs */}
+        <div className="hidden lg:flex items-center flex-1 min-w-0">
+          <nav className="flex items-center gap-3 xl:gap-6 flex-shrink min-w-0">
+            {NAV_LINKS.map(({ label, href }) => {
+              const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className="relative text-[13px] xl:text-[16px] font-semibold transition-colors hover:!text-white whitespace-nowrap"
+                  style={{
+                    color: isActive ? "#fff" : "rgba(255,255,255,0.92)",
+                    textShadow: "0 1px 3px rgba(0,0,0,0.45)",
+                  }}
+                >
+                  {label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
+                      style={{ background: "linear-gradient(90deg,#2563FF,#6C3CFF)" }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* CTAs */}
+          <div className="flex items-center gap-2 xl:gap-4 ml-auto pl-4 xl:pl-8 flex-shrink-0">
+
+            <Link href="/contact" className="hidden xl:block">
+              <motion.button
+                whileHover={{ scale: 1.03, background: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.75)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.18 }}
+                className="font-semibold rounded-xl whitespace-nowrap inline-flex items-center justify-center gap-2"
                 style={{
-                  color: isActive ? "#fff" : "rgba(255,255,255,0.92)",
-                  textShadow: "0 1px 3px rgba(0,0,0,0.45)",
+                  height: 46,
+                  paddingInline: 20,
+                  fontSize: 13.5,
+                  letterSpacing: "0.01em",
+                  background: "rgba(255,255,255,0.06)",
+                  color: "#ffffff",
+                  border: "1.5px solid rgba(255,255,255,0.5)",
+                  cursor: "pointer",
                 }}
               >
-                {label}
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
-                    style={{ background: "linear-gradient(90deg,#2563FF,#6C3CFF)" }}
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+                <Calendar size={15} />
+                Request Consultation
+              </motion.button>
+            </Link>
 
-        {/* Right: email + CTA */}
-        <div className="hidden lg:flex items-center gap-4">
-  
-          <Link href="/contact">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="font-semibold text-[14px] rounded-full px-7"
-              style={{
-                height: 48,
-                background: scrolled ? "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)" : "#ffffff",
-                color: scrolled ? "#ffffff" : "#2563FF",
-                boxShadow: scrolled ? "0 8px 24px rgba(37,99,255,0.35)" : "0 4px 16px rgba(0,0,0,0.18)",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              Build Your Solution
-            </motion.button>
-          </Link>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.03, boxShadow: "0 10px 26px rgba(37,99,255,0.4)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.18 }}
+                className="font-semibold rounded-xl whitespace-nowrap inline-flex items-center justify-center gap-2"
+                style={{
+                  height: 44,
+                  paddingInline: 16,
+                  fontSize: 12.5,
+                  letterSpacing: "0.01em",
+                  background: "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)",
+                  color: "#ffffff",
+                  boxShadow: "0 6px 18px rgba(37,99,255,0.35)",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                <span className="hidden xl:inline">Free Strategy Session</span>
+                <span className="xl:hidden">Free Strategy</span>
+                <span>→</span>
+              </motion.button>
+            </Link>
+          </div>
         </div>
 
         {/* Mobile burger */}
@@ -129,12 +167,20 @@ export function SharedNav() {
               {label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setOpen(false)}>
-            <button className="mt-3 w-full text-white font-semibold py-3 rounded-full text-sm"
-              style={{ background: "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)", border: "none", cursor: "pointer" }}>
-   Build Your Solution
-            </button>
-          </Link>
+          <div className="flex flex-col gap-2.5 mt-4">
+            <Link href="/contact" onClick={() => setOpen(false)}>
+              <button className="w-full text-white font-medium py-2.5 rounded-full text-sm"
+                style={{ background: "transparent", border: "1.5px solid rgba(255,255,255,0.4)", cursor: "pointer" }}>
+                Request Consultation
+              </button>
+            </Link>
+            <Link href="/contact" onClick={() => setOpen(false)}>
+              <button className="w-full text-white font-semibold py-2.5 rounded-full text-sm"
+                style={{ background: "linear-gradient(135deg,#2F6BFF 0%,#2563FF 100%)", border: "none", cursor: "pointer" }}>
+                Free Strategy Session
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </header>
