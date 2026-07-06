@@ -1001,7 +1001,7 @@ export default function LandingPage() {
           style={{ minHeight: "100svh", paddingTop: "clamp(96px,10vw,230px)", paddingBottom: 80, zIndex: 3 }}>
 
           <TiltHero>
-            <div className="w-full lg:w-[88%] flex flex-col justify-center py-16 lg:py-0 ml-10">
+            <div className="w-full lg:w-[88%] flex flex-col justify-center py-16 lg:py-0 lg:ml-10">
 
               {/* Badge — animated gradient ring */}
               <motion.div

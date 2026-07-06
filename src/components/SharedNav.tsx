@@ -48,7 +48,7 @@ export function SharedNav() {
     >
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-8 xl:px-14 flex items-center" style={{ height: 100 }}>
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0 ml-20 xl:ml-32 mr-6 xl:mr-10">
+        <Link href="/" className="flex-shrink-0 lg:ml-20 xl:ml-32 lg:mr-6 xl:mr-10">
           <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
@@ -149,7 +149,7 @@ export function SharedNav() {
         </div>
 
         {/* Mobile burger */}
-        <button className="lg:hidden text-white p-2" onClick={() => setOpen(!open)}>
+        <button className="lg:hidden text-white p-2 ml-auto" onClick={() => setOpen(!open)}>
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
