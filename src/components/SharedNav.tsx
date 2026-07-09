@@ -55,19 +55,19 @@ export function SharedNav() {
           <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
-            width={180}
-            height={68}
+            width={220}
+            height={84}
             priority
-            style={{ height: 60, width: "auto" }}
+            style={{ height: 66, width: "auto", filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.45))" }}
             className="object-contain hidden xl:block"
           />
           <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
-            width={150}
-            height={56}
+            width={180}
+            height={68}
             priority
-            style={{ height: 50, width: "auto" }}
+            style={{ height: 64, width: "auto", filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.45))" }}
             className="object-contain xl:hidden"
           />
         </Link>
