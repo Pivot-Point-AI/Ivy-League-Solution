@@ -109,8 +109,8 @@ export default function AddoHero() {
 
       {/* Content */}
       <div
-        className="relative z-10 flex-1 flex flex-col justify-start max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-8 xl:px-14"
-        style={{ paddingTop: "clamp(96px,16vh,200px)" }}
+        className="relative z-10 flex-1 flex flex-col justify-center max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-8 xl:px-14"
+        style={{ paddingTop: "clamp(64px,10vh,120px)" }}
       >
         <div className="max-w-[720px] w-full">
           <AnimatePresence mode="wait">
@@ -134,38 +134,11 @@ export default function AddoHero() {
                 {slide.heading}
               </h1>
 
-              <p
-                className="text-white/75 mt-4 sm:mt-5 leading-relaxed"
-                style={{ fontSize: "clamp(13.5px,1.4vw,15.5px)", maxWidth: 640 }}
-              >
-                {slide.desc}
-              </p>
-
-              <div className="hidden sm:flex flex-wrap gap-2 mt-4">
-                {slide.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full font-medium"
-                    style={{
-                      fontSize: 12,
-                      paddingInline: 12,
-                      paddingBlock: 5,
-                      color: "rgba(255,255,255,0.85)",
-                      background: "rgba(255,255,255,0.08)",
-                      border: `1px solid ${slide.from}55`,
-                      backdropFilter: "blur(6px)",
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
               <motion.a
                 href={slide.href}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className="mt-6 sm:mt-7 inline-flex items-center gap-2.5 rounded-full font-semibold text-white"
+                className="mt-8 sm:mt-9 inline-flex items-center gap-2.5 rounded-full font-semibold text-white"
                 style={{
                   height: 46,
                   paddingInline: 22,
