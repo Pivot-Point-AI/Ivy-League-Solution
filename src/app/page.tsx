@@ -4,7 +4,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import AddoHero from "@/components/AddoHero";
-import WhyChooseUs from "@/components/Contact";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import GetInTouch from "@/components/Contact";
 import { SharedNav, SharedFooter } from "@/components/SharedNav";
 
 export default function IvyLeagueSolutionsPage() {
@@ -54,6 +55,7 @@ export default function IvyLeagueSolutionsPage() {
       <AddoHero />
       <HeroSection />
       <WhyChooseUs />
+      <GetInTouch />
       <SharedFooter />
 
       {/* Floating back-to-top */}

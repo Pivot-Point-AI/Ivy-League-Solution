@@ -328,8 +328,9 @@ function HowWeDeliver() {
   }, []);
 
   return (
-    <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
+    <section className="relative overflow-hidden" style={{ paddingTop: 100, paddingBottom: 100, background: "#050B3A" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }} />
+      <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
 
         {/* Header */}
         <motion.div
@@ -338,16 +339,16 @@ function HowWeDeliver() {
           className="flex items-end justify-between mb-14 flex-wrap gap-4"
         >
           <div>
-            <p className="font-semibold uppercase mb-2" style={{ fontSize: 12, letterSpacing: "2.5px", background: "linear-gradient(90deg,#0891b2,#7c3aed)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Our Process</p>
-            <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-1px" }}>
+            <p className="font-semibold uppercase mb-2" style={{ fontSize: 12, letterSpacing: "2.5px", color: "#60a5fa" }}>Our Process</p>
+            <h2 className="text-white font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-1px" }}>
               How Ivy League Delivers
             </h2>
           </div>
           <motion.button
             whileHover={{ x: 4 }} whileTap={{ scale: 0.97 }}
             onClick={() => window.location.href = "/services"}
-            className="flex items-center gap-2 font-semibold text-[#0891b2]"
-            style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}
+            className="flex items-center gap-2 font-semibold"
+            style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "#22d3ee" }}
           >
             See More
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -368,14 +369,14 @@ function HowWeDeliver() {
                 key={s.num}
                 onClick={() => setActive(i)}
                 className="relative rounded-2xl p-7 cursor-pointer overflow-hidden flex flex-col flex-shrink-0 w-full sm:w-[260px] lg:w-[clamp(220px,20vw,280px)]"
-                style={{ minHeight: 280, scrollSnapAlign: "start" }}
+                style={{ minHeight: 280, scrollSnapAlign: "start", border: isActive ? "none" : "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(10px)" }}
                 animate={{
                   background: isActive
                     ? `linear-gradient(145deg,${s.from},${s.to})`
-                    : "#F8FAFF",
+                    : "rgba(255,255,255,0.045)",
                   boxShadow: isActive
                     ? `0 20px 50px ${s.from}40`
-                    : "0 2px 16px rgba(15,23,42,0.06)",
+                    : "0 4px 24px rgba(0,0,0,0.25)",
                   y: isActive ? -6 : 0,
                 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -389,7 +390,7 @@ function HowWeDeliver() {
                     lineHeight: 1,
                     right: 12,
                     bottom: -6,
-                    color: isActive ? "rgba(255,255,255,0.06)" : "rgba(37,99,255,0.05)",
+                    color: isActive ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.04)",
                   }}
                 >
                   {s.num}
@@ -411,7 +412,7 @@ function HowWeDeliver() {
                 <motion.div
                   className="flex items-center justify-center rounded-xl mb-5 flex-shrink-0"
                   animate={{
-                    background: isActive ? "rgba(255,255,255,0.15)" : "linear-gradient(135deg,#EEF2FF,#E0E7FF)",
+                    background: isActive ? "rgba(255,255,255,0.15)" : `${s.from}1a`,
                     color: isActive ? "#fff" : s.from,
                   }}
                   style={{ width: 52, height: 52 }}
@@ -423,18 +424,15 @@ function HowWeDeliver() {
                 {/* Step number label */}
                 <span
                   className="font-bold text-[11px] uppercase tracking-[2px] mb-2"
-                  style={{ color: isActive ? "rgba(255,255,255,0.5)" : "#94A3B8" }}
+                  style={{ color: isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.4)" }}
                 >
                   Step {s.num}
                 </span>
 
                 {/* Title */}
                 <h3
-                  className="font-bold mb-3 leading-snug"
-                  style={{
-                    fontSize: 17,
-                    color: isActive ? "#fff" : "#0F172A",
-                  }}
+                  className="font-bold mb-3 leading-snug text-white"
+                  style={{ fontSize: 17 }}
                 >
                   {s.title}
                 </h3>
@@ -444,7 +442,7 @@ function HowWeDeliver() {
                   className="leading-relaxed flex-1"
                   style={{
                     fontSize: 13.5,
-                    color: isActive ? "rgba(255,255,255,0.7)" : "#64748B",
+                    color: isActive ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.55)",
                   }}
                 >
                   {s.desc}
@@ -479,7 +477,7 @@ function HowWeDeliver() {
               onClick={() => setActive(i)}
               animate={{
                 width: active === i ? 32 : 8,
-                background: active === i ? s.from : "#CBD5E1",
+                background: active === i ? s.from : "rgba(255,255,255,0.2)",
               }}
               transition={{ duration: 0.3 }}
               style={{ height: 8, borderRadius: 99, border: "none", cursor: "pointer" }}
@@ -648,7 +646,7 @@ function Testimonials() {
   }, [index, n]);
 
   return (
-    <section className="bg-[#F8FAFF] overflow-hidden" style={{ paddingTop: 100, paddingBottom: 100 }}>
+    <section className="bg-[#E8ECFF] overflow-hidden" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
@@ -950,9 +948,6 @@ export default function LandingPage() {
   const mouseRef = useRef({ x: -400, y: -400 });
   const heroRef = useRef<HTMLElement>(null);
 
-  const headingLine1 = "Trusted globally for";
-  const headingLine2 = "custom technology,";
-
   const activeIndustry = INDUSTRIES[industryIdx];
 
   // Auto-cycle unless user picked manually
@@ -973,107 +968,61 @@ export default function LandingPage() {
     mouseRef.current = { x: -400, y: -400 };
   }, []);
 
-  return (
-    <>
-      {/* ══════════════════════════════════════════ HERO (commented out — replaced by AddoHero) */}
-      {false && (
+  const heroSection = (
       <section
         ref={heroRef}
         onMouseMove={onMouseMove}
-        style={{ minHeight: "100svh" }}
         onMouseLeave={onMouseLeave}
         className="relative overflow-hidden"
+        style={{ paddingTop: 100, paddingBottom: 100, background: "#050B3A" }}
       >
-        {/* Base background */}
-        <div className="absolute inset-0" style={{ zIndex: 0, background: "#050B3A" }} />
-
-        {/* Illustration — right side only, slow Ken Burns zoom */}
-        <motion.img
+        {/* Illustration — right-side background, same treatment as the old full hero */}
+        <Image
           src="/landing2.webp"
           alt="Enterprise software development and IT consulting team collaborating at Ivy League Solutions"
-          className="hidden md:block absolute object-contain object-right"
-          style={{ zIndex: 0, top: 0, right: 0, bottom: 0, width: "58%", height: "100%", transformOrigin: "90% 50%" }}
-          animate={{ scale: [1, 1.05], x: [0, -8] }}
-          transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          fill
+          sizes="58vw"
+          className="hidden md:block object-contain object-right"
+          style={{ zIndex: 0 }}
         />
 
-
-        {/* Dark overlay */}
+        {/* Dark overlay — matches the other dark sections on the page */}
         <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1, background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }} />
 
-        {/* Canvas particle network — click anywhere to explode */}
+        {/* Canvas particle network */}
         <ParticleNetwork mouseRef={mouseRef} />
 
-        {/* Pulse rings — CSS-only, no spring tracking */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 3 }}>
-          {[1,2,3].map(i=>(
-            <motion.div key={i} className="absolute rounded-full border border-blue-400/10"
-              style={{top:"50%",left:"74%",width:i*150,height:i*150,marginLeft:-(i*75),marginTop:-(i*75)}}
-              animate={{scale:[1,1.15,1],opacity:[0.2,0,0.2]}}
-              transition={{duration:3+i*0.8,repeat:Infinity,delay:i*0.9,ease:"easeInOut"}}
-            />
-          ))}
-        </div>
+        <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14" style={{ zIndex: 2 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Content */}
-        <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col justify-center"
-          style={{ minHeight: "100svh", paddingTop: "clamp(96px,10vw,230px)", paddingBottom: 80, zIndex: 3 }}>
-
-          <TiltHero>
-            <div className="w-full lg:w-[88%] flex flex-col justify-center py-16 lg:py-0 lg:ml-10">
-
-              {/* Badge — animated gradient ring */}
-              <motion.div
-                initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                className="inline-flex items-center gap-2.5 mb-7 w-fit relative"
-                style={{ borderRadius: 999, paddingInline: 3, paddingBlock: 3 }}
+            {/* Left — copy */}
+            <div>
+              <motion.p
+                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5 }}
+                className="font-semibold uppercase mb-3"
+                style={{ fontSize: 12, letterSpacing: "2.5px", color: "#60a5fa" }}
               >
-                {/* Animated gradient border */}
-                <motion.div
-                  className="absolute inset-0 rounded-full pointer-events-none"
-                  style={{ background: "linear-gradient(90deg,#2563FF,#a78bfa,#60a5fa,#2563FF)", backgroundSize: "300% 100%" }}
-                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                />
-                <div className="relative inline-flex items-center gap-2 rounded-full px-4 py-2" style={{ background: "rgba(7,18,80,0.85)", backdropFilter: "blur(10px)" }}>
-                  <motion.span
-                    className="w-2 h-2 rounded-full bg-blue-400"
-                    animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                  <span className="text-blue-300 font-semibold text-[11px] uppercase tracking-widest">
-                    Enterprise Software & AI Delivery
-                  </span>
-                </div>
-              </motion.div>
+                Who We Serve
+              </motion.p>
 
-              {/* Headline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.14 }}
-                className="text-white font-extrabold cursor-default select-none hero-heading-responsive"
-                style={{ fontSize: "clamp(32px, 4.2vw, 64px)", letterSpacing: "-1.5px", lineHeight: 1.1, hyphens: "none" }}
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.05 }}
+                className="text-white font-bold"
+                style={{ fontSize: "clamp(28px,3.5vw,42px)", letterSpacing: "-1px", lineHeight: 1.15 }}
               >
-                <span style={{ display: "block" }}>
-                  <BouncyText text={headingLine1} />
+                Built for{" "}
+                <span style={{ display: "inline-block", minWidth: "7ch" }}>
+                  <TypingWord active={activeIndustry.name} color={activeIndustry.color} />
                 </span>
-                <span style={{ display: "block" }}>
-                  <BouncyText text={headingLine2} />
-                </span>
-                <span style={{ display: "block" }}>
-                  built for{" "}
-                  <span style={{ display: "inline-block", minWidth: "8ch" }}>
-                    <TypingWord active={activeIndustry.name} color={activeIndustry.color} />
-                  </span>
-                </span>
-              </motion.h1>
+              </motion.h2>
 
               {/* Industry selector pills */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.22 }}
-                className="flex flex-wrap gap-2 mt-5"
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex flex-wrap gap-2 mt-6"
               >
                 {INDUSTRIES.map((ind, i) => {
                   const isActive = industryIdx === i;
@@ -1121,39 +1070,26 @@ export default function LandingPage() {
                 </AnimatePresence>
               </div>
 
-              {/* Buttons */}
+              {/* CTA */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 mt-7"
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }}
+                className="mt-7"
               >
                 <RippleButton
                   className="text-white font-semibold rounded-full inline-flex items-center justify-center gap-2.5"
-                  style={{ height: 52, paddingInline: 32, fontSize: 14.5, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 8px 28px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}
+                  style={{ height: 48, paddingInline: 28, fontSize: 14, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 8px 28px rgba(37,99,255,0.4)", border: "none", cursor: "pointer" }}
                   onClick={() => window.location.href = "/contact"}
                 >
                   Get Started
                   <span>→</span>
                 </RippleButton>
-
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="font-semibold rounded-full text-white inline-flex items-center justify-center gap-2"
-                  style={{ height: 52, paddingInline: 32, fontSize: 14.5, background: "rgba(255,255,255,0.07)", border: "1.5px solid rgba(255,255,255,0.22)", cursor: "pointer", backdropFilter: "blur(8px)" }}
-                  onClick={() => window.location.href = "/solutions"}
-                >
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                  </svg>
-                  View Our Work
-                </motion.button>
               </motion.div>
 
               {/* Trusted by strip */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.72 }}
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
                 className="mt-8 flex items-center gap-4 flex-wrap"
               >
                 <span style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", whiteSpace: "nowrap" }}>Trusted by</span>
@@ -1162,8 +1098,9 @@ export default function LandingPage() {
                     <motion.div
                       key={logo.name}
                       initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.72 + i * 0.06 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
                       whileHover={{ scale: 1.12, background: "rgba(255,255,255,0.12)", borderColor: "rgba(96,165,250,0.45)" }}
                       className="rounded-lg px-3 py-1.5 flex items-center"
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(8px)", cursor: "default" }}
@@ -1173,48 +1110,18 @@ export default function LandingPage() {
                   ))}
                 </div>
               </motion.div>
-
             </div>
-          </TiltHero>
 
-          {/* Stats bar */}
-          <StatsBar />
-        </div>
-
-        {/* Scroll down indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
-        >
-          <span className="text-white/70 font-semibold uppercase tracking-[3px]" style={{ fontSize: 11 }}>Scroll</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom wave */}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ height: 90, zIndex: 4 }}>
-          <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
-            <path d="M0 45C240 90 480 0 720 45C960 90 1200 0 1440 45V90H0V45Z" fill="rgba(220,225,255,0.3)" />
-            <path d="M0 55C200 10 400 90 720 55C1000 20 1200 90 1440 55V90H0V55Z" fill="rgba(225,230,255,0.6)" />
-            <path d="M0 70C360 30 720 90 1080 50C1200 38 1380 75 1440 70V90H0V70Z" fill="#E8ECFF" />
-          </svg>
+            {/* Right column — kept empty so the left copy sits over the background illustration */}
+            <div className="hidden lg:block" aria-hidden />
+          </div>
         </div>
       </section>
-      )}
+  );
 
-      {/* Tech marquee strip */}
-      {/* <Marquee /> */}
-
-      {/* ══════════════════════════════════════════ SERVICES — 2nd */}
+  return (
+    <>
+      {/* ══════════════════════════════════════════ SERVICES — 1st */}
       <section className="relative overflow-hidden"
         style={{ paddingTop: 100, paddingBottom: 100, background: "linear-gradient(160deg,#F0F2FF 0%,#EBEEff 40%,#E8ECFF 100%)" }}>
         <div className="absolute top-0 right-0 w-[420px] h-[320px] pointer-events-none"
@@ -1268,6 +1175,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════ HERO — shown after Services */}
+      {heroSection}
 
       {/* ══════════════════════════════════════════ TESTIMONIALS — 3rd */}
       <Testimonials />

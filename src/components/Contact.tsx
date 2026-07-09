@@ -70,7 +70,8 @@ const FEATURES = [
 export default function WhyChooseUs() {
   return (
     <>
-      {/* ══════════════════ WHY CHOOSE US ══════════════════ */}
+      {/* ══════════════════ WHY CHOOSE US — moved to src/components/WhyChooseUs.tsx ══════════════════ */}
+      {/*
       <section
         className="relative overflow-hidden"
         style={{
@@ -79,7 +80,7 @@ export default function WhyChooseUs() {
           background: "linear-gradient(115deg,#050B2E 0%,#0A1440 45%,#0F2E4A 100%)",
         }}
       >
-        {/* Decorative circuit-line pattern */}
+        {/* Decorative circuit-line pattern *\/}
         <svg
           className="absolute inset-0 pointer-events-none hidden md:block"
           width="100%" height="100%"
@@ -96,7 +97,7 @@ export default function WhyChooseUs() {
           <rect width="100%" height="100%" fill="url(#circuit)" />
         </svg>
 
-        {/* Right photo, blended into the dark background */}
+        {/* Right photo, blended into the dark background *\/}
         <div className="hidden md:block" style={{ position: "absolute", top: 0, right: 0, height: "100%", width: "48%" }}>
           <Image
             src="/lady2.webp"
@@ -137,7 +138,7 @@ export default function WhyChooseUs() {
               </h2>
             </FadeUp>
 
-            {/* Desktop: stacked rows */}
+            {/* Desktop: stacked rows *\/}
             <div className="hidden md:flex flex-col" style={{ gap: 18 }}>
               {FEATURES.map((f, i) => (
                 <FadeUp key={f.title} delay={i * 0.1}>
@@ -154,7 +155,7 @@ export default function WhyChooseUs() {
               ))}
             </div>
 
-            {/* Mobile layout */}
+            {/* Mobile layout *\/}
             <div className="flex flex-col gap-5 md:hidden">
               {FEATURES.map((f) => (
                 <FadeUp key={f.title}>
@@ -172,7 +173,7 @@ export default function WhyChooseUs() {
             </div>
           </div>
 
-          {/* Photo at bottom on mobile */}
+          {/* Photo at bottom on mobile *\/}
           <div className="md:hidden" style={{ borderRadius: 16, overflow: "hidden", marginTop: 20, position: "relative", height: 200 }}>
             <Image
               src="/lady2.webp"
@@ -184,6 +185,7 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ══════════════════ GET IN TOUCH ══════════════════ */}
       <section
@@ -191,9 +193,15 @@ export default function WhyChooseUs() {
         style={{
           paddingTop: 48,
           paddingBottom: 48,
-          background: "linear-gradient(135deg,#071B2E 0%,#0F172A 45%,#1E3A5F 75%,#164e63 100%)",
+          background: "#050B3A",
         }}
       >
+        {/* Overlay — matches the Hero / Our Process gradient treatment */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }}
+        />
+
         {/* Blobs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-[20%] left-[-60px] w-56 h-56 rounded-full opacity-20"
