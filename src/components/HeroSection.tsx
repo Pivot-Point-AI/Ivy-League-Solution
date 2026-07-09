@@ -248,16 +248,18 @@ const TRUSTED_LOGOS = [
 ];
 
 const SERVICES = [
-  { title: "Software Development", description: "End-to-end custom software from concept to deployment. Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.", img: "/softwaredevelopment.webp", filled: true },
-  { title: "AI & Machine Learning", description: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale across fintech and healthcare.", img: "/Managed IT Services.png", filled: true },
-  { title: "Digital Infrastructure", description: "Network services, datacenter solutions, cloud migration and managed IT infrastructure at enterprise scale on AWS, Azure, Cisco, and Oracle.", img: "/cloudsolution.webp", filled: true },
-  { title: "Cybersecurity & SOC", description: "24/7 threat monitoring, incident response, compliance automation, and security operations center with Zero Trust architecture built in.", img: "/cybersecurity.webp", filled: true },
+  { title: "Software Development", description: "End-to-end custom software from concept to deployment. Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.", img: "/softwaredevelopment.webp", filled: true, from: "#34d399", to: "#22d3ee" },
+  { title: "AI & Machine Learning", description: "Production-grade AI systems — fraud detection, predictive analytics, LLMs, and intelligent automation at enterprise scale across fintech and healthcare.", img: "/Managed IT Services.png", filled: true, from: "#a78bfa", to: "#ec4899" },
+  { title: "Digital Infrastructure", description: "Network services, datacenter solutions, cloud migration and managed IT infrastructure at enterprise scale on AWS, Azure, Cisco, and Oracle.", img: "/cloudsolution.webp", filled: true, from: "#60a5fa", to: "#22d3ee" },
+  { title: "Cybersecurity & SOC", description: "24/7 threat monitoring, incident response, compliance automation, and security operations center with Zero Trust architecture built in.", img: "/cybersecurity.webp", filled: true, from: "#fb923c", to: "#f43f5e" },
 ];
 
 /* ══ How We Deliver ══ */
 const STEPS = [
   {
     num: "01",
+    from: "#22d3ee",
+    to: "#3b82f6",
     title: "Requirements Gathering",
     desc: "We sit down with your stakeholders to map out goals, user needs, and technical constraints — turning your vision into a clear, agreed-upon project brief before any work begins.",
     icon: (
@@ -268,6 +270,8 @@ const STEPS = [
   },
   {
     num: "02",
+    from: "#a78bfa",
+    to: "#ec4899",
     title: "UX / UI Design",
     desc: "Our designers craft wireframes, prototypes, and high-fidelity mockups. You review and approve every screen before a single line of code is written — no surprises later.",
     icon: (
@@ -278,6 +282,8 @@ const STEPS = [
   },
   {
     num: "03",
+    from: "#60a5fa",
+    to: "#22d3ee",
     title: "Agile Development",
     desc: "We build in two-week sprints with full transparency — working demos, live progress boards, and regular check-ins so you stay in control at every milestone.",
     icon: (
@@ -288,6 +294,8 @@ const STEPS = [
   },
   {
     num: "04",
+    from: "#fb923c",
+    to: "#f43f5e",
     title: "QA & Testing",
     desc: "Dedicated QA engineers run functional, performance, and security tests across all environments. We don't ship until the product meets your acceptance criteria — zero critical bugs at launch.",
     icon: (
@@ -298,6 +306,8 @@ const STEPS = [
   },
   {
     num: "05",
+    from: "#34d399",
+    to: "#22d3ee",
     title: "Post-Launch Support",
     desc: "24/7 monitoring, SLA-backed incident response, and proactive performance tuning keep your product healthy long after go-live — so you can focus on growing your business.",
     icon: (
@@ -328,15 +338,15 @@ function HowWeDeliver() {
           className="flex items-end justify-between mb-14 flex-wrap gap-4"
         >
           <div>
-            <p className="text-[#2563FF] font-semibold text-[12px] uppercase tracking-[3px] mb-2">Our Process</p>
-            <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-0.5px" }}>
+            <p className="font-semibold uppercase mb-2" style={{ fontSize: 12, letterSpacing: "2.5px", background: "linear-gradient(90deg,#0891b2,#7c3aed)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Our Process</p>
+            <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-1px" }}>
               How Ivy League Delivers
             </h2>
           </div>
           <motion.button
             whileHover={{ x: 4 }} whileTap={{ scale: 0.97 }}
             onClick={() => window.location.href = "/services"}
-            className="flex items-center gap-2 font-semibold text-[#2563FF]"
+            className="flex items-center gap-2 font-semibold text-[#0891b2]"
             style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}
           >
             See More
@@ -361,10 +371,10 @@ function HowWeDeliver() {
                 style={{ minHeight: 280, scrollSnapAlign: "start" }}
                 animate={{
                   background: isActive
-                    ? "linear-gradient(145deg,#071B8F,#2563FF)"
+                    ? `linear-gradient(145deg,${s.from},${s.to})`
                     : "#F8FAFF",
                   boxShadow: isActive
-                    ? "0 20px 50px rgba(37,99,255,0.25)"
+                    ? `0 20px 50px ${s.from}40`
                     : "0 2px 16px rgba(15,23,42,0.06)",
                   y: isActive ? -6 : 0,
                 }}
@@ -389,7 +399,7 @@ function HowWeDeliver() {
                 {isActive && (
                   <motion.div
                     className="absolute top-0 left-0 h-[3px] rounded-t-2xl"
-                    style={{ background: "linear-gradient(90deg,#60a5fa,#a78bfa)" }}
+                    style={{ background: `linear-gradient(90deg,${s.from},${s.to})` }}
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 3.8, ease: "linear" }}
@@ -402,7 +412,7 @@ function HowWeDeliver() {
                   className="flex items-center justify-center rounded-xl mb-5 flex-shrink-0"
                   animate={{
                     background: isActive ? "rgba(255,255,255,0.15)" : "linear-gradient(135deg,#EEF2FF,#E0E7FF)",
-                    color: isActive ? "#fff" : "#2563FF",
+                    color: isActive ? "#fff" : s.from,
                   }}
                   style={{ width: 52, height: 52 }}
                   transition={{ duration: 0.3 }}
@@ -443,7 +453,7 @@ function HowWeDeliver() {
                 {/* Arrow indicator */}
                 <motion.div
                   className="mt-5 self-start flex items-center gap-1 font-semibold text-[13px] cursor-pointer"
-                  animate={{ color: isActive ? "rgba(255,255,255,0.8)" : "#2563FF" }}
+                  animate={{ color: isActive ? "rgba(255,255,255,0.8)" : s.from }}
                   onClick={(e) => { e.stopPropagation(); window.location.href = "/services"; }}
                 >
                   Learn More
@@ -463,13 +473,13 @@ function HowWeDeliver() {
 
         {/* Step indicator dots */}
         <div className="flex items-center justify-center gap-2 mt-10">
-          {STEPS.map((_, i) => (
+          {STEPS.map((s, i) => (
             <motion.button
               key={i}
               onClick={() => setActive(i)}
               animate={{
                 width: active === i ? 32 : 8,
-                background: active === i ? "#2563FF" : "#CBD5E1",
+                background: active === i ? s.from : "#CBD5E1",
               }}
               transition={{ duration: 0.3 }}
               style={{ height: 8, borderRadius: 99, border: "none", cursor: "pointer" }}
@@ -492,6 +502,8 @@ const TESTIMONIALS = [
     industry: "Fintech",
     stat: "90% faster processing",
     photo: "https://randomuser.me/api/portraits/men/32.jpg",
+    from: "#22d3ee",
+    to: "#3b82f6",
   },
   {
     quote: "The cybersecurity team deployed a Zero Trust architecture across our entire hospital network in under 8 weeks. Compliance automation alone saved us hundreds of hours per quarter.",
@@ -501,6 +513,8 @@ const TESTIMONIALS = [
     industry: "Healthcare",
     stat: "8-week deployment",
     photo: "https://randomuser.me/api/portraits/women/44.jpg",
+    from: "#a78bfa",
+    to: "#ec4899",
   },
   {
     quote: "From discovery to launch, every sprint had full transparency. The project manager was reachable around the clock and the QA lead caught issues before they ever reached production.",
@@ -510,6 +524,8 @@ const TESTIMONIALS = [
     industry: "Logistics",
     stat: "Zero critical bugs at launch",
     photo: "https://randomuser.me/api/portraits/men/65.jpg",
+    from: "#fb923c",
+    to: "#f43f5e",
   },
   {
     quote: "We needed a partner who could move at startup speed but deliver enterprise-grade quality. Ivy League hit every milestone on time and the platform they built handles millions of transactions daily.",
@@ -519,6 +535,8 @@ const TESTIMONIALS = [
     industry: "Enterprise",
     stat: "Millions of daily transactions",
     photo: "https://randomuser.me/api/portraits/women/68.jpg",
+    from: "#34d399",
+    to: "#22d3ee",
   },
 ];
 
@@ -530,10 +548,10 @@ function TestimonialCard({ item, isActive, width }: { item: typeof TESTIMONIALS[
       className="relative rounded-2xl p-7 flex flex-col overflow-hidden flex-shrink-0"
       animate={{
         background: isActive
-          ? "linear-gradient(145deg,#071B8F 0%,#1E40AF 60%,#2563FF 100%)"
+          ? `linear-gradient(145deg,#071B2E 0%,#0F172A 55%,${item.to} 140%)`
           : "#ffffff",
         boxShadow: isActive
-          ? "0 24px 64px rgba(37,99,255,0.28)"
+          ? `0 24px 64px ${item.from}40`
           : "0 2px 20px rgba(15,23,42,0.07)",
         scale: isActive ? 1 : 0.97,
       }}
@@ -543,7 +561,7 @@ function TestimonialCard({ item, isActive, width }: { item: typeof TESTIMONIALS[
       {isActive && (
         <motion.div
           className="absolute top-0 left-0 h-1 rounded-t-2xl"
-          style={{ background: "linear-gradient(90deg,#60a5fa,#a78bfa)" }}
+          style={{ background: `linear-gradient(90deg,${item.from},${item.to})` }}
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: 4.5, ease: "linear" }}
@@ -571,7 +589,7 @@ function TestimonialCard({ item, isActive, width }: { item: typeof TESTIMONIALS[
           </div>
         </div>
         <span className="text-[11px] font-semibold px-3 py-1.5 rounded-full whitespace-nowrap"
-          style={{ background: isActive ? "rgba(255,255,255,0.12)" : "#EFF6FF", color: isActive ? "#93c5fd" : "#2563FF" }}>
+          style={{ background: isActive ? "rgba(255,255,255,0.12)" : `${item.from}18`, color: isActive ? "#fff" : item.from }}>
           {item.stat}
         </span>
       </div>
@@ -635,8 +653,8 @@ function Testimonials() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5 }} className="mb-14">
-          <p className="text-[#2563FF] font-semibold text-[12px] uppercase tracking-[3px] mb-2">Client Stories</p>
-          <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-0.5px" }}>
+          <p className="font-semibold uppercase mb-2" style={{ fontSize: 12, letterSpacing: "2.5px", background: "linear-gradient(90deg,#0891b2,#7c3aed)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Client Stories</p>
+          <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.2vw,42px)", letterSpacing: "-1px" }}>
             What Our Customers Say About Us
           </h2>
         </motion.div>
@@ -663,11 +681,11 @@ function Testimonials() {
         {/* Dots + arrows */}
         <div className="flex items-center justify-between mt-10">
           <div className="flex gap-2">
-            {TESTIMONIALS.map((_, i) => (
+            {TESTIMONIALS.map((t, i) => (
               <motion.button
                 key={i}
                 onClick={() => { setAnimate(true); setIndex(n + i); }}
-                animate={{ width: dotActive === i ? 32 : 8, background: dotActive === i ? "#2563FF" : "#CBD5E1" }}
+                animate={{ width: dotActive === i ? 32 : 8, background: dotActive === i ? t.from : "#CBD5E1" }}
                 transition={{ duration: 0.3 }}
                 style={{ height: 8, borderRadius: 99, border: "none", cursor: "pointer" }}
               />
@@ -685,7 +703,7 @@ function Testimonials() {
                 className="w-10 h-10 rounded-full flex items-center justify-center"
                 style={{ background: "#fff", border: "1.5px solid #E2E8F0", cursor: "pointer", boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
               >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0891b2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d={path}/>
                 </svg>
               </motion.button>
@@ -957,7 +975,8 @@ export default function LandingPage() {
 
   return (
     <>
-      {/* ══════════════════════════════════════════ HERO */}
+      {/* ══════════════════════════════════════════ HERO (commented out — replaced by AddoHero) */}
+      {false && (
       <section
         ref={heroRef}
         onMouseMove={onMouseMove}
@@ -1190,6 +1209,7 @@ export default function LandingPage() {
           </svg>
         </div>
       </section>
+      )}
 
       {/* Tech marquee strip */}
       {/* <Marquee /> */}
@@ -1203,8 +1223,8 @@ export default function LandingPage() {
         <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <FadeUp>
             <div className="mb-10">
-              <RevealText text="Our Services" className="text-[#0F172A] font-extrabold block" style={{ fontSize: "clamp(28px,3.5vw,42px)", letterSpacing: "-0.5px" }} />
-              <p className="text-[#475569] font-medium mt-1" style={{ fontSize: 15 }}>What We Offer</p>
+              <p className="font-semibold uppercase" style={{ fontSize: 12, letterSpacing: "2.5px", background: "linear-gradient(90deg,#0891b2,#7c3aed)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>What We Offer</p>
+              <RevealText text="Our Services" className="text-[#0F172A] font-extrabold block mt-2" style={{ fontSize: "clamp(28px,3.5vw,42px)", letterSpacing: "-1px" }} />
             </div>
           </FadeUp>
 
@@ -1212,9 +1232,10 @@ export default function LandingPage() {
             {SERVICES.map((svc, i) => (
               <FadeUp key={svc.title} delay={i * 0.08}>
                 <TiltCard
-                  className="bg-white flex flex-col h-full group cursor-pointer"
+                  className="bg-white flex flex-col h-full group cursor-pointer relative overflow-hidden"
                   style={{ borderRadius: 20, boxShadow: "0 4px 20px rgba(15,23,42,0.07)", padding: "28px 24px 24px" }}
                 >
+                  <div className="absolute top-0 left-0 right-0" style={{ height: 3, background: `linear-gradient(90deg,${svc.from},${svc.to})` }} />
                   <SpotlightCard className="flex flex-col h-full" style={{ borderRadius: 16 }}>
                   <div className="flex flex-col h-full">
                   <div className="w-full flex items-center justify-center relative overflow-hidden" style={{ minHeight: 150 }}>
@@ -1224,7 +1245,7 @@ export default function LandingPage() {
                       className="absolute inset-0 flex items-center justify-center rounded-xl"
                       initial={{ opacity: 0 }}
                       whileHover={{ opacity: 1 }}
-                      style={{ background: "linear-gradient(135deg,rgba(37,99,255,0.06),rgba(108,60,255,0.06))" }}
+                      style={{ background: `linear-gradient(135deg,${svc.from}12,${svc.to}12)` }}
                     />
                   </div>
                   <h3 className="font-bold text-[#0F172A] mt-4 text-center" style={{ fontSize: 17 }}>{svc.title}</h3>
@@ -1234,7 +1255,7 @@ export default function LandingPage() {
                     className="mt-6 font-semibold transition-all duration-200"
                     style={{
                       height: 48, width: "100%", borderRadius: 999, fontSize: 14, cursor: "pointer",
-                      background: "linear-gradient(135deg,#2F6BFF,#2060FF)", color: "#fff", border: "none", boxShadow: "0 6px 18px rgba(37,99,255,0.35)",
+                      background: "linear-gradient(135deg,#0891b2,#7c3aed)", color: "#fff", border: "none", boxShadow: "0 6px 18px rgba(124,58,237,0.35)",
                     }}
                   >
                     Learn More

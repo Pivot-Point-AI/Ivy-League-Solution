@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Phone, Menu, X, Calendar } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   // { label: "Home",       href: "/"          },
@@ -38,33 +38,36 @@ export function SharedNav() {
   }, []);
 
   return (
+    <>
     <header
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed left-0 right-0 top-0 z-50"
       style={{
-        background: scrolled || open ? "#071B5A" : "transparent",
+        background: scrolled || open ? "#071B5A" : "linear-gradient(to bottom,rgba(4,10,40,0.65) 0%,rgba(4,10,40,0.25) 70%,rgba(4,10,40,0) 100%)",
+        borderBottom: scrolled || open ? "none" : "1px solid rgba(255,255,255,0.08)",
         boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.3)" : "none",
+        backdropFilter: scrolled || open ? "none" : "blur(6px)",
         transition: "background 0.15s ease-out, box-shadow 0.15s ease-out",
       }}
     >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-8 xl:px-14 flex items-center" style={{ height: 100 }}>
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-8 xl:px-14 flex items-center" style={{ height: 84 }}>
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0 lg:ml-20 xl:ml-32 lg:mr-6 xl:mr-10">
+        <Link href="/" className="flex-shrink-0 mr-8 xl:mr-14">
           <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
-            width={220}
-            height={84}
+            width={180}
+            height={68}
             priority
-            style={{ height: 84, width: "auto" }}
+            style={{ height: 60, width: "auto" }}
             className="object-contain hidden xl:block"
           />
           <Image
             src="/logo-dark.webp"
             alt="Ivy League Solutions"
-            width={170}
-            height={64}
+            width={150}
+            height={56}
             priority
-            style={{ height: 64, width: "auto" }}
+            style={{ height: 50, width: "auto" }}
             className="object-contain xl:hidden"
           />
         </Link>
@@ -100,28 +103,6 @@ export function SharedNav() {
           {/* CTAs */}
           <div className="flex items-center gap-2 xl:gap-4 ml-auto pl-4 xl:pl-8 flex-shrink-0">
 
-            <Link href="/contact" className="hidden xl:block">
-              <motion.button
-                whileHover={{ scale: 1.03, background: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.75)" }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.18 }}
-                className="font-semibold rounded-xl whitespace-nowrap inline-flex items-center justify-center gap-2"
-                style={{
-                  height: 46,
-                  paddingInline: 20,
-                  fontSize: 13.5,
-                  letterSpacing: "0.01em",
-                  background: "rgba(255,255,255,0.06)",
-                  color: "#ffffff",
-                  border: "1.5px solid rgba(255,255,255,0.5)",
-                  cursor: "pointer",
-                }}
-              >
-                <Calendar size={15} />
-                Request Consultation
-              </motion.button>
-            </Link>
-
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.03, boxShadow: "0 10px 26px rgba(37,99,255,0.4)" }}
@@ -140,7 +121,7 @@ export function SharedNav() {
                   cursor: "pointer",
                 }}
               >
-                <span className="hidden xl:inline">Free Strategy Session</span>
+                <span className="hidden xl:inline">Request Free Strategy Session</span>
                 <span className="xl:hidden">Free Strategy</span>
                 <span>→</span>
               </motion.button>
@@ -184,6 +165,7 @@ export function SharedNav() {
         </div>
       )}
     </header>
+    </>
   );
 }
 
