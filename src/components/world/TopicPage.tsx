@@ -197,11 +197,114 @@ export default function TopicPage({
         </div>
       </div>
 
-      {/* Vertical reveal and body copy are skipped on the last topic — its own supporting
-          detail isn't needed since scrolling past the header should reach the closing
-          sections (WhyChooseUs/Contact/Footer, rendered after this component) right away,
-          not be padded out with more per-topic content first. */}
-      {!isLast && (
+      {/* On the last topic, the per-topic detail sections are replaced by a short
+          narrative bridge — it keeps the cinematic, dark storytelling tone going for one
+          more beat instead of cutting straight from the full-bleed video hero into the
+          site's plain white closing sections (WhyChooseUs/Contact/Footer, rendered after
+          this component). */}
+      {isLast ? (
+        <div className="relative overflow-hidden">
+          <Image src="/eg.webp" alt="" fill sizes="100vw" className="object-cover" priority aria-hidden />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(238,240,255,0.97) 0%, rgba(238,240,255,0.9) 42%, rgba(238,240,255,0.35) 68%, rgba(238,240,255,0.08) 100%)" }} />
+
+          <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 py-24 sm:py-32">
+            <div className="max-w-[560px]">
+              <motion.span
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: SOFT_EASE }}
+                className="inline-flex items-center gap-1.5 rounded-full font-bold uppercase"
+                style={{ fontSize: 11.5, letterSpacing: "0.05em", padding: "7px 16px", color: topic.from, background: `${topic.from}14`, border: `1px solid ${topic.from}33` }}
+              >
+                ✦ The story so far
+              </motion.span>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, delay: 0.1, ease: SOFT_EASE }}
+                className="text-[#0F172A] font-bold mt-5"
+                style={{ fontSize: "clamp(28px,4vw,46px)", letterSpacing: "-1.5px", lineHeight: 1.15, maxWidth: 560 }}
+              >
+                Six disciplines. One accountable team.{" "}
+                <span
+                  style={{
+                    background: `linear-gradient(90deg, ${topic.from}, ${topic.to})`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Every system already built.
+                </span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.22, ease: SOFT_EASE }}
+                className="mt-5"
+                style={{ fontSize: "clamp(14.5px,1.2vw,17px)", color: "#64748B", maxWidth: 480, lineHeight: 1.6 }}
+              >
+                Here&apos;s what it looks like when we put it into practice.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.32, ease: SOFT_EASE }}
+                className="flex flex-wrap items-center gap-4 mt-9"
+              >
+                <motion.a
+                  href="/services"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 font-semibold text-white rounded-full"
+                  style={{ fontSize: 14.5, padding: "13px 24px", background: `linear-gradient(135deg, ${topic.from}, ${topic.to})`, boxShadow: `0 10px 28px -10px ${topic.from}99` }}
+                >
+                  Explore Our Work
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </motion.a>
+                <motion.a
+                  href="/about"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 font-semibold rounded-full"
+                  style={{ fontSize: 14.5, padding: "13px 22px", color: "#0F172A", background: "#fff", border: "1px solid rgba(15,23,42,0.12)" }}
+                >
+                  View Our Approach
+                  <span className="flex items-center justify-center rounded-full" style={{ width: 20, height: 20, border: "1.5px solid rgba(15,23,42,0.3)" }}>
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                  </span>
+                </motion.a>
+              </motion.div>
+
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.42, ease: SOFT_EASE }}
+                className="mt-12 uppercase font-semibold flex items-center gap-2.5"
+                style={{ fontSize: 11.5, letterSpacing: "2.5px", color: "#94A3B8" }}
+              >
+                <motion.svg
+                  width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <path d="M12 5v14M5 12l7 7 7-7" />
+                </motion.svg>
+                Scroll to explore
+              </motion.span>
+            </div>
+          </div>
+        </div>
+      ) : (
         <>
           <div className="relative py-16 px-6 sm:px-10 lg:px-14" style={{ background: "#050B3A" }}>
             <motion.div

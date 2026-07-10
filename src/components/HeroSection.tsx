@@ -1121,7 +1121,8 @@ export default function LandingPage() {
 
   return (
     <>
-      {/* ══════════════════════════════════════════ SERVICES — 1st */}
+      {/* ══════════════════════════════════════════ SERVICES — 1st (disabled, see WorldExperience's story-bridge section) */}
+      {false && (
       <section className="relative overflow-hidden"
         style={{ paddingTop: 100, paddingBottom: 100, background: "linear-gradient(160deg,#F0F2FF 0%,#EBEEff 40%,#E8ECFF 100%)" }}>
         <div className="absolute top-0 right-0 w-[420px] h-[320px] pointer-events-none"
@@ -1175,6 +1176,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ══════════════════════════════════════════ HERO — shown after Services */}
       {heroSection}
