@@ -80,8 +80,14 @@ export default function EntranceScreen({ onExplore }: { onExplore: () => void })
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55, ease: SOFT_EASE }}
-          className="mt-7 font-semibold"
-          style={{ fontSize: "clamp(16px,1.4vw,19px)", color: "#ffffff", lineHeight: 1.6, maxWidth: 560, textShadow: "0 2px 14px rgba(0,0,0,0.75)" }}
+          className="mt-7 font-bold"
+          style={{
+            fontSize: "clamp(16px,1.4vw,19px)",
+            color: "#ffffff",
+            lineHeight: 1.75,
+            maxWidth: 620,
+            textShadow: "0 2px 14px rgba(0,0,0,0.85)",
+          }}
         >
           Software, AI, infrastructure, and security engineered as one system for enterprises that can&apos;t afford to get it wrong.
         </motion.p>
@@ -91,14 +97,14 @@ export default function EntranceScreen({ onExplore }: { onExplore: () => void })
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.68, ease: SOFT_EASE }}
           className="inline-flex items-center gap-2.5 mt-7 rounded-full"
-          style={{ padding: "10px 22px", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", backdropFilter: "blur(10px)" }}
+          style={{ padding: "10px 22px", background: "rgba(2,5,16,0.55)", border: "1px solid rgba(255,255,255,0.22)", backdropFilter: "blur(10px)", boxShadow: "0 8px 24px -10px rgba(0,0,0,0.6)" }}
         >
           <span className="flex items-center justify-center rounded-full" style={{ width: 8, height: 8, background: "#22d3ee", boxShadow: "0 0 10px #22d3ee" }} />
           <span className="uppercase font-bold" style={{ fontSize: 13, letterSpacing: "1.2px", color: "#ffffff", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
             Trusted by 50+ enterprises
           </span>
-          <span className="hidden sm:inline" style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>•</span>
-          <span className="hidden sm:inline font-semibold" style={{ fontSize: 13, color: "rgba(255,255,255,0.75)" }}>
+          <span className="hidden sm:inline" style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>•</span>
+          <span className="hidden sm:inline font-semibold" style={{ fontSize: 13, color: "rgba(255,255,255,0.85)" }}>
             200+ projects delivered
           </span>
         </motion.div>
@@ -127,9 +133,9 @@ export default function EntranceScreen({ onExplore }: { onExplore: () => void })
           Explore Enterprise Solutions
           <span
             className="flex items-center justify-center"
-            style={{ width: 46, height: 46, borderRadius: 14, background: "linear-gradient(135deg,#22d3ee,#0891b2)", boxShadow: "0 6px 16px -4px rgba(34,211,238,0.55)" }}
+            style={{ width: 46, height: 46, borderRadius: 14, background: "linear-gradient(135deg,#1c2333,#0B1220)", boxShadow: "0 6px 16px -4px rgba(0,0,0,0.5)" }}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#050814" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f4d99b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </span>
@@ -141,21 +147,25 @@ export default function EntranceScreen({ onExplore }: { onExplore: () => void })
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.05, ease: SOFT_EASE }}
           whileHover={{ gap: 8 }}
-          className="mt-6 flex items-center gap-2 font-bold"
+          className="mt-5 flex items-center gap-2 font-semibold"
           style={{
-            fontSize: 15,
+            fontSize: 14,
             color: "#ffffff",
             letterSpacing: "0.01em",
-            textShadow: "0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.6)",
+            paddingBottom: 2,
+            borderTop: "none",
+            borderLeft: "none",
+            borderRight: "none",
+            borderBottom: "1px solid rgba(255,255,255,0.35)",
+            textShadow: "0 1px 10px rgba(0,0,0,0.85)",
             background: "none",
-            border: "none",
             cursor: "pointer",
           }}
         >
           Or book a 15-minute demo
           <motion.svg
-            width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-            animate={{ x: [0, 5, 0] }}
+            width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            animate={{ x: [0, 3, 0] }}
             transition={{ duration: 1.3, repeat: Infinity, ease: "easeInOut" }}
           >
             <path d="M5 12h14M13 6l6 6-6 6" />
