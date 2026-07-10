@@ -38,17 +38,18 @@ export default function WorldNav({
         {showBack && (
           <motion.button
             onClick={onBack}
+            aria-label="Go back"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
-            className="flex items-center justify-center rounded-full shrink-0"
-            style={{ width: 34, height: 34, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
+            className="flex items-center justify-center rounded-full shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22d3ee]"
+            style={{ width: 44, height: 44, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </motion.button>
         )}
-        <button onClick={onLogoClick} style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+        <button onClick={onLogoClick} aria-label="Go to entrance" style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
           <Image src="/logo-dark.webp" alt="Ivy League Solutions" width={64} height={74} className="object-contain h-16 sm:h-[74px] w-auto" />
         </button>
       </div>
@@ -69,10 +70,11 @@ export default function WorldNav({
       <div className="flex items-center gap-2 sm:gap-3">
         <motion.button
           onClick={onToggleTopics}
+          aria-label={topicsOpen ? "Close topics menu" : "Open topics menu"}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}
-          className="hidden md:flex items-center justify-center rounded-full"
-          style={{ width: 38, height: 38, background: topicsOpen ? "#22d3ee" : "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
+          className="hidden md:flex items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22d3ee]"
+          style={{ width: 44, height: 44, background: topicsOpen ? "#22d3ee" : "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={topicsOpen ? "#050814" : "white"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             {topicsOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
@@ -81,10 +83,11 @@ export default function WorldNav({
 
         <motion.button
           onClick={() => setMobileOpen((v) => !v)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}
-          className="flex md:hidden items-center justify-center rounded-full shrink-0"
-          style={{ width: 34, height: 34, background: mobileOpen ? "#22d3ee" : "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
+          className="flex md:hidden items-center justify-center rounded-full shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22d3ee]"
+          style={{ width: 44, height: 44, background: mobileOpen ? "#22d3ee" : "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={mobileOpen ? "#050814" : "white"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             {mobileOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}

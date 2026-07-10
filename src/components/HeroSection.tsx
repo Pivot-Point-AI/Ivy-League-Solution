@@ -566,18 +566,21 @@ function TestimonialCard({ item, isActive, width }: { item: typeof TESTIMONIALS[
           key={`bar-${item.name}`}
         />
       )}
-      <div className="flex gap-1 mb-5">
+      <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, s) => (
           <svg key={s} width="16" height="16" viewBox="0 0 24 24" fill="#FCD34D" stroke="none">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
           </svg>
         ))}
       </div>
+      <p className="font-extrabold mb-4" style={{ fontSize: 16.5, lineHeight: 1.3, background: `linear-gradient(90deg,${item.from},${item.to})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+        {item.stat} — {item.name}
+      </p>
       <p className="leading-relaxed flex-1 mb-6" style={{ fontSize: 14.5, color: isActive ? "rgba(255,255,255,0.85)" : "#475569", lineHeight: 1.75 }}>
         &ldquo;{item.quote}&rdquo;
       </p>
       <div className="h-px mb-5" style={{ background: isActive ? "rgba(255,255,255,0.12)" : "#E2E8F0" }} />
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-3">
           <Image src={item.photo} alt={item.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover flex-shrink-0"
             style={{ border: isActive ? "2px solid rgba(255,255,255,0.25)" : "2px solid #E2E8F0" }} />
@@ -588,9 +591,15 @@ function TestimonialCard({ item, isActive, width }: { item: typeof TESTIMONIALS[
         </div>
         <span className="text-[11px] font-semibold px-3 py-1.5 rounded-full whitespace-nowrap"
           style={{ background: isActive ? "rgba(255,255,255,0.12)" : `${item.from}18`, color: isActive ? "#fff" : item.from }}>
-          {item.stat}
+          {item.industry}
         </span>
       </div>
+      <a href="/solutions" className="inline-flex items-center gap-1.5 font-semibold" style={{ fontSize: 12.5, color: isActive ? "#fff" : item.from }}>
+        Read full case study
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
     </motion.div>
   );
 }
@@ -683,23 +692,33 @@ function Testimonials() {
               <motion.button
                 key={i}
                 onClick={() => { setAnimate(true); setIndex(n + i); }}
-                animate={{ width: dotActive === i ? 32 : 8, background: dotActive === i ? t.from : "#CBD5E1" }}
+                aria-label={`Show testimonial ${i + 1} of ${n}`}
+                animate={{ width: dotActive === i ? 32 : 8 }}
                 transition={{ duration: 0.3 }}
-                style={{ height: 8, borderRadius: 99, border: "none", cursor: "pointer" }}
-              />
+                className="flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0891b2]"
+                style={{ height: 44, borderRadius: 99, border: "none", cursor: "pointer", background: "transparent", padding: 0 }}
+              >
+                <motion.span
+                  className="block w-full"
+                  animate={{ background: dotActive === i ? t.from : "#CBD5E1" }}
+                  transition={{ duration: 0.3 }}
+                  style={{ height: 8, borderRadius: 99 }}
+                />
+              </motion.button>
             ))}
           </div>
           <div className="flex gap-2">
             {[
-              { dir: -1 as const, path: "M15 18l-6-6 6-6" },
-              { dir:  1 as const, path: "M9 18l6-6-6-6" },
-            ].map(({ dir, path }) => (
+              { dir: -1 as const, path: "M15 18l-6-6 6-6", label: "Previous testimonial" },
+              { dir:  1 as const, path: "M9 18l6-6-6-6", label: "Next testimonial" },
+            ].map(({ dir, path, label }) => (
               <motion.button
                 key={dir}
                 onClick={() => advance(dir)}
+                aria-label={label}
                 whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: "#fff", border: "1.5px solid #E2E8F0", cursor: "pointer", boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
+                className="rounded-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0891b2]"
+                style={{ width: 44, height: 44, background: "#fff", border: "1.5px solid #E2E8F0", cursor: "pointer", boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0891b2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d={path}/>

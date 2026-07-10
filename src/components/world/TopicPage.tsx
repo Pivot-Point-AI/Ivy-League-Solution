@@ -186,13 +186,23 @@ export default function TopicPage({
             style={{ fontSize: 12.5, letterSpacing: "2.5px" }}
           >
             Scroll to Explore
-            <motion.svg
-              width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </motion.svg>
+            {isLast ? (
+              <motion.svg
+                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </motion.svg>
+            ) : (
+              <motion.svg
+                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </motion.svg>
+            )}
           </motion.span>
         </div>
       </div>
@@ -259,29 +269,24 @@ export default function TopicPage({
                 className="flex flex-wrap items-center gap-4 mt-9"
               >
                 <motion.a
-                  href="/services"
+                  href="/contact"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="inline-flex items-center gap-2 font-semibold text-white rounded-full"
                   style={{ fontSize: 14.5, padding: "13px 24px", background: `linear-gradient(135deg, ${topic.from}, ${topic.to})`, boxShadow: `0 10px 28px -10px ${topic.from}99` }}
                 >
-                  Explore Our Work
+                  Schedule a 15-Minute Consult
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 6l6 6-6 6" />
                   </svg>
                 </motion.a>
-                <motion.a
+                <a
                   href="/about"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 font-semibold rounded-full"
-                  style={{ fontSize: 14.5, padding: "13px 22px", color: "#0F172A", background: "#fff", border: "1px solid rgba(15,23,42,0.12)" }}
+                  className="font-semibold underline underline-offset-4"
+                  style={{ fontSize: 13.5, color: "#64748B" }}
                 >
-                  View Our Approach
-                  <span className="flex items-center justify-center rounded-full" style={{ width: 20, height: 20, border: "1.5px solid rgba(15,23,42,0.3)" }}>
-                    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                  </span>
-                </motion.a>
+                  View our approach
+                </a>
               </motion.div>
 
               <motion.span
