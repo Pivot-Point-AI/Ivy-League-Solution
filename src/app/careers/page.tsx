@@ -10,6 +10,7 @@ import {
   Layers, Globe, Cpu, Lock, LineChart, MonitorSmartphone,
   Cloud, Settings, PenTool, Headphones, FileText, Zap,
   Upload, CheckCircle2, Loader2,
+  type LucideIcon,
 } from "lucide-react";
 
 const fade = (delay = 0) => ({
@@ -35,7 +36,7 @@ const STATS = [
 
 type Job = {
   id: number; title: string; dept: string; location: string;
-  type: string; level: string; icon: React.ElementType; tags: string[];
+  type: string; level: string; icon: LucideIcon; tags: string[];
 };
 
 const JOBS: Job[] = [
