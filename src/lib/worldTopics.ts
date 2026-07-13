@@ -99,6 +99,9 @@ export const TOPICS: Topic[] = [
     ],
     stat: { value: "8 wks", label: "Hospital Rollout", sub: "Full Zero Trust deployment" },
   },
+
+
+  
   {
     slug: "the-standard",
     title: "The Standard",
