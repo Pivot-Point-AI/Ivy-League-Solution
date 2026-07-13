@@ -10,6 +10,7 @@ export type Topic = {
   to: string;
   headline: string;
   body: string[];
+  stat: { value: string; label: string; sub: string };
 };
 
 export const TOPICS: Topic[] = [
@@ -28,6 +29,7 @@ export const TOPICS: Topic[] = [
       "Web, mobile, and enterprise applications built to scale with React, Node.js, .NET, and Python.",
       "Two-week sprints, full transparency, and a QA bar that means zero critical bugs at launch.",
     ],
+    stat: { value: "200+", label: "Projects Delivered", sub: "Across industries" },
   },
   {
     slug: "ai-machine-learning",
@@ -44,6 +46,7 @@ export const TOPICS: Topic[] = [
       "Fraud detection, predictive analytics, LLMs, and intelligent automation deployed at enterprise scale.",
       "Built alongside the teams who own the outcome — fintech, healthcare, and beyond.",
     ],
+    stat: { value: "90%", label: "Faster Processing", sub: "Through intelligent automation" },
   },
   {
     slug: "digital-infrastructure",
@@ -60,6 +63,7 @@ export const TOPICS: Topic[] = [
       "Network services, datacenter solutions, and cloud migration on AWS, Azure, Cisco, and Oracle.",
       "Managed IT infrastructure engineered to grow with the business, not slow it down.",
     ],
+    stat: { value: "Global", label: "Presence", sub: "Serving clients worldwide" },
   },
   {
     slug: "cybersecurity-soc",
@@ -76,6 +80,7 @@ export const TOPICS: Topic[] = [
       "24/7 threat monitoring, incident response, and compliance automation.",
       "Zero Trust architecture deployed across full networks in as little as eight weeks.",
     ],
+    stat: { value: "98%", label: "Client Satisfaction", sub: "Long-term partnerships" },
   },
   {
     slug: "the-record",
@@ -92,6 +97,7 @@ export const TOPICS: Topic[] = [
       "A Zero Trust rollout across an entire hospital network in eight weeks.",
       "A risk engine that cut a bank's processing time by 90%.",
     ],
+    stat: { value: "8 wks", label: "Hospital Rollout", sub: "Full Zero Trust deployment" },
   },
   {
     slug: "the-standard",
@@ -108,5 +114,6 @@ export const TOPICS: Topic[] = [
       "A strategy deck isn't a shipped product. A managed tool isn't a secured one.",
       "One team, accountable from requirements through post-launch support.",
     ],
+    stat: { value: "1", label: "Accountable Team", sub: "Requirements through support" },
   },
 ];

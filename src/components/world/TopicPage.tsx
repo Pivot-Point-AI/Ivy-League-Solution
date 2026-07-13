@@ -3,8 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Topic, TOPICS } from "@/lib/worldTopics";
-import { STATS } from "@/lib/homepageData";
+import { Topic } from "@/lib/worldTopics";
 import { SOFT_EASE } from "@/lib/scrollMotion";
 
 const SWIPE_THRESHOLD = 60;
@@ -26,7 +25,6 @@ export default function TopicPage({
   onPrev: () => void;
   videoRef: React.RefObject<HTMLVideoElement | null>;
 }) {
-  const stat = STATS[TOPICS.findIndex((t) => t.slug === topic.slug) % STATS.length];
   const headerRef = useRef<HTMLDivElement>(null);
   const accumulatedRef = useRef(0);
   const busyRef = useRef(true);
@@ -321,10 +319,10 @@ export default function TopicPage({
               style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
             >
               <p className="font-extrabold text-white" style={{ fontSize: "clamp(30px,4vw,44px)" }}>
-                {stat.isGlobal ? "Global" : `${stat.target}${stat.suffix}`}
+                {topic.stat.value}
               </p>
-              <p className="mt-2 font-semibold" style={{ fontSize: 14, color: topic.from }}>{stat.label}</p>
-              <p className="mt-1" style={{ fontSize: 12.5, color: "rgba(255,255,255,0.45)" }}>{stat.sub}</p>
+              <p className="mt-2 font-semibold" style={{ fontSize: 14, color: topic.from }}>{topic.stat.label}</p>
+              <p className="mt-1" style={{ fontSize: 12.5, color: "rgba(255,255,255,0.45)" }}>{topic.stat.sub}</p>
             </motion.div>
           </div>
 

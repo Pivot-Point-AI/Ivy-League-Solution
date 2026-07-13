@@ -6,8 +6,8 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 /* One persistent video layer shared across the entrance, hub, and every topic page —
    it never unmounts on navigation, so playback keeps advancing forward through the
    whole journey instead of each screen restarting its own copy from frame zero.
-   Starts paused; the entrance screen's "Tap to Explore" click is what starts it,
-   after which it just keeps running forward underneath every subsequent screen.
+   Autoplays on the entrance screen, then keeps running forward underneath every
+   subsequent screen (see WorldExperience for the per-view play/pause logic).
 
    The wrapper also tracks the pointer and gives the video a subtle parallax
    tilt/pan so the background reads as interactive rather than a flat loop —
@@ -46,6 +46,7 @@ const BackgroundVideo = forwardRef<HTMLVideoElement>((_props, ref) => {
           rotateX,
           rotateY,
         }}
+        autoPlay
         muted
         loop
         playsInline
