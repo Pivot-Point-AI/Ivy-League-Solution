@@ -79,9 +79,32 @@ export default function HubView({
         </span>
       </motion.button>
 
-      <div className="absolute z-10 right-6 sm:right-10 lg:right-16 bottom-28 sm:bottom-8 flex flex-col items-end gap-3">
-        <span className="text-white/60 font-semibold" style={{ fontSize: 12, letterSpacing: "0.06em" }}>Select Topic</span>
-        <div className="flex flex-wrap gap-2 justify-end">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.55, ease: SOFT_EASE }}
+        className="absolute z-10 right-4 sm:right-10 lg:right-16 bottom-24 sm:bottom-10 flex flex-col items-end gap-4 max-w-full px-2 sm:px-0"
+      >
+        <div className="flex items-center gap-2.5">
+          <span style={{ width: 22, height: 1.5, background: "linear-gradient(90deg, transparent, #60a5fa)" }} />
+          <span
+            className="font-bold uppercase"
+            style={{ fontSize: 12, letterSpacing: "2.5px", color: "#60a5fa", textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}
+          >
+            Select a Topic
+          </span>
+        </div>
+
+        <div
+          className="flex flex-wrap gap-2.5 justify-end p-2.5 rounded-2xl"
+          style={{
+            background: "rgba(5,8,20,0.45)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            boxShadow: "0 20px 50px -18px rgba(0,0,0,0.75)",
+          }}
+        >
           {categories.map((c) => {
             const color = topicForCategory(c).from;
             return (
@@ -90,24 +113,25 @@ export default function HubView({
                 onClick={() => onSelectTopic(topicForCategory(c).slug)}
                 onMouseEnter={onHoverStart}
                 onMouseLeave={onHoverEnd}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.06, y: -2, borderColor: `${color}99`, background: "rgba(255,255,255,0.11)" }}
                 whileTap={{ scale: 0.96 }}
-                className="rounded-full font-semibold flex items-center gap-2"
+                transition={{ type: "spring", stiffness: 320, damping: 20 }}
+                className="group rounded-full font-bold flex items-center gap-2.5"
                 style={{
-                  fontSize: 13,
-                  padding: "6px 16px 6px 6px",
+                  fontSize: 13.5,
+                  letterSpacing: "0.01em",
+                  padding: "7px 20px 7px 7px",
                   color: "white",
-                  background: "rgba(255,255,255,0.12)",
-                  border: "1px solid rgba(255,255,255,0.18)",
-                  backdropFilter: "blur(10px)",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.16)",
                   cursor: "pointer",
                 }}
               >
                 <span
-                  className="flex items-center justify-center rounded-md"
-                  style={{ width: 22, height: 22, background: color }}
+                  className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
+                  style={{ width: 26, height: 26, background: `linear-gradient(135deg, ${color}, ${color}cc)`, boxShadow: `0 4px 14px -4px ${color}99` }}
                 >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#050814" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#050814" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" />
                   </svg>
                 </span>
@@ -117,14 +141,18 @@ export default function HubView({
           })}
         </div>
 
-        <button
+        <motion.button
           onClick={onOpenAllTopics}
-          className="text-white/50 hover:text-white/90 font-medium mt-1"
-          style={{ fontSize: 12, background: "none", border: "none", cursor: "pointer" }}
+          whileHover={{ gap: 8 }}
+          className="flex items-center gap-1.5 font-semibold"
+          style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", background: "none", border: "none", cursor: "pointer", letterSpacing: "0.02em" }}
         >
           View all topics
-        </button>
-      </div>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </motion.button>
+      </motion.div>
     </div>
   );
 }
