@@ -31,11 +31,11 @@ export default function TopicPage({
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const touchStartX = useRef(0);
 
-  /* Paused by default on arrival — scrolling is what scrubs it forward (see the wheel
-     handler below), it doesn't free-run on its own. */
+  /* Autoplays and keeps running on arrival — scrolling still nudges currentTime forward
+     (see the wheel handler below) on top of the free-running loop. */
   useEffect(() => {
-    videoRef.current?.pause();
-  }, [videoRef]);
+    videoRef.current?.play().catch(() => {});
+  }, [videoRef, topic.slug]);
 
   /* Leftover trackpad/mouse-wheel momentum from the gesture that navigated here keeps
      firing wheel events for a bit after mount — without this grace window that momentum
@@ -121,7 +121,11 @@ export default function TopicPage({
             WorldExperience — it never unmounts here, so scrolling between topics keeps
             it advancing forward instead of restarting on every mount. */}
         <Image src={topic.image} alt={topic.title} fill sizes="100vw" className="object-cover opacity-0" priority />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 30%, rgba(0,0,0,0.6) 100%)` }} />
+        {/* Layered scrim: a left-to-right darken so the text block always sits on a dark
+            base regardless of what's playing behind it, plus the usual top/bottom fade —
+            strong enough to keep text readable over a moving video, not just a static image. */}
+        <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.22) 68%, rgba(0,0,0,0.05) 100%)` }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 28%, transparent 55%, rgba(0,0,0,0.7) 100%)` }} />
         <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 lg:px-14 pointer-events-none">
           <div className="flex gap-2 mb-5">
             {topic.tags.map((tag) => (
@@ -133,10 +137,10 @@ export default function TopicPage({
                   letterSpacing: "0.06em",
                   padding: "6px 14px",
                   color: "#ffffff",
-                  background: `${topic.from}40`,
+                  background: `${topic.from}55`,
                   border: `1.5px solid ${topic.from}`,
                   backdropFilter: "blur(6px)",
-                  textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+                  textShadow: "0 1px 4px rgba(0,0,0,0.7)",
                 }}
               >
                 {tag}
@@ -148,7 +152,14 @@ export default function TopicPage({
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, delay: 0.15, ease: SOFT_EASE }}
             className="text-white font-bold"
-            style={{ fontSize: "clamp(32px,5.5vw,64px)", letterSpacing: "-2px", lineHeight: 1.04, textTransform: "uppercase", maxWidth: 900 }}
+            style={{
+              fontSize: "clamp(32px,5.5vw,64px)",
+              letterSpacing: "-2px",
+              lineHeight: 1.04,
+              textTransform: "uppercase",
+              maxWidth: 900,
+              textShadow: "0 2px 6px rgba(0,0,0,0.9), 0 8px 30px rgba(0,0,0,0.75)",
+            }}
           >
             {topic.title}
           </motion.h1>
@@ -159,7 +170,7 @@ export default function TopicPage({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35, ease: SOFT_EASE }}
               className="font-medium"
-              style={{ fontSize: "clamp(18px,1.8vw,24px)", color: "#ffffff", textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
+              style={{ fontSize: "clamp(18px,1.8vw,24px)", color: "#ffffff", textShadow: "0 2px 6px rgba(0,0,0,0.9), 0 6px 20px rgba(0,0,0,0.7)" }}
             >
               {topic.headline}
             </motion.p>
@@ -169,7 +180,7 @@ export default function TopicPage({
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5, ease: SOFT_EASE }}
-                style={{ fontSize: "clamp(15px,1.3vw,18px)", color: "rgba(255,255,255,0.88)", lineHeight: 1.65, textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
+                style={{ fontSize: "clamp(15px,1.3vw,18px)", color: "rgba(255,255,255,0.92)", lineHeight: 1.65, textShadow: "0 2px 5px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.65)" }}
               >
                 {topic.body[0]}
               </motion.p>
@@ -181,7 +192,7 @@ export default function TopicPage({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7, ease: SOFT_EASE }}
             className="mt-10 text-white uppercase font-semibold flex items-center gap-2.5"
-            style={{ fontSize: 12.5, letterSpacing: "2.5px" }}
+            style={{ fontSize: 12.5, letterSpacing: "2.5px", textShadow: "0 1px 4px rgba(0,0,0,0.9), 0 4px 14px rgba(0,0,0,0.6)" }}
           >
             Scroll to Explore
             {isLast ? (

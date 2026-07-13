@@ -4,15 +4,19 @@ import { forwardRef, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 /* One persistent video layer shared across the entrance, hub, and every topic page —
-   it never unmounts on navigation, so playback keeps advancing forward through the
-   whole journey instead of each screen restarting its own copy from frame zero.
+   it stays mounted on navigation (only its source swaps) so playback keeps advancing
+   forward through the whole journey instead of each screen restarting from frame zero.
    Autoplays on the entrance screen, then keeps running forward underneath every
    subsequent screen (see WorldExperience for the per-view play/pause logic).
+
+   `src` is swapped per screen by the parent — entrance/hub use the shared brand loop,
+   each topic page gets its own clip. The element is keyed by src so the browser does a
+   clean reload instead of silently keeping the old decoded frames around.
 
    The wrapper also tracks the pointer and gives the video a subtle parallax
    tilt/pan so the background reads as interactive rather than a flat loop —
    it's scaled up slightly so the pan never reveals the video's edges. */
-const BackgroundVideo = forwardRef<HTMLVideoElement>((_props, ref) => {
+const BackgroundVideo = forwardRef<HTMLVideoElement, { src: string }>(({ src }, ref) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -37,6 +41,7 @@ const BackgroundVideo = forwardRef<HTMLVideoElement>((_props, ref) => {
   return (
     <div ref={wrapRef} className="fixed inset-0 z-0 overflow-hidden" style={{ perspective: 1000 }}>
       <motion.video
+        key={src}
         ref={ref}
         className="w-full h-full object-cover object-center"
         style={{
@@ -52,8 +57,7 @@ const BackgroundVideo = forwardRef<HTMLVideoElement>((_props, ref) => {
         playsInline
         preload="auto"
       >
-        <source src="/videos/video9.mp4" type="video/webm" />
-        <source src="/videos/video9.mp4" type="video/mp4" />
+        <source src={src} type="video/mp4" />
       </motion.video>
     </div>
   );

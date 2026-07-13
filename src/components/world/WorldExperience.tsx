@@ -30,24 +30,24 @@ export default function WorldExperience() {
     setView(slug);
   };
 
-  /* Autoplays on the entrance screen so the video is already moving when visitors land.
-     Everywhere else it's paused by default — the hub only plays it on hover, and topic
-     pages leave it paused too, but nudge currentTime forward on each scroll tick (see
-     TopicPage) so scrolling scrubs the same never-unmounted video ahead instead of it
-     free-running or restarting. */
+  /* Autoplays on the entrance screen and on every topic page so their videos are always
+     running. The hub is the one screen that stays paused by default and only plays on
+     hover (see hoverPlay/hoverPause below) — topic pages additionally nudge currentTime
+     forward on each scroll tick (see TopicPage) on top of the free-running loop. */
   useEffect(() => {
-    if (view === "entrance") videoRef.current?.play().catch(() => {});
-    else videoRef.current?.pause();
+    if (view === "hub") videoRef.current?.pause();
+    else videoRef.current?.play().catch(() => {});
   }, [view]);
 
   const hoverPlay = () => videoRef.current?.play().catch(() => {});
   const hoverPause = () => videoRef.current?.pause();
 
   const isSingleScreen = view === "entrance" || view === "hub";
+  const videoSrc = activeTopic ? activeTopic.video : "/videos/videos.mp4";
 
   return (
     <div className={`relative w-full bg-black ${isSingleScreen ? "h-[100svh] overflow-hidden" : ""}`}>
-      <BackgroundVideo ref={videoRef} />
+      <BackgroundVideo ref={videoRef} src={videoSrc} />
       {view === "entrance" ? (
         <EntranceScreen
           onExplore={() => {
