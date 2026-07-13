@@ -14,8 +14,13 @@ const fade = (delay = 0) => ({
 const SERVICES = ["Software Development","Digital Infrastructure","ERP Solutions","AI / Machine Learning","UI/UX Design","Cybersecurity / NOC/SOC","Cloud Services","Custom Product Development","Other"];
 const CONTACT_INFO = [
   { icon: "✉", label: "Email",    value: "contact@ivyleaguesolutions.com", href: "mailto:contact@ivyleaguesolutions.com" },
-  { icon: "☎", label: "Phone",    value: "+1 (800) 555-0100",              href: "tel:+18005550100" },
+  { icon: "☎", label: "Phone",    value: "+1 845 300 2429",                href: "https://wa.me/18453002429" },
   { icon: "◈", label: "Coverage", value: "Global Delivery",                href: null },
+];
+const OFFICES = [
+  { city: "Perth Amboy, USA",  address: "370 Federal Court, Perth Amboy, NJ 08861, USA" },
+  { city: "Dubai, UAE",        address: "912, 9th Floor, YES Business Tower, Al Barsha Road, Al Barsha 1, Dubai, UAE" },
+  { city: "Islamabad, Pakistan", address: "Corporate and Business Square, 1st/2nd Floor, Wazir Arcade, Park Ave, Block C, Gulberg Greens, Islamabad, 44000, Pakistan" },
 ];
 const QUICK_LINKS = [
   { label: "View Our Portfolio",   href: "/solutions" },
@@ -128,6 +133,18 @@ export default function ContactPage() {
                   </div>
                 ))}
               </div>
+              <div className="pt-6 mb-6" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+                <p className="text-white/40 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 10 }}>Our Offices</p>
+                <div className="flex flex-col gap-4">
+                  {OFFICES.map((o) => (
+                    <div key={o.city}>
+                      <p className="text-white font-semibold" style={{ fontSize: 13 }}>{o.city}</p>
+                      <p className="text-white/55" style={{ fontSize: 12.5, lineHeight: 1.55 }}>{o.address}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
                 <p className="text-white/40 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 10 }}>Quick Links</p>
                 <div className="flex flex-col gap-2">

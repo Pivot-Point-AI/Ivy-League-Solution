@@ -65,8 +65,13 @@ const organizationJsonLd = {
   description:
     "Ivy League Solutions delivers custom software development, enterprise IT, cloud, cybersecurity, and AI-powered solutions for businesses across the United States.",
   email: "contact@ivyleaguesolutions.com",
+  telephone: "+1-845-300-2429",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "370 Federal Court",
+    addressLocality: "Perth Amboy",
+    addressRegion: "NJ",
+    postalCode: "08861",
     addressCountry: "US",
   },
   sameAs: [],

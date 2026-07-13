@@ -225,6 +225,11 @@ export function SharedFooter() {
           <div className="flex flex-wrap items-center gap-1 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
             <a href="mailto:contact@ivyleaguesolutions.com" className="hover:text-white/70 transition-colors">contact@ivyleaguesolutions.com</a>
             <span className="mx-3">|</span>
+            <a href="https://wa.me/18453002429" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-white/70 transition-colors">
+              <Phone size={13} />
+              +1 845 300 2429
+            </a>
+            <span className="mx-3">|</span>
             <a href="/privacy-policy" className="hover:text-white/70 transition-colors">Privacy Policy</a>
             <span className="mx-3">|</span>
             <a href="/terms-of-service" className="hover:text-white/70 transition-colors">Terms of Service</a>
