@@ -74,7 +74,7 @@ const organizationJsonLd = {
     postalCode: "08861",
     addressCountry: "US",
   },
-  sameAs: [],
+  sameAs: ["https://www.linkedin.com/company/ivy-league-solutions"],
 };
 
 const websiteJsonLd = {

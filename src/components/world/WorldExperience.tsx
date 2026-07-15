@@ -12,6 +12,7 @@ import HubView from "./HubView";
 import ScrollIndicator from "./ScrollIndicator";
 import LandingPage from "@/components/HeroSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import FAQSection from "@/components/FAQSection";
 import GetInTouch from "@/components/Contact";
 import { SharedFooter } from "@/components/SharedNav";
 import { TOPICS } from "@/lib/worldTopics";
@@ -138,6 +139,7 @@ export default function WorldExperience() {
             <div className="relative bg-white">
               <LandingPage />
               <WhyChooseUs />
+              <FAQSection />
               <GetInTouch />
               <SharedFooter />
             </div>
