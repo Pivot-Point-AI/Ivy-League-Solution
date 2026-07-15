@@ -40,7 +40,7 @@ const FAQS = [
   },
   {
     q: "Where is Ivy League Solutions based?",
-    a: "Our headquarters is in Perth Amboy, New Jersey, and we serve clients across the United States with remote and on-site delivery.",
+    a: "Our headquarters is in Perth Amboy, New Jersey, with additional offices in Dubai, UAE and Islamabad, Pakistan — giving us global delivery with remote and on-site coverage across the United States and beyond.",
   },
   {
     q: "Do you offer ongoing support after launch?",
@@ -119,14 +119,14 @@ export default function FAQSection() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="max-w-[860px] mx-auto px-6 md:px-12">
-        <FadeUp className="text-center mb-12">
+        <FadeUp className="text-center mb-14">
           <p
-            className="font-semibold uppercase mb-2"
-            style={{ fontSize: 12, letterSpacing: "2.5px", background: "linear-gradient(90deg,#0891b2,#7c3aed)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            className="font-extrabold uppercase mb-4"
+            style={{ fontSize: 15, fontWeight: 800, letterSpacing: "3px", background: "linear-gradient(90deg,#0891b2,#7c3aed)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
           >
             Frequently Asked Questions
           </p>
-          <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3.5vw,40px)", letterSpacing: "-1px" }}>
+          <h2 className="text-[#0F172A] font-extrabold" style={{ fontSize: "clamp(34px,4.2vw,48px)", fontWeight: 800, letterSpacing: "-1.2px", lineHeight: 1.15 }}>
             Got Questions? We&apos;ve Got Answers.
           </h2>
         </FadeUp>

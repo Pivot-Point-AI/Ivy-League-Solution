@@ -1,0 +1,38 @@
+# Ivy League Solutions
+
+> Ivy League Solutions delivers custom software development, enterprise IT, cloud, cybersecurity, ERP, and AI solutions for businesses across the United States. Founded in 2015, headquartered in Perth Amboy, New Jersey, with additional offices in Dubai, UAE and Islamabad, Pakistan, and 250+ engineers delivering 200+ projects globally.
+
+Ivy League Solutions serves fintech and banking, healthcare, academia/EdTech, e-commerce, and general enterprise clients, with domain-specific compliance including HIPAA, FINTRAC, PSD2, PCI-DSS, SOC 2, and ISO 27001.
+
+## Company
+
+- [About](https://ivyleaguesolutions.com/about): Company history, leadership, tech stack, and major projects.
+- [Contact](https://ivyleaguesolutions.com/contact): Get in touch for a project consultation.
+- [Careers](https://ivyleaguesolutions.com/careers): 40+ open roles across engineering, AI, QA, security, and business analysis.
+
+## Services
+
+- [Software Development](https://ivyleaguesolutions.com/services/software): Custom web, mobile, and enterprise software.
+- [AI & Machine Learning](https://ivyleaguesolutions.com/services/ai): LLM integrations, fraud detection, predictive analytics, AI automation.
+- [Digital Commerce](https://ivyleaguesolutions.com/services/commerce): Headless and custom e-commerce platforms.
+- [App Modernization](https://ivyleaguesolutions.com/services/modernize): Legacy-to-cloud-native migration.
+- [UI/UX Design](https://ivyleaguesolutions.com/services/uiux): Research, prototyping, design systems.
+- [ERP Solutions](https://ivyleaguesolutions.com/services/erp): Microsoft Dynamics NAV, SAP, Oracle, and custom ERP.
+- [Mobile Banking](https://ivyleaguesolutions.com/services/banking): FINTRAC/PSD2-compliant banking and payment apps.
+- [Web & Full Stack](https://ivyleaguesolutions.com/services/web): Full-stack web engineering.
+- [Health Solutions](https://ivyleaguesolutions.com/services/health): HIPAA/HL7/FHIR-compliant healthcare software.
+- [Academia Solutions](https://ivyleaguesolutions.com/services/academia): LMS and EdTech platforms.
+- [Cybersecurity & SOC](https://ivyleaguesolutions.com/services/cybersecurity): 24/7 SOC monitoring, pentesting, Zero Trust.
+- [Cloud & DevOps](https://ivyleaguesolutions.com/services/cloud): CI/CD, infrastructure as code, container orchestration.
+- [Network Services](https://ivyleaguesolutions.com/services/network): Campus networking, SD-WAN, managed network services.
+- [Datacenter Services](https://ivyleaguesolutions.com/services/datacenter): Colocation, edge computing, hyperscale migration.
+- [Database Services](https://ivyleaguesolutions.com/services/database): Managed database design, migration, HA/DR.
+- [Backup & Disaster Recovery](https://ivyleaguesolutions.com/services/backup): Veeam and Zerto-based backup and DR.
+
+## Products
+
+- [Products overview](https://ivyleaguesolutions.com/products): Datum (live), IvyFlow, IvyShield, IvyERP (in development).
+
+## Work
+
+- [Solutions / Case Studies](https://ivyleaguesolutions.com/solutions): Real project case studies across fintech, healthcare, infrastructure, ERP, e-commerce, and academia.

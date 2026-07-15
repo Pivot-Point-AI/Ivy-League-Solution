@@ -74,6 +74,41 @@ const organizationJsonLd = {
     postalCode: "08861",
     addressCountry: "US",
   },
+  location: [
+    {
+      "@type": "Place",
+      name: "Ivy League Solutions — Perth Amboy, USA (HQ)",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "370 Federal Court",
+        addressLocality: "Perth Amboy",
+        addressRegion: "NJ",
+        postalCode: "08861",
+        addressCountry: "US",
+      },
+    },
+    {
+      "@type": "Place",
+      name: "Ivy League Solutions — Dubai, UAE",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "912, 9th Floor, YES Business Tower, Al Barsha Road, Al Barsha 1",
+        addressLocality: "Dubai",
+        addressCountry: "AE",
+      },
+    },
+    {
+      "@type": "Place",
+      name: "Ivy League Solutions — Islamabad, Pakistan",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Corporate and Business Square, 1st/2nd Floor, Wazir Arcade, Park Ave, Block C, Gulberg Greens",
+        addressLocality: "Islamabad",
+        postalCode: "44000",
+        addressCountry: "PK",
+      },
+    },
+  ],
   sameAs: ["https://www.linkedin.com/company/ivy-league-solutions"],
 };
 

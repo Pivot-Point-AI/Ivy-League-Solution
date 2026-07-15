@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { SharedNav, SharedFooter } from "@/components/SharedNav";
+import { FAQSectionBlock } from "@/components/FAQAccordion";
 import Link from "next/link";
 
 const fade = (delay = 0) => ({
@@ -297,6 +298,23 @@ const LEADERSHIP = [
   { name: "Engineering Team", role: "250+ Engineers Globally", bio: "Distributed talent across South Asia, UAE, and the Gulf — software, infrastructure, AI/ML, UI/UX, and cybersecurity.", initials: "ET", tags: ["Software", "Infrastructure", "AI/ML", "UI/UX", "Cybersecurity"] },
 ];
 
+const FAQS = [
+  { q: "When was Ivy League Solutions founded?", a: "Ivy League Solutions was founded in 2015 and has since delivered 200+ projects with a team of 250+ engineers and designers." },
+  { q: "Where is Ivy League Solutions based and who do you serve?", a: "We're headquartered in Perth Amboy, New Jersey, with additional offices in Dubai, UAE and Islamabad, Pakistan, serving clients globally across fintech, healthcare, government, and EdTech." },
+  { q: "What technologies does your team specialize in?", a: "Our team works across .NET Core, React, Next.js, Node.js, Python, Java, Kotlin, Swift, Flutter, AI/ML, and cloud platforms including AWS and Azure, plus Docker and Kubernetes." },
+  { q: "What are some of your major projects?", a: "Notable projects include Zindigi (digital wallet and mobile banking), G-Tag (national e-toll system), BankIslami's internet banking platform, and a HIPAA-compliant clinical AI documentation platform." },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function AboutPage() {
   const [activeProject, setActiveProject] = useState("All");
 
@@ -306,6 +324,10 @@ export default function AboutPage() {
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SharedNav />
 
       {/* Hero */}
@@ -505,6 +527,19 @@ export default function AboutPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-[#F8FAFF]" style={{ paddingTop: 100, paddingBottom: 100 }}>
+        <div className="max-w-[820px] mx-auto px-6 sm:px-10 lg:px-14">
+          <FAQSectionBlock
+            eyebrow="FAQ"
+            title="Want to Know More About Us?"
+            subtitle="Answers to the questions we hear most about our history, team, and where we operate."
+            items={FAQS}
+            variant="light"
+          />
         </div>
       </section>
 

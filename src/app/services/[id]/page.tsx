@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SharedNav, SharedFooter } from "@/components/SharedNav";
+import { FAQSectionBlock } from "@/components/FAQAccordion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -20,6 +21,7 @@ const SERVICE_DETAILS: Record<string, {
   highlights: { title: string; desc: string }[];
   tech: string[];
   cat: string;
+  faqs: { q: string; a: string }[];
 }> = {
   software: {
     title: "Software Development",
@@ -33,6 +35,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["React", "Next.js", "Node.js", "Python", ".NET", "PostgreSQL", "Docker"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "What technologies do you use for custom software development?", a: "We build primarily with React, Next.js, Node.js, Python, and .NET, backed by PostgreSQL and containerised with Docker — selected per project based on scale and integration needs." },
+      { q: "Do you build both web and mobile applications?", a: "Yes. We deliver full-stack web applications and native or cross-platform mobile apps using React Native, all from a single engineering team." },
+      { q: "How long does a custom software project take?", a: "Timelines depend on scope, but most engagements run in agile sprints with milestone reviews from architecture through QA sign-off and post-launch support." },
+    ],
   },
   ai: {
     title: "AI & Machine Learning",
@@ -46,6 +53,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Python", "TensorFlow", "PyTorch", "LangChain", "MLflow", "AWS SageMaker", "OpenAI API"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Do you build custom AI and LLM integrations?", a: "Yes. We build custom GPT-4 and Claude integrations, RAG pipelines, and fine-tuned models tailored to domain-specific use cases." },
+      { q: "Can you build fraud detection for fintech applications?", a: "Yes. We build real-time ML models for transaction risk scoring, already used by fintech clients processing millions of events daily." },
+      { q: "What AI infrastructure and tools do you use?", a: "We work with Python, TensorFlow, PyTorch, LangChain, MLflow, AWS SageMaker, and the OpenAI API, backed by MLOps pipelines for production reliability." },
+    ],
   },
   commerce: {
     title: "Digital Commerce",
@@ -59,6 +71,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Shopify", "WooCommerce", "Next.js", "Stripe", "Algolia", "PIM Systems"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Do you build on Shopify or fully custom commerce platforms?", a: "Both. We build headless Shopify and WooCommerce storefronts as well as fully bespoke commerce platforms with custom checkout, subscriptions, and B2B pricing." },
+      { q: "Can you handle PCI-DSS compliant payments?", a: "Yes. We integrate Stripe, PayPal, and bank-grade payment gateways with fraud screening and PCI-DSS compliance built in." },
+      { q: "Do you offer product catalogue and inventory management?", a: "Yes, through PIM and catalogue systems supporting multi-channel syndication, variant management, and bulk import/export." },
+    ],
   },
   modernize: {
     title: "App Modernization",
@@ -72,6 +89,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Docker", "Kubernetes", "Terraform", "AWS", "Azure", "Kafka", "Microservices"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Can you modernise a legacy monolith without downtime?", a: "Yes. We use a phased approach — legacy assessment, microservices migration, and containerisation — that ensures data and business continuity at every step." },
+      { q: "Do you migrate systems to AWS or Azure?", a: "Yes. We handle lift-and-shift cloud migration to AWS or Azure with infrastructure-as-code, cost optimisation, and security hardening." },
+      { q: "How do you break down a monolith into microservices?", a: "We use domain-driven design and event sourcing to split monoliths into independently deployable services with minimal disruption." },
+    ],
   },
   uiux: {
     title: "UI/UX Design",
@@ -85,6 +107,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Figma", "Adobe XD", "Zeroheight", "Hotjar", "UserTesting", "Lottie"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Do you offer user research as part of design?", a: "Yes. Every design engagement starts with interviews, usability testing, and analytics analysis to surface real user pain points before design begins." },
+      { q: "Can you build a design system for our product?", a: "Yes. We build scalable component libraries in Figma with developer-ready tokens, spacing, typography, and colour guidelines." },
+      { q: "Do you design prototypes before development starts?", a: "Yes. We produce low and high-fidelity wireframes and clickable Figma prototypes for stakeholder sign-off before any code is written." },
+    ],
   },
   erp: {
     title: "ERP Solutions",
@@ -98,6 +125,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Microsoft NAV", "SAP S/4HANA", "Oracle Cloud", "Business Central", "Power BI"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Which ERP platforms do you implement?", a: "We implement and customise Microsoft Dynamics NAV/Business Central, SAP S/4HANA and Business One, and Oracle Cloud ERP, as well as fully custom ERP platforms." },
+      { q: "Can you build a custom ERP if off-the-shelf doesn't fit?", a: "Yes. When off-the-shelf products can't meet your requirements, we build bespoke ERP platforms from the ground up." },
+      { q: "Do you handle data migration during ERP implementation?", a: "Yes. Data migration, module configuration, and user training are included as part of every ERP implementation lifecycle." },
+    ],
   },
   banking: {
     title: "Mobile Banking",
@@ -111,6 +143,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["React Native", "iOS", "Android", "Plaid", "Stripe", "Payment APIs", "Biometrics"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Is your mobile banking software FINTRAC and PSD2 compliant?", a: "Yes. Every mobile banking and payment platform we build includes KYC/AML workflows, FINTRAC reporting, and PSD2 open banking integrations built to regulatory specifications." },
+      { q: "Do you support biometric authentication in banking apps?", a: "Yes. Our iOS and Android banking apps include biometric authentication alongside real-time notifications and account management." },
+      { q: "Can you build P2P transfers and multi-currency wallets?", a: "Yes. We build P2P transfers, bill payments, and multi-currency wallets on certified payment rails." },
+    ],
   },
   web: {
     title: "Web & Full Stack",
@@ -124,6 +161,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["React", "Vue.js", "Node.js", "PostgreSQL", "MongoDB", "Redis", "GraphQL"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "What frontend frameworks do you build with?", a: "We build with React and Vue.js, using server-side rendering and static generation to optimise Core Web Vitals scores." },
+      { q: "Do you build both REST and GraphQL APIs?", a: "Yes. We build RESTful and GraphQL APIs, microservices, and worker services on Node.js, Python, or .NET." },
+      { q: "Do you include monitoring and observability with web development?", a: "Yes. APM integration, distributed tracing, structured logging, and alerting are included so issues are caught before users notice." },
+    ],
   },
   health: {
     title: "Health Solutions",
@@ -137,6 +179,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["FHIR R4", "HL7", "HIPAA", "Epic SDK", "AWS HealthLake", "React Native"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Is your healthcare software HIPAA compliant?", a: "Yes. Every platform we build for providers, payers, and healthtech startups is engineered to HIPAA and HL7/FHIR standards." },
+      { q: "Can you integrate with Epic or Cerner EHR systems?", a: "Yes. We build certified HL7 FHIR R4 integrations with Epic, Cerner, and other EHR vendors for seamless clinical data exchange." },
+      { q: "Do you build telehealth and patient portal platforms?", a: "Yes. We build secure patient portals with appointment booking, results viewing, and secure messaging, plus video consultation and remote monitoring telehealth platforms." },
+    ],
   },
   academia: {
     title: "Academia Solutions",
@@ -150,6 +197,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["LMS", "SCORM", "xAPI", "AI Tutoring", "Canvas LMS", "Moodle", "Analytics"],
     cat: "Software & Digital",
+    faqs: [
+      { q: "Do you build custom learning management systems?", a: "Yes. We build custom LMS platforms with course authoring, enrolment management, and progress analytics for universities, schools, and EdTech companies." },
+      { q: "Can your assessment platforms adapt to student performance?", a: "Yes. Our AI-powered adaptive assessment engines adjust difficulty based on learner performance to improve outcomes." },
+      { q: "Do you integrate with existing SIS platforms like Canvas or Moodle?", a: "Yes. Our institutional management tools for timetabling, enrolment, and fee management integrate with existing SIS platforms including Canvas and Moodle." },
+    ],
   },
   cybersecurity: {
     title: "Cybersecurity & SOC",
@@ -163,6 +215,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["SOC", "Fortinet", "Splunk", "SIEM", "Zero Trust", "Pentest", "ISO 27001"],
     cat: "Infrastructure",
+    faqs: [
+      { q: "Do you offer 24/7 security monitoring?", a: "Yes. Our Security Operations Centre provides round-the-clock, SIEM-powered threat detection, alert triage, and incident escalation by certified analysts." },
+      { q: "Do you perform penetration testing?", a: "Yes. We offer CREST-aligned penetration testing across web, mobile, API, network, and cloud environments with actionable remediation reports." },
+      { q: "Can you help with SOC 2 or ISO 27001 compliance?", a: "Yes. We automate evidence collection and control mapping for ISO 27001, SOC 2, PCI-DSS, and GDPR compliance programmes." },
+    ],
   },
   cloud: {
     title: "Cloud & DevOps",
@@ -176,6 +233,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "GitHub Actions"],
     cat: "Infrastructure",
+    faqs: [
+      { q: "Which cloud providers do you support?", a: "We design, build, and operate infrastructure across AWS, Azure, and GCP, using Terraform and CloudFormation for reproducible, version-controlled deployments." },
+      { q: "Do you set up CI/CD pipelines?", a: "Yes. We build automated build, test, and deployment pipelines on GitHub Actions, GitLab CI, and Jenkins with quality gates." },
+      { q: "Can you help reduce our cloud costs?", a: "Yes. Our FinOps practice covers cloud cost optimisation, right-sizing recommendations, and full-stack observability with Datadog or Grafana." },
+    ],
   },
   network: {
     title: "Network Services",
@@ -189,6 +251,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Cisco", "Meraki", "SD-WAN", "Fortinet", "MPLS", "BGP", "OSPF"],
     cat: "Infrastructure",
+    faqs: [
+      { q: "Do you design and deploy enterprise networks?", a: "Yes. Our certified network engineers cover campus, WAN, and SD-WAN design and deployment for multi-site enterprise organisations." },
+      { q: "Can you deploy SD-WAN across multiple sites?", a: "Yes. Our SD-WAN deployments reduce costs, improve reliability, and give centralised visibility across all sites." },
+      { q: "Do you offer ongoing network management?", a: "Yes. We provide managed network services including monitoring, incident management, and SLA-backed support for your network estate." },
+    ],
   },
   datacenter: {
     title: "Datacenter Services",
@@ -202,6 +269,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Colocation", "Edge Computing", "Hyperscale", "Power & Cooling", "Remote Hands"],
     cat: "Infrastructure",
+    faqs: [
+      { q: "Do you offer colocation services?", a: "Yes. We provide managed colocation with 24/7 remote hands, SLA-backed power and connectivity, and cross-connect provisioning." },
+      { q: "Can you help migrate to hyperscale cloud providers?", a: "Yes. We manage migration of on-premises workloads to AWS, Azure, or Google Cloud hyperscale environments." },
+      { q: "Do you support edge computing deployments?", a: "Yes. We deploy micro-datacenter and edge nodes for low-latency workloads in manufacturing, retail, and public sector environments." },
+    ],
   },
   database: {
     title: "Database Services",
@@ -215,6 +287,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Oracle", "SQL Server", "PostgreSQL", "MySQL", "Redis", "MongoDB", "HA/DR"],
     cat: "Infrastructure",
+    faqs: [
+      { q: "Which databases do you provide managed services for?", a: "We provide managed database services for Oracle, SQL Server, PostgreSQL, and MySQL, covering design, migration, and ongoing DBA support." },
+      { q: "Can you migrate databases with zero downtime?", a: "Yes. We perform zero-downtime migrations across platforms, versions, and cloud environments with full data validation." },
+      { q: "Do you offer disaster recovery for databases?", a: "Yes. We configure always-on availability groups and replication, with tested DR plans meeting your RTO and RPO commitments." },
+    ],
   },
   backup: {
     title: "Backup & Disaster Recovery",
@@ -228,6 +305,11 @@ const SERVICE_DETAILS: Record<string, {
     ],
     tech: ["Veeam", "Zerto", "AWS Backup", "Azure Site Recovery", "Immutable Storage"],
     cat: "Infrastructure",
+    faqs: [
+      { q: "Which backup platforms do you use?", a: "We design and manage backup and disaster recovery using Veeam and Zerto, including immutable backups for ransomware protection." },
+      { q: "Do you actually test disaster recovery failovers?", a: "Yes. We run regular scheduled DR tests with documented results, so recovery is proven to work before it's ever needed." },
+      { q: "Can you audit our existing backup setup?", a: "Yes. We perform backup environment health-checks, gap analysis, and remediation planning to close coverage gaps." },
+    ],
   },
 };
 
@@ -235,6 +317,16 @@ export default function ServiceDetailPage() {
   const params = useParams();
   const id = typeof params.id === "string" ? params.id : "";
   const svc = SERVICE_DETAILS[id];
+
+  const faqJsonLd = svc && {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: svc.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   if (!svc) {
     return (
@@ -251,6 +343,10 @@ export default function ServiceDetailPage() {
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SharedNav />
 
       {/* Hero */}
@@ -313,6 +409,19 @@ export default function ServiceDetailPage() {
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
+        <div className="max-w-[820px] mx-auto px-6 sm:px-10 lg:px-14">
+          <FAQSectionBlock
+            eyebrow="FAQ"
+            title={<>Questions About {svc.title}?</>}
+            subtitle="Everything you need to know before getting started — reach out if you don't see your question here."
+            items={svc.faqs}
+            variant="gray"
+          />
         </div>
       </section>
 

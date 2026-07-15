@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FAQSectionBlock } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
   title: "Products — Ivy League Solutions",
@@ -94,6 +95,23 @@ const products = [
   },
 ];
 
+const faqs = [
+  { q: "Is Datum available to use now?", a: "Yes. Datum is live and available now — a spreadsheet intelligence platform that's Excel and OpenXML compatible with enterprise-grade security, real-time collaboration, and built-in document management." },
+  { q: "When will IvyFlow, IvyShield, and IvyERP launch?", a: "IvyFlow (workflow automation), IvyShield (cybersecurity intelligence), and IvyERP (modular ERP) are in active development. Join the waitlist for early access, priority onboarding, and launch pricing." },
+  { q: "Are Ivy League Solutions' products compliant with industry standards?", a: "Yes. Our products are built with SOC 2, HIPAA, GDPR, and PCI-DSS standards baked into the architecture from day one, not added as an afterthought." },
+  { q: "Can Ivy League Solutions build a custom product for us?", a: "Yes. Alongside our own product line, we build custom software products from concept to market-ready launch for startups and enterprises." },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 const whyBuild = [
   { icon: "◈", title: "Built from Real Gaps",      desc: "Every product was conceived after years of enterprise implementations — solving the exact problems we kept encountering in the field." },
   { icon: "✦", title: "AI-Native from Day One",    desc: "Not bolted-on AI. Our products are architected with machine learning and automation as foundational layers, not afterthoughts." },
@@ -108,6 +126,10 @@ export default function ProductsPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* ── 1. HERO ──────────────────────────────────────── */}
       <section className="page-hero" style={{ paddingBottom: "clamp(48px,6vw,96px)" }}>
         {/* Rings */}
@@ -242,6 +264,19 @@ export default function ProductsPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── 4b. FAQ ───────────────────────────────────────── */}
+      <section className="page-section page-section-white">
+        <div className="page-inner" style={{ maxWidth: 820 }}>
+          <FAQSectionBlock
+            eyebrow="FAQ"
+            title="Have Questions About Our Products?"
+            subtitle="Everything you need to know about what's live, what's coming, and how it fits your stack."
+            items={faqs}
+            variant="gray"
+          />
         </div>
       </section>
 

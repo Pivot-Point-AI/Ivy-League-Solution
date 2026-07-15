@@ -13,7 +13,9 @@
       "PowerShell(Get-ChildItem -Path \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\src\" -Recurse | Where-Object { $_.Extension -match '\\\\.\\(tsx|ts\\)$' } | Select-Object Name | Get-Unique -AsString | Sort-Object)",
       "Bash(mkdir \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\src\\\\app\\\\services\\\\[id]\")",
       "Bash(git checkout *)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(grep -n \"svc.faqs\\\\|Common Questions\\\\|/\\\\* FAQ \\\\*/\" \"src/app/services/[id]/page.tsx\")",
+      "Bash(grep -n \"^h2\\\\|h2 {\\\\|h2,\\\\|important\" src/app/globals.css)"
     ],
     "additionalDirectories": [
       "d:\\ivy-league-solutions\\ivy-league-solutions-v2\\ivy-league-solutions\\src\\app\\services"

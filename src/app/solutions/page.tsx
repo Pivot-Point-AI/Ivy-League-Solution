@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { SharedNav, SharedFooter } from "@/components/SharedNav";
+import { FAQSectionBlock } from "@/components/FAQAccordion";
 import Link from "next/link";
 
 const fade = (delay = 0) => ({
@@ -157,12 +158,33 @@ const PROJECTS = [
 
 const CATS = ["All", "Fintech", "Healthcare", "Infrastructure", "ERP", "E-Commerce", "Academia"];
 
+const FAQS = [
+  { q: "What industries has Ivy League Solutions delivered projects for?", a: "We've delivered projects across fintech and banking, healthcare, infrastructure, ERP, e-commerce, and academia — with 200+ projects completed and a 98% client satisfaction rate." },
+  { q: "Can you share examples of measurable results you've delivered?", a: "Yes. Examples include a 94% accurate AI credit risk engine, 60% less admin time for clinicians using AI-powered clinical notes, and 99.9% uptime after a database overhaul." },
+  { q: "Have you worked on large-scale infrastructure projects?", a: "Yes. We've deployed a 50-site campus network with centralised management and delivered enterprise database overhauls with 99.9% uptime across multiple locations." },
+  { q: "Do you build ERP systems for specific industries like mining or property management?", a: "Yes. We've implemented Microsoft NAV for a mining operations company across multiple sites and built a custom residential management platform serving 10,000+ homes." },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function SolutionsPage() {
   const [active, setActive] = useState("All");
   const filtered = active === "All" ? PROJECTS : PROJECTS.filter(p => p.cat === active);
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SharedNav />
 
       {/* Hero */}
@@ -285,6 +307,19 @@ export default function SolutionsPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
+        <div className="max-w-[820px] mx-auto px-6 sm:px-10 lg:px-14">
+          <FAQSectionBlock
+            eyebrow="FAQ"
+            title="Curious How We Deliver Results?"
+            subtitle="A few common questions about the industries we serve and the projects we've shipped."
+            items={FAQS}
+            variant="gray"
+          />
         </div>
       </section>
 

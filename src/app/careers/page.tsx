@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SharedNav, SharedFooter } from "@/components/SharedNav";
+import { FAQSectionBlock } from "@/components/FAQAccordion";
 import {
   Briefcase, MapPin, Clock, ChevronRight, ChevronLeft, Search, X,
   TrendingUp, Users, GraduationCap, Building2,
@@ -81,6 +82,23 @@ const JOBS: Job[] = [
   { id:39, title:"UI/UX Designer",                     dept:"Design & UX",                  location:"Remote",         type:"Full-time", level:"Mid",    icon:PenTool,           tags:["Figma","User Research","Design Systems"] },
   { id:40, title:"IT Support Specialist",              dept:"IT Support",                   location:"Dubai",          type:"Full-time", level:"Junior", icon:Headphones,        tags:["Helpdesk","Windows","Active Directory"] },
 ];
+
+const FAQS = [
+  { q: "How many open positions does Ivy League Solutions have?", a: "We currently have 40+ open positions across 12 departments including Developers, AI Engineers, QA Engineers, and Network & Security Engineers, hiring globally with roles in Dubai, Lahore, Karachi, and remote." },
+  { q: "Do you offer remote work options?", a: "Yes. Many of our roles across departments — including engineering, AI, QA, and business analysis — are fully remote or hybrid, alongside on-site positions in Dubai and Pakistan." },
+  { q: "Do you hire junior developers or offer internships?", a: "Yes. We offer paid internships with mentorship from senior engineers, and have junior-level openings across Developers, Database Engineers, QA, and Business Analyst tracks." },
+  { q: "How do I apply for a role?", a: "Search or filter open roles on our careers page, click a listing to expand it, and use Apply Now to submit your CV. If nothing fits, you can submit a general application and we'll reach out when a matching role opens." },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 const DEPTS  = ["All", ...Array.from(new Set(JOBS.map(j => j.dept)))];
 const LEVELS = ["All Levels", "Junior", "Mid", "Senior", "Lead"];
@@ -380,6 +398,10 @@ export default function CareersPage() {
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SharedNav />
 
       {/* ── Apply Modal ── */}
@@ -591,6 +613,19 @@ export default function CareersPage() {
               </button>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
+        <div className="max-w-[820px] mx-auto px-6 sm:px-10 lg:px-14">
+          <FAQSectionBlock
+            eyebrow="FAQ"
+            title="Thinking About Joining Us?"
+            subtitle="Here's what candidates usually want to know before applying."
+            items={FAQS}
+            variant="gray"
+          />
         </div>
       </section>
 
