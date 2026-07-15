@@ -282,27 +282,27 @@ export default function AIPage() {
       <section id="capabilities" className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>What We Build</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>What We Build</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>AI Capabilities</h2>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {CAPABILITIES.map((c, i) => (
               <motion.div key={i} id={c.id} {...fade(i * 0.08)} whileHover={{ y: -4 }} transition={{ duration: 0.25 }}
-                className="rounded-2xl p-8 flex flex-col h-full" style={{ background: i % 2 === 0 ? "linear-gradient(145deg,#F0F4FF,#fff)" : "#fff", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(37,99,255,0.06)", scrollMarginTop: 100 }}>
+                className="rounded-2xl p-8 flex flex-col h-full" style={{ background: i % 2 === 0 ? "linear-gradient(145deg,#F0F4FF,#fff)" : "#fff", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(34,211,238,0.06)", scrollMarginTop: 100 }}>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-2xl">{c.icon}</span>
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{c.tag}</span>
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#22d3ee" }}>{c.tag}</span>
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 20 }}>{c.headline}</h3>
                 <p className="text-[#64748B] leading-relaxed mb-5" style={{ fontSize: 14, minHeight: 66 }}>{c.desc}</p>
                 <div className="rounded-xl p-4 mb-5" style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)" }}>
-                  <span className="font-extrabold text-[#2563FF]" style={{ fontSize: 22 }}>{c.stat.v}</span>
+                  <span className="font-extrabold text-[#22d3ee]" style={{ fontSize: 22 }}>{c.stat.v}</span>
                   <span className="text-[#64748B] ml-2" style={{ fontSize: 13 }}>{c.stat.l}</span>
                 </div>
                 <ul className="space-y-2 mt-auto">
                   {c.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm text-[#475569]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF] mt-1.5 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] mt-1.5 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -316,11 +316,11 @@ export default function AIPage() {
       {/* Connector — visually ties Capabilities into the Results they produce */}
       <div className="relative z-10" style={{ height: 0 }}>
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center" style={{ top: -55 }}>
-          <div style={{ width: 2, height: 46, background: "linear-gradient(180deg, transparent, #2563FF)" }} />
-          <div className="rounded-full flex items-center justify-center flex-shrink-0" style={{ width: 36, height: 36, background: "linear-gradient(135deg,#2563FF,#a78bfa)", boxShadow: "0 6px 20px rgba(37,99,255,0.35)" }}>
+          <div style={{ width: 2, height: 46, background: "linear-gradient(180deg, transparent, #22d3ee)" }} />
+          <div className="rounded-full flex items-center justify-center flex-shrink-0" style={{ width: 36, height: 36, background: "linear-gradient(135deg,#22d3ee,#a78bfa)", boxShadow: "0 6px 20px rgba(34,211,238,0.35)" }}>
             <ArrowDown size={16} color="#fff" />
           </div>
-          <div style={{ width: 2, height: 46, background: "linear-gradient(180deg, #2563FF, transparent)" }} />
+          <div style={{ width: 2, height: 46, background: "linear-gradient(180deg, #22d3ee, transparent)" }} />
         </div>
       </div>
 
@@ -328,20 +328,20 @@ export default function AIPage() {
       <section className="bg-[#F8FAFF]" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Proven Results</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Proven Results</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>AI in Production</h2>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {RESULTS.map((r, i) => {
               const outcomeRest = r.outcome.replace(r.metric, "").trim().replace(/^\w/, (c) => c.toUpperCase());
               return (
-                <motion.div key={i} {...fade(i * 0.1)} whileHover={{ y: -8, boxShadow: "0 24px 56px rgba(37,99,255,0.14)" }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                <motion.div key={i} {...fade(i * 0.1)} whileHover={{ y: -8, boxShadow: "0 24px 56px rgba(34,211,238,0.14)" }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   className="relative bg-white rounded-2xl p-7 pl-8 overflow-hidden" style={{ boxShadow: "0 4px 20px rgba(15,23,42,0.07)", border: "1px solid #F1F5F9" }}>
-                  <span className="absolute left-0 top-0 bottom-0" style={{ width: 4, background: "linear-gradient(180deg,#2563FF,#a78bfa)" }} />
+                  <span className="absolute left-0 top-0 bottom-0" style={{ width: 4, background: "linear-gradient(180deg,#22d3ee,#a78bfa)" }} />
                   <div className="flex items-center justify-between mb-5">
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{r.tag}</span>
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#22d3ee" }}>{r.tag}</span>
                     <div className="text-right">
-                      <p className="font-extrabold text-[#2563FF]" style={{ fontSize: 28 }}>{r.metric}</p>
+                      <p className="font-extrabold text-[#22d3ee]" style={{ fontSize: 28 }}>{r.metric}</p>
                       <p className="text-[#94A3B8]" style={{ fontSize: 11 }}>{r.metricLabel}</p>
                     </div>
                   </div>
@@ -359,13 +359,13 @@ export default function AIPage() {
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>How We Work</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>How We Work</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Our AI Delivery Process</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {PROCESS.map((p, i) => (
               <motion.div key={i} {...fade(i * 0.07)} className="rounded-2xl p-7" style={{ background: "linear-gradient(145deg,#F0F4FF,#fff)", border: "1.5px solid #E0E7FF" }}>
-                <p className="font-extrabold text-[#2563FF] mb-3" style={{ fontSize: 13, letterSpacing: "2px" }}>{p.n}</p>
+                <p className="font-extrabold text-[#22d3ee] mb-3" style={{ fontSize: 13, letterSpacing: "2px" }}>{p.n}</p>
                 <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 17 }}>{p.t}</h3>
                 <p className="text-[#64748B] leading-relaxed" style={{ fontSize: 14 }}>{p.d}</p>
               </motion.div>
@@ -375,7 +375,7 @@ export default function AIPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#2563FF 100%)" }}>
+      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 40%,#22d3ee 100%)" }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
           <motion.h2 {...fade()} className="text-white font-bold mb-4" style={{ fontSize: "clamp(28px,3vw,42px)", letterSpacing: "-0.5px" }}>Ready to Deploy AI in Production?</motion.h2>
           <motion.p {...fade(0.1)} className="text-white/70 mb-8 mx-auto" style={{ fontSize: 16, maxWidth: 460 }}>Start with a 2-week discovery sprint. No long contracts, just results.</motion.p>

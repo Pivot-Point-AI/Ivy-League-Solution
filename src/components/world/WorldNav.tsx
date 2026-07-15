@@ -15,14 +15,10 @@ const NAV_LINKS = [
 ];
 
 export default function WorldNav({
-  showBack,
-  onBack,
   onToggleTopics,
   topicsOpen,
   onLogoClick,
 }: {
-  showBack: boolean;
-  onBack: () => void;
   onToggleTopics: () => void;
   topicsOpen: boolean;
   onLogoClick: () => void;
@@ -35,20 +31,6 @@ export default function WorldNav({
       style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 70%, transparent 100%)" }}
     >
       <div className="flex items-center gap-3 ml-1 sm:ml-4">
-        {showBack && (
-          <motion.button
-            onClick={onBack}
-            aria-label="Go back"
-            whileHover={{ scale: 1.06 }}
-            whileTap={{ scale: 0.94 }}
-            className="flex items-center justify-center rounded-full shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22d3ee]"
-            style={{ width: 44, height: 44, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(10px)", cursor: "pointer" }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </motion.button>
-        )}
         <button onClick={onLogoClick} aria-label="Go to entrance" style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
           <Image src="/logo-dark.webp" alt="Ivy League Solutions" width={64} height={74} className="object-contain h-16 sm:h-[74px] w-auto" />
         </button>

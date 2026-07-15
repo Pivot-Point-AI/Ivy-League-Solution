@@ -1,14 +1,41 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SOFT_EASE } from "@/lib/scrollMotion";
+import ScrollIndicator from "./ScrollIndicator";
+
+const SCROLL_THRESHOLD = 60;
 
 export default function EntranceScreen({ onExplore }: { onExplore: () => void }) {
   const [demoOpen, setDemoOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const accumulatedRef = useRef(0);
+  const advancedRef = useRef(false);
+
+  /* Scrolling down on the entrance screen advances straight into the hub, mirroring
+     the scroll-to-navigate behavior used between topic pages further into the site. */
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (e.deltaY <= 0 || advancedRef.current) return;
+      e.preventDefault();
+
+      accumulatedRef.current += e.deltaY;
+      if (accumulatedRef.current < SCROLL_THRESHOLD) return;
+
+      advancedRef.current = true;
+      onExplore();
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [onExplore]);
 
   return (
-    <div className="relative w-full h-[100svh] overflow-hidden flex items-center justify-center">
+    <div ref={rootRef} className="relative w-full min-h-[100svh] flex items-center justify-center">
       {/* Background video is the shared, persistent <BackgroundVideo> mounted once in
           WorldExperience — this screen only lays gradients and copy on top of it. */}
 
@@ -175,6 +202,8 @@ export default function EntranceScreen({ onExplore }: { onExplore: () => void })
 
       <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
 
+      <ScrollIndicator onClick={onExplore} />
+
       <div
         className="absolute bottom-0 left-0 right-0 z-[6] pointer-events-none"
         style={{ height: 140, background: "linear-gradient(180deg, transparent 0%, rgba(2,5,16,0.55) 55%, rgba(2,5,16,0.8) 100%)" }}
@@ -187,10 +216,16 @@ export default function EntranceScreen({ onExplore }: { onExplore: () => void })
         className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-2 px-6 text-center"
       >
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5">
-          {["Privacy Rights & Requests", "Legal", "Data Policy", "Code of Conduct", "Suppliers", "Your Privacy Choices"].map((label) => (
+          {[
+            { label: "About", href: "/about" },
+            { label: "Careers", href: "/careers" },
+            { label: "Contact", href: "/contact" },
+            { label: "Privacy Policy", href: "/privacy-policy" },
+            { label: "Terms of Service", href: "/terms-of-service" },
+          ].map(({ label, href }) => (
             <a
               key={label}
-              href="#"
+              href={href}
               className="text-white hover:text-[#22d3ee] transition-colors font-semibold"
               style={{ fontSize: 12.5, textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}
             >

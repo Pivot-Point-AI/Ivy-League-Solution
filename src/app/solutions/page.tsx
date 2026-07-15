@@ -14,7 +14,7 @@ const fade = (delay = 0) => ({
 
 /* Category colour map */
 const CAT_COLORS: Record<string, { bg: string; text: string }> = {
-  Fintech:        { bg: "#EFF6FF", text: "#2563FF" },
+  Fintech:        { bg: "#EFF6FF", text: "#22d3ee" },
   Healthcare:     { bg: "#F0FDF4", text: "#16A34A" },
   Infrastructure: { bg: "#FFF7ED", text: "#EA580C" },
   ERP:            { bg: "#FAF5FF", text: "#7C3AED" },
@@ -166,7 +166,7 @@ export default function SolutionsPage() {
       <SharedNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 90, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
+      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 90, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 35%,#0f1b2e 65%,#22d3ee 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.05]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
           <motion.div {...fade(0)} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
@@ -203,10 +203,10 @@ export default function SolutionsPage() {
               <button key={c} onClick={() => setActive(c)}
                 className="px-5 py-2 rounded-full font-semibold text-sm transition-all"
                 style={{
-                  background: active === c ? "linear-gradient(135deg,#2F6BFF,#2563FF)" : "#fff",
+                  background: active === c ? "linear-gradient(135deg,#22d3ee,#22d3ee)" : "#fff",
                   color: active === c ? "#fff" : "#64748B",
                   border: active === c ? "none" : "1.5px solid #E2E8F0",
-                  boxShadow: active === c ? "0 4px 16px rgba(37,99,255,0.3)" : "none",
+                  boxShadow: active === c ? "0 4px 16px rgba(34,211,238,0.3)" : "none",
                   cursor: "pointer",
                 }}>
                 {c}
@@ -216,7 +216,7 @@ export default function SolutionsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
             {filtered.map((p, i) => {
-              const catColor = CAT_COLORS[p.cat] ?? { bg: "#EEF2FF", text: "#2563FF" };
+              const catColor = CAT_COLORS[p.cat] ?? { bg: "#EEF2FF", text: "#22d3ee" };
               const catIcon  = CAT_ICONS[p.cat];
               return (
                 <motion.div key={p.num} {...fade(i * 0.06)}
@@ -264,7 +264,7 @@ export default function SolutionsPage() {
                     <div className="flex flex-wrap gap-2 mb-4">
                       {p.outcomes.map(o => (
                         <span key={o} className="flex items-center gap-1.5 text-[11.5px] font-semibold px-3 py-1.5 rounded-full"
-                          style={{ background: "#EFF6FF", color: "#2563FF" }}>
+                          style={{ background: "#EFF6FF", color: "#22d3ee" }}>
                           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="20 6 9 17 4 12"/>
                           </svg>
@@ -289,7 +289,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#2563FF 100%)" }}>
+      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 40%,#22d3ee 100%)" }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
           <motion.h2 {...fade()} className="text-white font-bold mb-4" style={{ fontSize: "clamp(28px,3vw,42px)", letterSpacing: "-0.5px" }}>
             Have a Problem We Can Solve?

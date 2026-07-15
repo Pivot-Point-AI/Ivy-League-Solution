@@ -11,7 +11,9 @@
       "Bash(Get-ChildItem -Path \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\" -Recurse -Depth 2 -Directory)",
       "Bash(Select-Object FullName)",
       "PowerShell(Get-ChildItem -Path \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\src\" -Recurse | Where-Object { $_.Extension -match '\\\\.\\(tsx|ts\\)$' } | Select-Object Name | Get-Unique -AsString | Sort-Object)",
-      "Bash(mkdir \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\src\\\\app\\\\services\\\\[id]\")"
+      "Bash(mkdir \"d:\\\\ivy-league-solutions\\\\ivy-league-solutions-v2\\\\ivy-league-solutions\\\\src\\\\app\\\\services\\\\[id]\")",
+      "Bash(git checkout *)",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "d:\\ivy-league-solutions\\ivy-league-solutions-v2\\ivy-league-solutions\\src\\app\\services"

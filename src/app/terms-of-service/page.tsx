@@ -56,9 +56,9 @@ export default function TermsOfServicePage() {
       <SharedNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
+      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 35%,#0f1b2e 65%,#22d3ee 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
-        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none" style={{ background: "radial-gradient(circle,#60a5fa,transparent 70%)" }} />
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none" style={{ background: "radial-gradient(circle,#22d3ee,transparent 70%)" }} />
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
           <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Legal</motion.p>
           <motion.h1 {...fade(0.1)} className="text-white font-bold mb-5" style={{ fontSize: "clamp(36px,4vw,58px)", letterSpacing: "-1px", lineHeight: 1.1, maxWidth: 680 }}>
@@ -86,7 +86,7 @@ export default function TermsOfServicePage() {
           ))}
 
           {/* CTA */}
-          <motion.div {...fade(0.4)} className="rounded-2xl mt-8 text-center" style={{ background: "linear-gradient(135deg,#071B8F 0%,#2563FF 100%)", padding: "40px 36px" }}>
+          <motion.div {...fade(0.4)} className="rounded-2xl mt-8 text-center" style={{ background: "linear-gradient(135deg,#050814 0%,#22d3ee 100%)", padding: "40px 36px" }}>
             <p className="text-white font-bold mb-2" style={{ fontSize: 20 }}>Questions About Our Terms?</p>
             <p className="text-white/70 mb-6" style={{ fontSize: 14 }}>Reach out and our team will be happy to help clarify anything.</p>
             <a href="mailto:contact@ivyleaguesolutions.com">
@@ -97,9 +97,9 @@ export default function TermsOfServicePage() {
           </motion.div>
 
           <div className="mt-8 flex items-center gap-4">
-            <Link href="/" className="text-[#2563FF] font-semibold text-sm hover:underline">← Back to Home</Link>
+            <Link href="/" className="text-[#22d3ee] font-semibold text-sm hover:underline">← Back to Home</Link>
             <span className="text-[#CBD5E1]">|</span>
-            <Link href="/privacy-policy" className="text-[#2563FF] font-semibold text-sm hover:underline">Privacy Policy →</Link>
+            <Link href="/privacy-policy" className="text-[#22d3ee] font-semibold text-sm hover:underline">Privacy Policy →</Link>
           </div>
         </div>
       </section>

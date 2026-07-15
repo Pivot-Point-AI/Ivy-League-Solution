@@ -193,13 +193,13 @@ export default function WhyChooseUs() {
         style={{
           paddingTop: 48,
           paddingBottom: 48,
-          background: "#050B3A",
+          background: "#050814",
         }}
       >
         {/* Overlay — matches the Hero / Our Process gradient treatment */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }}
+          style={{ background: "linear-gradient(105deg,rgba(2,4,12,0.97) 0%,rgba(5,8,20,0.9) 42%,rgba(10,14,28,0.5) 66%,rgba(20,24,36,0.08) 100%)" }}
         />
 
         {/* Blobs */}

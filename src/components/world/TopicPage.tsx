@@ -10,6 +10,9 @@ const SWIPE_THRESHOLD = 60;
 
 export default function TopicPage({
   topic,
+  sectionLabel,
+  sectionIndex,
+  sectionTotal,
   direction,
   isFirst,
   isLast,
@@ -18,6 +21,9 @@ export default function TopicPage({
   videoRef,
 }: {
   topic: Topic;
+  sectionLabel: string;
+  sectionIndex: number;
+  sectionTotal: number;
   direction: number;
   isFirst: boolean;
   isLast: boolean;
@@ -108,7 +114,7 @@ export default function TopicPage({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: direction >= 0 ? -60 : 60 }}
       transition={{ duration: 0.45, ease: SOFT_EASE }}
-      className="relative w-full min-h-[100svh]"
+      className={`relative w-full ${isLast ? "min-h-[100svh]" : "h-[100svh] overflow-hidden"}`}
     >
       <div
         ref={headerRef}
@@ -127,8 +133,33 @@ export default function TopicPage({
         <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.22) 68%, rgba(0,0,0,0.05) 100%)` }} />
         <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 28%, transparent 55%, rgba(0,0,0,0.7) 100%)` }} />
         <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 lg:px-14 pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05, ease: SOFT_EASE }}
+            className="inline-flex items-center gap-2.5 self-start rounded-full mb-4"
+            style={{
+              padding: "8px 18px",
+              background: `${topic.from}22`,
+              border: `1.5px solid ${topic.from}77`,
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              width: "fit-content",
+            }}
+          >
+            <span className="rounded-full" style={{ width: 7, height: 7, background: topic.from, boxShadow: `0 0 10px ${topic.from}` }} />
+            <span
+              className="font-extrabold uppercase"
+              style={{ fontSize: 14, letterSpacing: "3px", color: "#ffffff", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
+            >
+              {sectionTotal > 1
+                ? `${sectionLabel} — ${String(sectionIndex + 1).padStart(2, "0")} / ${String(sectionTotal).padStart(2, "0")}`
+                : sectionLabel}
+            </span>
+          </motion.div>
+
           <div className="flex gap-2 mb-5">
-            {topic.tags.map((tag) => (
+            {topic.tags.filter((tag) => tag !== "Proof" && tag !== "Approach").map((tag) => (
               <span
                 key={tag}
                 className="rounded-full font-bold uppercase"
@@ -175,44 +206,19 @@ export default function TopicPage({
               {topic.headline}
             </motion.p>
 
-            {topic.body[0] && (
+            {topic.body.map((p, i) => (
               <motion.p
+                key={i}
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5, ease: SOFT_EASE }}
-                style={{ fontSize: "clamp(15px,1.3vw,18px)", color: "rgba(255,255,255,0.92)", lineHeight: 1.65, textShadow: "0 2px 5px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.65)" }}
+                transition={{ duration: 0.6, delay: 0.5 + i * 0.1, ease: SOFT_EASE }}
+                style={{ fontSize: "clamp(14px,1.15vw,16.5px)", color: "rgba(255,255,255,0.92)", lineHeight: 1.6, textShadow: "0 2px 5px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.65)" }}
               >
-                {topic.body[0]}
+                {p}
               </motion.p>
-            )}
+            ))}
           </div>
 
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7, ease: SOFT_EASE }}
-            className="mt-10 text-white uppercase font-semibold flex items-center gap-2.5"
-            style={{ fontSize: 12.5, letterSpacing: "2.5px", textShadow: "0 1px 4px rgba(0,0,0,0.9), 0 4px 14px rgba(0,0,0,0.6)" }}
-          >
-            Scroll to Explore
-            {isLast ? (
-              <motion.svg
-                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                animate={{ y: [0, 4, 0] }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <path d="M12 5v14M5 12l7 7 7-7" />
-              </motion.svg>
-            ) : (
-              <motion.svg
-                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </motion.svg>
-            )}
-          </motion.span>
         </div>
       </div>
 
@@ -318,42 +324,7 @@ export default function TopicPage({
             </div>
           </div>
         </div>
-      ) : (
-        <>
-          <div className="relative py-16 px-6 sm:px-10 lg:px-14" style={{ background: "#050B3A" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: SOFT_EASE }}
-              className="max-w-[420px] rounded-2xl p-7"
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-            >
-              <p className="font-extrabold text-white" style={{ fontSize: "clamp(30px,4vw,44px)" }}>
-                {topic.stat.value}
-              </p>
-              <p className="mt-2 font-semibold" style={{ fontSize: 14, color: topic.from }}>{topic.stat.label}</p>
-              <p className="mt-1" style={{ fontSize: 12.5, color: "rgba(255,255,255,0.45)" }}>{topic.stat.sub}</p>
-            </motion.div>
-          </div>
-
-          <div className="relative max-w-[860px] mx-auto px-6 sm:px-10 py-20">
-            {topic.body.map((p, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: SOFT_EASE }}
-                className="leading-relaxed"
-                style={{ fontSize: "clamp(15px,1.3vw,18px)", color: "rgba(255,255,255,0.65)", marginBottom: 24 }}
-              >
-                {p}
-              </motion.p>
-            ))}
-          </div>
-        </>
-      )}
+      ) : null}
     </motion.div>
   );
 }

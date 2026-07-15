@@ -27,11 +27,11 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
 /* ══ Industry data ══ */
 const INDUSTRIES = [
   { name: "Fintech",    color: "#34d399", desc: "AI-powered risk engines, payment platforms, and compliance automation built for the speed of modern finance." },
-  { name: "Healthcare", color: "#60a5fa", desc: "HIPAA-compliant systems, clinical AI, and patient data platforms engineered for care delivery at scale." },
-  { name: "Logistics",  color: "#fbbf24", desc: "Real-time tracking, route optimisation, and warehouse automation that keep supply chains moving." },
-  { name: "Enterprise", color: "#a78bfa", desc: "Scalable internal platforms, ERP integrations, and enterprise AI that modernise operations end-to-end." },
-  { name: "EdTech",     color: "#f0abfc", desc: "Adaptive learning platforms, LMS systems, and student analytics tools built for outcomes at scale." },
-  { name: "Government", color: "#fb923c", desc: "Secure citizen portals, compliance-first infrastructure, and digital-transformation projects for public sector." },
+  { name: "Healthcare", color: "#a78bfa", desc: "HIPAA-compliant systems, clinical AI, and patient data platforms engineered for care delivery at scale." },
+  { name: "Logistics",  color: "#60a5fa", desc: "Real-time tracking, route optimisation, and warehouse automation that keep supply chains moving." },
+  { name: "Enterprise", color: "#fb923c", desc: "Scalable internal platforms, ERP integrations, and enterprise AI that modernise operations end-to-end." },
+  { name: "EdTech",     color: "#22d3ee", desc: "Adaptive learning platforms, LMS systems, and student analytics tools built for outcomes at scale." },
+  { name: "Government", color: "#c026d3", desc: "Secure citizen portals, compliance-first infrastructure, and digital-transformation projects for public sector." },
 ];
 
 /* ══ Rotating word — auto-cycles, but can be overridden ══ */
@@ -328,8 +328,8 @@ function HowWeDeliver() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden" style={{ paddingTop: 100, paddingBottom: 100, background: "#050B3A" }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }} />
+    <section className="relative overflow-hidden" style={{ paddingTop: 100, paddingBottom: 100, background: "#050814" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg,rgba(2,4,12,0.97) 0%,rgba(5,8,20,0.9) 42%,rgba(10,14,28,0.5) 66%,rgba(20,24,36,0.08) 100%)" }} />
       <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
 
         {/* Header */}
@@ -776,7 +776,7 @@ function SpotlightCard({ children, className, style }: { children: React.ReactNo
         <div
           className="absolute inset-0"
           style={{
-            background: `radial-gradient(280px circle at ${pos.x}px ${pos.y}px, rgba(37,99,255,0.10), transparent 80%)`,
+            background: `radial-gradient(280px circle at ${pos.x}px ${pos.y}px, rgba(34,211,238,0.10), transparent 80%)`,
             opacity: pos.opacity,
           }}
         />
@@ -853,14 +853,14 @@ function CustomCursor() {
           y: pos.y - (hover ? 24 : 20),
           width:  hover ? 48 : 40,
           height: hover ? 48 : 40,
-          background: hover ? "rgba(37,99,255,0.12)" : "transparent",
-          borderColor: hover ? "#2563FF" : "rgba(255,255,255,0.6)",
+          background: hover ? "rgba(34,211,238,0.12)" : "transparent",
+          borderColor: hover ? "#22d3ee" : "rgba(255,255,255,0.6)",
           scale: click ? 0.75 : 1,
         }}
         transition={{ type: "spring", stiffness: 300, damping: 22, mass: 0.5 }}
         style={{ border: "1.5px solid", mixBlendMode: "difference" }}
       >
-        {label && <span style={{ fontSize: 9, fontWeight: 700, color: "#2563FF", letterSpacing: 1, textTransform: "uppercase" }}>{label}</span>}
+        {label && <span style={{ fontSize: 9, fontWeight: 700, color: "#22d3ee", letterSpacing: 1, textTransform: "uppercase" }}>{label}</span>}
       </motion.div>
       {/* Dot */}
       <motion.div
@@ -993,7 +993,7 @@ export default function LandingPage() {
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
         className="relative overflow-hidden"
-        style={{ paddingTop: 100, paddingBottom: 100, background: "#050B3A" }}
+        style={{ paddingTop: 100, paddingBottom: 100, background: "#050814" }}
       >
         {/* Illustration — right-side background, same treatment as the old full hero */}
         <Image
@@ -1006,7 +1006,7 @@ export default function LandingPage() {
         />
 
         {/* Dark overlay — matches the other dark sections on the page */}
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1, background: "linear-gradient(105deg,rgba(4,12,80,0.98) 0%,rgba(7,27,143,0.90) 42%,rgba(20,50,180,0.45) 66%,rgba(80,40,200,0.06) 100%)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1, background: "linear-gradient(105deg,rgba(2,4,12,0.97) 0%,rgba(5,8,20,0.9) 42%,rgba(10,14,28,0.5) 66%,rgba(20,24,36,0.08) 100%)" }} />
 
         {/* Canvas particle network */}
         <ParticleNetwork mouseRef={mouseRef} />
@@ -1097,7 +1097,7 @@ export default function LandingPage() {
               >
                 <RippleButton
                   className="text-white font-semibold rounded-full inline-flex items-center justify-center gap-2.5"
-                  style={{ height: 48, paddingInline: 28, fontSize: 14, background: "linear-gradient(135deg,#2F6BFF,#2060FF)", boxShadow: "0 8px 28px rgba(37,99,255,0.4)", border: "none", cursor: "pointer" }}
+                  style={{ height: 48, paddingInline: 28, fontSize: 14, background: "linear-gradient(135deg,#22d3ee,#06b6d4)", boxShadow: "0 8px 28px rgba(34,211,238,0.4)", border: "none", cursor: "pointer" }}
                   onClick={() => window.location.href = "/contact"}
                 >
                   Get Started
@@ -1120,7 +1120,7 @@ export default function LandingPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06 }}
-                      whileHover={{ scale: 1.12, background: "rgba(255,255,255,0.12)", borderColor: "rgba(96,165,250,0.45)" }}
+                      whileHover={{ scale: 1.12, background: "rgba(255,255,255,0.12)", borderColor: "rgba(34,211,238,0.45)" }}
                       className="rounded-lg px-3 py-1.5 flex items-center"
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(8px)", cursor: "default" }}
                     >

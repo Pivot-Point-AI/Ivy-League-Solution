@@ -87,7 +87,7 @@ const LEVELS = ["All Levels", "Junior", "Mid", "Senior", "Lead"];
 const PER_PAGE = 10;
 
 const DEPT_COLORS: Record<string, string> = {
-  "Developers":                   "#2563FF",
+  "Developers":                   "#22d3ee",
   "Database Engineers":           "#7C3AED",
   "QA Engineers":                 "#059669",
   "Project Managers":             "#D97706",
@@ -107,13 +107,13 @@ type FloatInputProps = {
 function FloatInput({ id, label, type = "text", value, onChange, error, required, as = "input" }: FloatInputProps) {
   const [focused, setFocused] = useState(false);
   const lifted = focused || value.length > 0;
-  const border = error ? "#EF4444" : focused ? "#2563FF" : "#E2E8F0";
-  const shadow = focused ? (error ? "0 0 0 3px rgba(239,68,68,0.12)" : "0 0 0 3px rgba(37,99,255,0.10)") : "none";
+  const border = error ? "#EF4444" : focused ? "#22d3ee" : "#E2E8F0";
+  const shadow = focused ? (error ? "0 0 0 3px rgba(239,68,68,0.12)" : "0 0 0 3px rgba(34,211,238,0.10)") : "none";
   const Tag = as;
   return (
     <div className="relative">
       <label htmlFor={id} className="absolute left-4 pointer-events-none transition-all duration-200 select-none"
-        style={{ top: lifted ? 8 : "50%", transform: lifted ? "none" : "translateY(-50%)", fontSize: lifted ? 10 : 14, fontWeight: lifted ? 600 : 400, color: error ? "#EF4444" : focused ? "#2563FF" : "#94A3B8", letterSpacing: lifted ? "0.05em" : 0, textTransform: lifted ? "uppercase" : "none" }}>
+        style={{ top: lifted ? 8 : "50%", transform: lifted ? "none" : "translateY(-50%)", fontSize: lifted ? 10 : 14, fontWeight: lifted ? 600 : 400, color: error ? "#EF4444" : focused ? "#22d3ee" : "#94A3B8", letterSpacing: lifted ? "0.05em" : 0, textTransform: lifted ? "uppercase" : "none" }}>
         {label}{required && " *"}
       </label>
       <Tag
@@ -139,7 +139,7 @@ function FloatInput({ id, label, type = "text", value, onChange, error, required
 type ApplyModalProps = { job: Job; onClose: () => void };
 
 function ApplyModal({ job, onClose }: ApplyModalProps) {
-  const accent = DEPT_COLORS[job.dept] ?? "#2563FF";
+  const accent = DEPT_COLORS[job.dept] ?? "#22d3ee";
   const fileRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", experience: "", linkedin: "", message: "" });
   const [fileInfo, setFileInfo] = useState<{ name: string; size: string } | null>(null);
@@ -388,10 +388,10 @@ export default function CareersPage() {
       </AnimatePresence>
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
+      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 35%,#0f1b2e 65%,#22d3ee 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
-        <div className="absolute top-[-80px] right-[-80px] w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle,rgba(108,60,255,0.35) 0%,transparent 70%)" }} />
-        <div className="absolute bottom-[-40px] left-[-40px] w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle,rgba(37,99,255,0.25) 0%,transparent 70%)" }} />
+        <div className="absolute top-[-80px] right-[-80px] w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle,rgba(34,211,238,0.35) 0%,transparent 70%)" }} />
+        <div className="absolute bottom-[-40px] left-[-40px] w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle,rgba(34,211,238,0.25) 0%,transparent 70%)" }} />
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
           <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Join Our Team</motion.p>
           <motion.h1 {...fade(0.1)} className="text-white font-extrabold mb-4" style={{ fontSize: "clamp(38px,4.5vw,66px)", letterSpacing: "-1.5px", lineHeight: 1.08, maxWidth: 720 }}>
@@ -419,7 +419,7 @@ export default function CareersPage() {
             We&apos;re{" "}
             <span style={{ background: "linear-gradient(90deg,#60A5FA,#A78BFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Hiring</span>
           </motion.p>
-          <div className="w-16 mx-auto mb-8 rounded-full" style={{ height: 3, background: "linear-gradient(90deg,#2563FF,#6C3CFF)" }} />
+          <div className="w-16 mx-auto mb-8 rounded-full" style={{ height: 3, background: "linear-gradient(90deg,#22d3ee,#22d3ee)" }} />
           <motion.div {...fade(0.1)} className="flex flex-wrap justify-center gap-3">
             {["Developers","Database Engineers","QA Engineers","Project Managers","Business Analysts","AI Engineers","Network & Security Engineers"].map((role, i) => (
               <span key={i} className="px-5 py-2 rounded-full font-semibold" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)", fontSize: 14 }}>
@@ -434,15 +434,15 @@ export default function CareersPage() {
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="text-center mb-14">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Why Ivy League Solutions</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Why Ivy League Solutions</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,42px)", letterSpacing: "-0.5px" }}>More Than Just a Job</h2>
             <p className="text-[#64748B] mt-3 mx-auto" style={{ fontSize: 16, maxWidth: 520 }}>We invest in your growth, not just your output.</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {BENEFITS.map((b, i) => (
-              <motion.div key={i} {...fade(i * 0.08)} whileHover={{ y: -6, boxShadow: "0 24px 50px rgba(37,99,255,0.12)" }} transition={{ duration: 0.25 }}
+              <motion.div key={i} {...fade(i * 0.08)} whileHover={{ y: -6, boxShadow: "0 24px 50px rgba(34,211,238,0.12)" }} transition={{ duration: 0.25 }}
                 className="rounded-2xl p-7 text-center cursor-default" style={{ background: "linear-gradient(160deg,#F0F4FF 0%,#FAF5FF 100%)", border: "1px solid #E0E7FF" }}>
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)" }}>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: "linear-gradient(135deg,#22d3ee,#22d3ee)" }}>
                   <b.icon size={26} color="#fff" strokeWidth={1.8} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 16 }}>{b.title}</h3>
@@ -457,7 +457,7 @@ export default function CareersPage() {
       <section ref={boardRef} className="bg-[#F8FAFF]" style={{ paddingTop: 100, paddingBottom: 120, scrollMarginTop: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-10">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Open Positions</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Open Positions</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Find Your Role</h2>
           </motion.div>
 
@@ -502,7 +502,7 @@ export default function CareersPage() {
                   No roles match your search. Try different keywords.
                 </motion.div>
               ) : paginated.map((job, i) => {
-                const accent  = DEPT_COLORS[job.dept] ?? "#2563FF";
+                const accent  = DEPT_COLORS[job.dept] ?? "#22d3ee";
                 const isOpen  = expanded === job.id;
                 return (
                   <motion.div key={job.id}
@@ -578,7 +578,7 @@ export default function CareersPage() {
                 return (
                   <button key={n} onClick={() => goPage(n)}
                     className="w-10 h-10 rounded-xl font-semibold transition-all"
-                    style={{ background: isCur ? "linear-gradient(135deg,#2563FF,#6C3CFF)" : "#fff", color: isCur ? "#fff" : "#64748B", border: isCur ? "none" : "1.5px solid #E2E8F0", fontSize: 14, boxShadow: isCur ? "0 4px 16px rgba(37,99,255,0.35)" : "none" }}>
+                    style={{ background: isCur ? "linear-gradient(135deg,#22d3ee,#22d3ee)" : "#fff", color: isCur ? "#fff" : "#64748B", border: isCur ? "none" : "1.5px solid #E2E8F0", fontSize: 14, boxShadow: isCur ? "0 4px 16px rgba(34,211,238,0.35)" : "none" }}>
                     {n}
                   </button>
                 );
@@ -597,7 +597,7 @@ export default function CareersPage() {
       {/* ── CTA ── */}
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
-          <motion.div {...fade()} className="rounded-3xl overflow-hidden relative" style={{ background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#6C3CFF 100%)", padding: "clamp(40px,5vw,64px)" }}>
+          <motion.div {...fade()} className="rounded-3xl overflow-hidden relative" style={{ background: "linear-gradient(135deg,#050814 0%,#0a0e1f 40%,#22d3ee 100%)", padding: "clamp(40px,5vw,64px)" }}>
             <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "32px 32px" }} />
             <div className="relative z-10 flex flex-col sm:flex-row items-center gap-8">
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>

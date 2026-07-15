@@ -99,7 +99,7 @@ export default function ContactPage() {
       <SharedNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
+      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 35%,#0f1b2e 65%,#22d3ee 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
           <motion.p {...fade(0)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>Get in Touch</motion.p>
@@ -118,7 +118,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
             {/* Info */}
-            <motion.div {...fade(0.1)} className="rounded-2xl p-8 text-white" style={{ background: "linear-gradient(145deg,#071B8F,#0A2BA8,#1E3A9E)", boxShadow: "0 8px 32px rgba(7,27,143,0.25)" }}>
+            <motion.div {...fade(0.1)} className="rounded-2xl p-8 text-white" style={{ background: "linear-gradient(145deg,#050814,#0a0e1f,#1E3A9E)", boxShadow: "0 8px 32px rgba(7,27,143,0.25)" }}>
               <h3 className="font-bold mb-2" style={{ fontSize: 20 }}>Contact Information</h3>
               <p className="text-white/60 leading-relaxed mb-7" style={{ fontSize: 14 }}>Whether starting a project or exploring a partnership — we&apos;d love to hear from you.</p>
               <div className="space-y-5 mb-8">
@@ -163,7 +163,7 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="text-center py-12">
                   <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)" }}>
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <h3 className="font-bold text-[#0F172A] mb-2" style={{ fontSize: 22 }}>Message Sent!</h3>
                   <p className="text-[#64748B]" style={{ fontSize: 15 }}>We&apos;ll be in touch within one business day.</p>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                   {submitError && <p className="text-red-500 text-sm mb-4">⚠ {submitError}</p>}
                   <motion.button type="submit" disabled={loading} whileHover={{ scale: loading ? 1 : 1.02 }} whileTap={{ scale: 0.97 }}
                     className="w-full font-semibold rounded-2xl text-white"
-                    style={{ height: 54, fontSize: 16, background: loading ? "#94A3B8" : "linear-gradient(135deg,#2F6BFF,#2563FF)", border: "none", cursor: loading ? "not-allowed" : "pointer", boxShadow: loading ? "none" : "0 8px 24px rgba(37,99,255,0.35)" }}>
+                    style={{ height: 54, fontSize: 16, background: loading ? "#94A3B8" : "linear-gradient(135deg,#22d3ee,#22d3ee)", border: "none", cursor: loading ? "not-allowed" : "pointer", boxShadow: loading ? "none" : "0 8px 24px rgba(34,211,238,0.35)" }}>
                     {loading ? "Sending..." : "Send Message →"}
                   </motion.button>
                 </form>

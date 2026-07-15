@@ -32,7 +32,7 @@ const VALUES = [
     title: "Engineering Precision",
     desc: "We treat every solution like a product. Architectural decisions are made for the long term — not just the sprint.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
       </svg>
     ),
@@ -41,7 +41,7 @@ const VALUES = [
     title: "Client Partnership",
     desc: "Long-standing relationships aren't a goal — they're the outcome of delivering what we promise. Every time.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
@@ -50,7 +50,7 @@ const VALUES = [
     title: "Multicultural by Design",
     desc: "Our team spans continents. That cultural breadth lets us engineer for any market, understand any user.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
       </svg>
     ),
@@ -59,7 +59,7 @@ const VALUES = [
     title: "Transparent Delivery",
     desc: "Weekly reporting, open codebases, and honest timelines. No surprises — just progress.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
       </svg>
     ),
@@ -198,7 +198,7 @@ const PLATFORM_STYLES: Record<string, { bg: string; text: string; icon: React.Re
     ),
   },
   Web: {
-    bg: "#EFF6FF", text: "#2563FF",
+    bg: "#EFF6FF", text: "#22d3ee",
     icon: (
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -309,7 +309,7 @@ export default function AboutPage() {
       <SharedNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
+      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 35%,#0f1b2e 65%,#22d3ee 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="absolute top-[-90px] right-[-90px] w-[460px] h-[460px] rounded-full opacity-20 pointer-events-none" style={{ background: "radial-gradient(circle,#a78bfa,transparent 70%)" }} />
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10 grid lg:grid-cols-[1fr_320px] gap-10 items-start">
@@ -334,7 +334,7 @@ export default function AboutPage() {
 
           {/* Decorative badge — fills empty space on the right */}
           <motion.div {...fade(0.25)} className="hidden lg:flex flex-col gap-4 rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(12px)" }}>
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)" }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg,#22d3ee,#22d3ee)" }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
@@ -349,7 +349,7 @@ export default function AboutPage() {
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>What Drives Us</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>What Drives Us</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Our Core Values</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -371,15 +371,15 @@ export default function AboutPage() {
       <section className="bg-[#F8FAFF]" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Our Journey</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Our Journey</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>10 Years in the Making</h2>
           </motion.div>
           <div className="relative pl-8" style={{ borderLeft: "2px solid #E2E8F0" }}>
             {TIMELINE.map((t, i) => (
               <motion.div key={i} {...fade(i * 0.08)} className="relative mb-10 last:mb-0">
-                <div className="absolute -left-[39px] top-1.5 w-4 h-4 rounded-full border-2 border-white" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)", boxShadow: "0 0 0 3px rgba(37,99,255,0.2)" }} />
+                <div className="absolute -left-[39px] top-1.5 w-4 h-4 rounded-full border-2 border-white" style={{ background: "linear-gradient(135deg,#22d3ee,#22d3ee)", boxShadow: "0 0 0 3px rgba(34,211,238,0.2)" }} />
                 <div className="bg-white rounded-2xl p-6 ml-4" style={{ boxShadow: "0 2px 16px rgba(15,23,42,0.06)", border: "1px solid #F1F5F9" }}>
-                  <span className="text-[#2563FF] font-bold text-sm uppercase tracking-wider">{t.year}</span>
+                  <span className="text-[#22d3ee] font-bold text-sm uppercase tracking-wider">{t.year}</span>
                   <h3 className="font-bold text-[#0F172A] mt-1 mb-2" style={{ fontSize: 18 }}>{t.title}</h3>
                   <p className="text-[#64748B] leading-relaxed" style={{ fontSize: 14 }}>{t.desc}</p>
                 </div>
@@ -393,19 +393,19 @@ export default function AboutPage() {
       <section className="bg-white" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>The People</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>The People</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Leadership & Team</h2>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {LEADERSHIP.map((l, i) => (
               <motion.div key={i} {...fade(i * 0.1)} whileHover={{ y: -4 }} transition={{ duration: 0.25 }}
-                className="rounded-2xl p-8 flex gap-6 h-full" style={{ background: "linear-gradient(145deg,#F0F4FF,#fff)", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(37,99,255,0.06)" }}>
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 text-white" style={{ background: "linear-gradient(135deg,#2563FF,#6C3CFF)", fontSize: 18 }}>{l.initials}</div>
+                className="rounded-2xl p-8 flex gap-6 h-full" style={{ background: "linear-gradient(145deg,#F0F4FF,#fff)", border: "1.5px solid #E0E7FF", boxShadow: "0 4px 20px rgba(34,211,238,0.06)" }}>
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-lg flex-shrink-0 text-white" style={{ background: "linear-gradient(135deg,#22d3ee,#22d3ee)", fontSize: 18 }}>{l.initials}</div>
                 <div className="flex flex-col flex-1">
                   <h3 className="font-bold text-[#0F172A] mb-1" style={{ fontSize: 19 }}>{l.name}</h3>
-                  <p className="text-[#2563FF] font-semibold mb-3" style={{ fontSize: 13 }}>{l.role}</p>
+                  <p className="text-[#22d3ee] font-semibold mb-3" style={{ fontSize: 13 }}>{l.role}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {l.tags.map(t => <span key={t} className="text-[11px] font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{t}</span>)}
+                    {l.tags.map(t => <span key={t} className="text-[11px] font-semibold px-3 py-1 rounded-full" style={{ background: "#EEF2FF", color: "#22d3ee" }}>{t}</span>)}
                   </div>
                   <p className="text-[#64748B] leading-relaxed mt-auto" style={{ fontSize: 14 }}>{l.bio}</p>
                 </div>
@@ -419,19 +419,19 @@ export default function AboutPage() {
       <section className="bg-[#F8FAFF]" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="text-center mb-12">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Technologies We Use</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Technologies We Use</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(24px,2.5vw,36px)", letterSpacing: "-0.5px" }}>Our Tech Stack</h2>
           </motion.div>
           <motion.div {...fade(0.1)} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {TECH_STACK.map((t, i) => (
               <motion.div key={t.name} {...fade(i * 0.04)}
-                whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(37,99,255,0.12)", borderColor: "#2563FF" }}
+                whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(34,211,238,0.12)", borderColor: "#22d3ee" }}
                 transition={{ duration: 0.2 }}
                 className="flex flex-col items-center gap-3 rounded-2xl p-4 bg-white cursor-default"
                 style={{ border: "1.5px solid #E2E8F0", boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }}
               >
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)", color: "#2563FF" }}>
+                  style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)", color: "#22d3ee" }}>
                   {t.icon}
                 </div>
                 <span className="text-center font-semibold text-[#475569] leading-tight" style={{ fontSize: 11.5 }}>{t.name}</span>
@@ -445,7 +445,7 @@ export default function AboutPage() {
       <section className="bg-white" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-10">
-            <p className="text-[#2563FF] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Selected Work</p>
+            <p className="text-[#22d3ee] font-semibold uppercase tracking-widest mb-2" style={{ fontSize: 12 }}>Selected Work</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-0.5px" }}>Major Projects</h2>
           </motion.div>
 
@@ -455,10 +455,10 @@ export default function AboutPage() {
               <button key={c} onClick={() => setActiveProject(c)}
                 className="flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all"
                 style={{
-                  background: activeProject === c ? "linear-gradient(135deg,#2F6BFF,#2563FF)" : "#fff",
+                  background: activeProject === c ? "linear-gradient(135deg,#22d3ee,#22d3ee)" : "#fff",
                   color: activeProject === c ? "#fff" : "#64748B",
                   border: activeProject === c ? "none" : "1.5px solid #E2E8F0",
-                  boxShadow: activeProject === c ? "0 4px 16px rgba(37,99,255,0.3)" : "none",
+                  boxShadow: activeProject === c ? "0 4px 16px rgba(34,211,238,0.3)" : "none",
                   cursor: "pointer",
                 }}>
                 {c !== "All" && PLATFORM_STYLES[c] && (
@@ -494,7 +494,7 @@ export default function AboutPage() {
                   })}
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-1" style={{ fontSize: 16 }}>{p.name}</h3>
-                <p className="font-semibold mb-3" style={{ fontSize: 12, color: "#2563FF" }}>{p.sub}</p>
+                <p className="font-semibold mb-3" style={{ fontSize: 12, color: "#22d3ee" }}>{p.sub}</p>
                 <p className="text-[#64748B] leading-relaxed flex-1 mb-4" style={{ fontSize: 13 }}>{p.desc}</p>
                 <div className="flex flex-wrap gap-1.5 pt-4" style={{ borderTop: "1px solid #F1F5F9" }}>
                   {p.tech.map(t => (
@@ -509,7 +509,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#2563FF 100%)" }}>
+      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 40%,#22d3ee 100%)" }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
           <motion.h2 {...fade()} className="text-white font-bold mb-4" style={{ fontSize: "clamp(28px,3vw,42px)", letterSpacing: "-0.5px" }}>Work With a Team That Delivers</motion.h2>
           <motion.p {...fade(0.1)} className="text-white/70 mb-8 mx-auto" style={{ fontSize: 16, maxWidth: 460 }}>200+ projects shipped. 15+ industries served. Let&apos;s build yours.</motion.p>

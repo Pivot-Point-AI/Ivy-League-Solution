@@ -242,7 +242,7 @@ export default function ServiceDetailPage() {
         <SharedNav />
         <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
           <p className="text-[#0F172A] font-bold text-2xl">Service not found</p>
-          <Link href="/services" className="text-[#2563FF] font-semibold underline">Back to Services</Link>
+          <Link href="/services" className="text-[#22d3ee] font-semibold underline">Back to Services</Link>
         </div>
         <SharedFooter />
       </div>
@@ -254,7 +254,7 @@ export default function ServiceDetailPage() {
       <SharedNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 35%,#3B5BFF 65%,#6C3CFF 100%)" }}>
+      <section className="relative overflow-hidden" style={{ paddingTop: 160, paddingBottom: 100, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 35%,#0f1b2e 65%,#22d3ee 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
           <motion.p {...fade(0.05)} className="text-blue-300 font-semibold uppercase tracking-widest mb-3" style={{ fontSize: 12 }}>{svc.cat}</motion.p>
@@ -266,7 +266,7 @@ export default function ServiceDetailPage() {
           <motion.div {...fade(0.25)} className="flex flex-wrap gap-3">
             <Link href="/contact">
               <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="text-white font-semibold rounded-full"
-                style={{ height: 52, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#2F6BFF,#2563FF)", boxShadow: "0 8px 24px rgba(37,99,255,0.5)", border: "none", cursor: "pointer" }}>
+                style={{ height: 52, paddingInline: 36, fontSize: 15, background: "linear-gradient(135deg,#22d3ee,#22d3ee)", boxShadow: "0 8px 24px rgba(34,211,238,0.5)", border: "none", cursor: "pointer" }}>
                 Get Started
               </motion.button>
             </Link>
@@ -284,7 +284,7 @@ export default function ServiceDetailPage() {
       <section className="bg-[#F8FAFF]" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div {...fade()} className="mb-12">
-            <p className="text-[#2563FF] font-semibold text-[12px] uppercase tracking-[3px] mb-2">What&apos;s Included</p>
+            <p className="text-[#22d3ee] font-semibold text-[12px] uppercase tracking-[3px] mb-2">What&apos;s Included</p>
             <h2 className="text-[#0F172A] font-bold" style={{ fontSize: "clamp(24px,2.8vw,36px)", letterSpacing: "-0.5px" }}>What We Deliver</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
@@ -294,7 +294,7 @@ export default function ServiceDetailPage() {
                 style={{ boxShadow: "0 2px 16px rgba(15,23,42,0.07)", border: "1px solid #F1F5F9" }}
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: "linear-gradient(135deg,#EEF2FF,#E0E7FF)" }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563FF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
@@ -309,7 +309,7 @@ export default function ServiceDetailPage() {
             <p className="text-[#0F172A] font-bold mb-4" style={{ fontSize: 16 }}>Technologies & Platforms</p>
             <div className="flex flex-wrap gap-2">
               {svc.tech.map(t => (
-                <span key={t} className="text-sm font-semibold px-4 py-2 rounded-full" style={{ background: "#EEF2FF", color: "#2563FF" }}>{t}</span>
+                <span key={t} className="text-sm font-semibold px-4 py-2 rounded-full" style={{ background: "#EEF2FF", color: "#22d3ee" }}>{t}</span>
               ))}
             </div>
           </motion.div>
@@ -317,7 +317,7 @@ export default function ServiceDetailPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#071B8F 0%,#0A2BA8 40%,#2563FF 100%)" }}>
+      <section className="relative" style={{ paddingTop: 80, paddingBottom: 80, background: "linear-gradient(135deg,#050814 0%,#0a0e1f 40%,#22d3ee 100%)" }}>
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-14 text-center">
           <motion.h2 {...fade()} className="text-white font-bold mb-4" style={{ fontSize: "clamp(26px,3vw,40px)", letterSpacing: "-0.5px" }}>
             Ready to Get Started with {svc.title}?
