@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,11 +24,38 @@ export default function WorldNav({
   onLogoClick: () => void;
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  /* The homepage's video hero only fills the first screen — once scrolling continues
+     into the white closing sections (after the last topic), the nav's usual
+     transparent-to-black gradient stops having anything dark behind it to read against.
+     Falling back to a solid dark bar past that point keeps it visible everywhere. */
+  useEffect(() => {
+    let ticking = false;
+    const fn = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20);
+        ticking = false;
+      });
+    };
+    fn();
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
 
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 sm:px-6 sm:py-5"
-      style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 70%, transparent 100%)" }}
+      style={{
+        background: scrolled || mobileOpen
+          ? "rgba(5,8,20,0.92)"
+          : "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 70%, transparent 100%)",
+        boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.4)" : "none",
+        backdropFilter: scrolled || mobileOpen ? "blur(12px)" : "none",
+        transition: "background 0.15s ease-out, box-shadow 0.15s ease-out",
+      }}
     >
       <div className="flex items-center gap-3 ml-1 sm:ml-4">
         <button onClick={onLogoClick} aria-label="Go to entrance" style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
