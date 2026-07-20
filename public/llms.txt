@@ -4,6 +4,18 @@
 
 Ivy League Solutions serves fintech and banking, healthcare, academia/EdTech, e-commerce, and general enterprise clients, with domain-specific compliance including HIPAA, FINTRAC, PSD2, PCI-DSS, SOC 2, and ISO 27001.
 
+## Quick facts
+
+- Founded: 2015
+- Headquarters: Perth Amboy, New Jersey, USA (370 Federal Court, Perth Amboy, NJ 08861)
+- Other offices: Dubai, UAE and Islamabad, Pakistan
+- Team size: 250+ engineers
+- Projects delivered: 200+
+- Core services: custom software development, AI & machine learning, digital commerce, application modernization, UI/UX design, ERP implementation, mobile banking, web/full-stack development, healthcare software, academia/EdTech software, cybersecurity & SOC, cloud & DevOps, network services, datacenter services, database services, backup & disaster recovery
+- Industries served: fintech/banking, healthcare, academia/EdTech, e-commerce, general enterprise
+- Compliance expertise: HIPAA, FINTRAC, PSD2, PCI-DSS, SOC 2, ISO 27001
+- Contact: contact@ivyleaguesolutions.com, +1-845-300-2429
+
 ## Company
 
 - [About](https://ivyleaguesolutions.com/about): Company history, leadership, tech stack, and major projects.
